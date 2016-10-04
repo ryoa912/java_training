@@ -7,7 +7,7 @@ This is GitHub's repo. for Java training created by Ryoh Aruga.
 
 ## Description
 
-Å¶I'm not Isao.Aruga.
+I'm not Isao.Aruga.
 
 ## Requirement
 
