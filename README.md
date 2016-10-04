@@ -2,13 +2,12 @@
 ====
 
 ## Overview
-
-こちらはR.Arugaが作成したJava研修のために作成したGitHubのリポジトリです。  
+  
 This is GitHub's repo. for Java training created by Ryoh Aruga.
 
 ## Description
 
-※いさおではありません。
+※I'm not Isao.Aruga.
 
 ## Requirement
 
@@ -16,12 +15,11 @@ JDK 1.8.0
 
 ## Usage
 
-.jarがある場合はそれを実行してください。  
-ビルドする場合はRequirementに記載した環境でビルドしてください。
+Please execute .jar file.
 
 ## Contribution
 
-なし
+Nothing
 
 ## License
 
