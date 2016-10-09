@@ -2,7 +2,7 @@ package jpl.ch01.ex04;
 
 
 public class SquareSeries {
-	public static final int MAX_NUM = 50;
+	static final int MAX_NUM = 50;
 
 	public static void main (String[] args) {
 		int num = 1, ans = 1;
