@@ -175,17 +175,17 @@ Java\'8c\'a4\'8f\'43 \'91\'e61\'89\'f1\par
 <chapter>ëÊ1èÕ
 <attribute>-1,1,1
 <content>
-{\rtf1\ansi\ansicpg932\deff0\deflang1033\deflangfe1041{\fonttbl{\f0\fnil\fcharset128 \'82\'6c\'82\'72 \'82\'6f\'83\'53\'83\'56\'83\'62\'83\'4e;}{\f1\fnil\fcharset2 Symbol;}}
-{\colortbl ;\red0\green0\blue0;}
+{\rtf1\ansi\ansicpg932\deff0\deflang1033\deflangfe1041{\fonttbl{\f0\fnil\fcharset128 \'82\'6c\'82\'72 \'82\'6f\'83\'53\'83\'56\'83\'62\'83\'4e;}{\f1\fnil\fcharset128 \'82\'6c\'82\'72 \'83\'53\'83\'56\'83\'62\'83\'4e;}{\f2\fnil\fcharset2 Symbol;}}
+{\colortbl ;\red0\green0\blue0;\red100\green100\blue100;\red127\green0\blue85;\red255\green0\blue255;\red42\green0\blue255;}
 \viewkind4\uc1\pard\cf1\lang1041\f0\fs18 ---2016/10/04---\par
-\pard{\pntext\f1\'B7\tab}{\*\pn\pnlvlblt\pnf1\pnindent0{\pntxtb\'B7}}\fi-200\li200\'91\'e61\'8f\'cd \'82\'cd\'82\'e2\'82\'df\'82\'ae\'82\'e8\par
+\pard{\pntext\f2\'B7\tab}{\*\pn\pnlvlblt\pnf2\pnindent0{\pntxtb\'B7}}\fi-200\li200\'91\'e61\'8f\'cd \'82\'cd\'82\'e2\'82\'df\'82\'ae\'82\'e8\par
 \pard\par
 \'81\'a1\'97\'fb\'8f\'4b\'96\'e2\'91\'e81.1\par
 \'8f\'80\'94\'f5\'8e\'c0\'8e\'7b\'81\'42\par
-\pard{\pntext\f1\'B7\tab}{\*\pn\pnlvlblt\pnf1\pnindent0{\pntxtb\'B7}}\fi-200\li200 JDK\par
-{\pntext\f1\'B7\tab}Eclipse\par
-{\pntext\f1\'B7\tab}Git\par
-{\pntext\f1\'B7\tab}TortoiseGit\par
+\pard{\pntext\f2\'B7\tab}{\*\pn\pnlvlblt\pnf2\pnindent0{\pntxtb\'B7}}\fi-200\li200 JDK\par
+{\pntext\f2\'B7\tab}Eclipse\par
+{\pntext\f2\'B7\tab}Git\par
+{\pntext\f2\'B7\tab}TortoiseGit\par
 \pard\par
 \'83\'52\'81\'5b\'83\'68\'8d\'ec\'90\'ac\'8e\'9e\'8a\'d4\'81\'465\'95\'aa\par
 \par
@@ -196,7 +196,7 @@ Java\'8c\'a4\'8f\'43 \'91\'e61\'89\'f1\par
 \par
 \'81\'a1\'97\'fb\'8f\'4b\'96\'e2\'91\'e81.3\par
 \'83\'74\'83\'42\'83\'7b\'83\'69\'83\'62\'83\'60\'90\'94\'97\'f1\'82\'f0\'95\'5c\'8e\'a6\'82\'b7\'82\'e9\'83\'76\'83\'8d\'83\'4f\'83\'89\'83\'80\'82\'cc\'8f\'6f\'97\'cd\'83\'8a\'83\'58\'83\'67\'82\'c9\'83\'5e\'83\'43\'83\'67\'83\'8b\'82\'f0\'82\'c2\'82\'af\'82\'e9\par
-\pard{\pntext\f1\'B7\tab}{\*\pn\pnlvlblt\pnf1\pnindent0{\pntxtb\'B7}}\fi-200\li200\'90\'e6\'93\'aa\'82\'c9"Fibonacci "\par
+\pard{\pntext\f2\'B7\tab}{\*\pn\pnlvlblt\pnf2\pnindent0{\pntxtb\'B7}}\fi-200\li200\'90\'e6\'93\'aa\'82\'c9"Fibonacci "\par
 \pard\par
 \'83\'65\'83\'58\'83\'67\'8d\'ec\'90\'ac\'81\'46\par
 JUnit\'82\'c5\'8c\'9f\'8d\'f5\'82\'b5\'82\'c4\'8f\'e3\'88\'ca\'82\'cc\'82\'b1\'82\'bf\'82\'e7\'81\'69http://www.javaroad.jp/opensource/js_eclipse9.htm\'81\'6a\'82\'f0\'8e\'51\'8f\'c6\'82\'b5\'82\'c4\'8d\'ec\'90\'ac\'81\'42\par
@@ -207,7 +207,7 @@ JUnit\'82\'c5\'8c\'9f\'8d\'f5\'82\'b5\'82\'c4\'8f\'e3\'88\'ca\'82\'cc\'82\'b1\'8
 ---2016/10/09---\par
 \'81\'a1\'97\'fb\'8f\'4b\'96\'e2\'91\'e81.4\par
 \'89\'bd\'82\'e7\'82\'a9\'82\'cc\'90\'94\'97\'f1\'82\'f0\'90\'b6\'90\'ac\'82\'b7\'82\'e9\'83\'76\'83\'8d\'83\'4f\'83\'89\'83\'80\'82\'f0\'8d\'ec\'90\'ac\par
-\pard{\pntext\f1\'B7\tab}{\*\pn\pnlvlblt\pnf1\pnindent0{\pntxtb\'B7}}\fi-200\li200\'95\'bd\'95\'fb\'90\'94\'97\'f1\'82\'f050\'82\'dc\'82\'c5\'90\'b6\'90\'ac\'82\'b7\'82\'e9\'83\'76\'83\'8d\'83\'4f\'83\'89\'83\'80\'82\'f0\'8d\'ec\'90\'ac\par
+\pard{\pntext\f2\'B7\tab}{\*\pn\pnlvlblt\pnf2\pnindent0{\pntxtb\'B7}}\fi-200\li200\'95\'bd\'95\'fb\'90\'94\'97\'f1\'82\'f050\'82\'dc\'82\'c5\'90\'b6\'90\'ac\'82\'b7\'82\'e9\'83\'76\'83\'8d\'83\'4f\'83\'89\'83\'80\'82\'f0\'8d\'ec\'90\'ac\par
 \pard\par
 \'81\'a1\'97\'fb\'8f\'4b\'96\'e2\'91\'e81.5\par
 HelloWorld\'82\'f0\'92\'e8\'90\'94\'82\'c5\'95\'5c\'8c\'bb\par
@@ -232,20 +232,52 @@ Point\'83\'4e\'83\'89\'83\'58\'82\'c9\'83\'81\'83\'5c\'83\'62\'83\'68\'82\'f0\'9
 Fibonacci\'90\'94\'97\'f1\'82\'f0\'94\'7a\'97\'f1\'82\'c9\'8a\'69\'94\'5b\'82\'b5\'82\'c4\'8d\'c5\'8c\'e3\'82\'c9\'82\'dc\'82\'c6\'82\'df\'82\'c4\'8f\'6f\'97\'cd\'82\'b7\'82\'e9\'82\'e6\'82\'a4\'82\'c9\'95\'cf\'8d\'58\par
 \par
 \'81\'a1\'97\'fb\'8f\'4b\'96\'e2\'91\'e81.10\par
-\pard{\pntext\f1\'B7\tab}{\*\pn\pnlvlblt\pnf1\pnindent0{\pntxtb\'B7}}\fi-200\li200 ImprovedFibonacci\'83\'41\'83\'76\'83\'8a\'83\'50\'81\'5b\'83\'56\'83\'87\'83\'93\'82\'f0\'8f\'43\'90\'b3\'82\'b5\'82\'c4\'81\'41\'90\'94\'97\'f1\'82\'f0\'94\'7a\'97\'f1\'82\'c9\'95\'db\'91\'b6\'82\'b7\'82\'e9\'82\'e6\'82\'a4\'82\'c9\'82\'b7\'82\'e9\'81\'42\par
-{\pntext\f1\'B7\tab}\'90\'94\'97\'f1\'82\'c6\'82\'bb\'82\'cc\'92\'6c\'82\'aa\'8b\'f4\'90\'94\'82\'a9\'82\'f0\'8e\'a6\'82\'b7Bool\'92\'6c\'82\'f0\'95\'db\'8e\'9d\'82\'b7\'82\'e9\'83\'4e\'83\'89\'83\'58\'82\'f0\'8d\'ec\'90\'ac\'82\'b5\'82\'c4\'81\'41\'82\'bb\'82\'cc\'83\'4e\'83\'89\'83\'58\'82\'cc\'83\'49\'83\'75\'83\'57\'83\'46\'83\'4e\'83\'67\'82\'d6\'82\'cc\'8e\'51\'8f\'c6\'82\'f0\'94\'7a\'97\'f1\'82\'c6\'82\'b5\'82\'c4\'8e\'9d\'82\'c2\'82\'e6\'82\'a4\'82\'c9\'82\'b7\'82\'e9\'81\'42\par
+\pard{\pntext\f2\'B7\tab}{\*\pn\pnlvlblt\pnf2\pnindent0{\pntxtb\'B7}}\fi-200\li200 ImprovedFibonacci\'83\'41\'83\'76\'83\'8a\'83\'50\'81\'5b\'83\'56\'83\'87\'83\'93\'82\'f0\'8f\'43\'90\'b3\'82\'b5\'82\'c4\'81\'41\'90\'94\'97\'f1\'82\'f0\'94\'7a\'97\'f1\'82\'c9\'95\'db\'91\'b6\'82\'b7\'82\'e9\'82\'e6\'82\'a4\'82\'c9\'82\'b7\'82\'e9\'81\'42\par
+{\pntext\f2\'B7\tab}\'90\'94\'97\'f1\'82\'c6\'82\'bb\'82\'cc\'92\'6c\'82\'aa\'8b\'f4\'90\'94\'82\'a9\'82\'f0\'8e\'a6\'82\'b7Bool\'92\'6c\'82\'f0\'95\'db\'8e\'9d\'82\'b7\'82\'e9\'83\'4e\'83\'89\'83\'58\'82\'f0\'8d\'ec\'90\'ac\'82\'b5\'82\'c4\'81\'41\'82\'bb\'82\'cc\'83\'4e\'83\'89\'83\'58\'82\'cc\'83\'49\'83\'75\'83\'57\'83\'46\'83\'4e\'83\'67\'82\'d6\'82\'cc\'8e\'51\'8f\'c6\'82\'f0\'94\'7a\'97\'f1\'82\'c6\'82\'b5\'82\'c4\'8e\'9d\'82\'c2\'82\'e6\'82\'a4\'82\'c9\'82\'b7\'82\'e9\'81\'42\par
 \pard\par
 ---2016/10/12---\par
 \'81\'a1\'97\'fb\'8f\'4b\'96\'e2\'91\'e81.11\par
-\pard{\pntext\f1\'B7\tab}{\*\pn\pnlvlblt\pnf1\pnindent0{\pntxtb\'B7}}\fi-200\li200\'95\'b6\'8e\'9a\'97\'f1\'82\'cc\'91\'80\'8d\'ec\'82\'f0\'8d\'ec\'90\'ac\par
+\pard{\pntext\f2\'B7\tab}{\*\pn\pnlvlblt\pnf2\pnindent0{\pntxtb\'B7}}\fi-200\li200\'95\'b6\'8e\'9a\'97\'f1\'82\'cc\'91\'80\'8d\'ec\'82\'f0\'8d\'ec\'90\'ac\par
 \pard\par
 \'81\'a1\'97\'fb\'8f\'4b\'96\'e2\'91\'e81.12\par
-\pard{\pntext\f1\'B7\tab}{\*\pn\pnlvlblt\pnf1\pnindent0{\pntxtb\'B7}}\fi-200\li200\'97\'fb\'8f\'4b\'96\'e2\'91\'e81.10 \'82\'ccImprovedFibonacci\'83\'4e\'83\'89\'83\'58\'82\'f0\'8f\'43\'90\'b3\'82\'b5\'82\'c4String\'83\'4e\'83\'89\'83\'58\'82\'cc\'83\'49\'83\'75\'83\'57\'83\'46\'83\'4e\'83\'67\'82\'f0\'8d\'ec\'90\'ac\'82\'b5\'82\'c4\'94\'7a\'97\'f1\'82\'c9\'93\'fc\'82\'ea\'82\'e9\'82\'e6\'82\'a4\'82\'c9\'8f\'43\'90\'b3\par
+\pard{\pntext\f2\'B7\tab}{\*\pn\pnlvlblt\pnf2\pnindent0{\pntxtb\'B7}}\fi-200\li200\'97\'fb\'8f\'4b\'96\'e2\'91\'e81.10 \'82\'ccImprovedFibonacci\'83\'4e\'83\'89\'83\'58\'82\'f0\'8f\'43\'90\'b3\'82\'b5\'82\'c4String\'83\'4e\'83\'89\'83\'58\'82\'cc\'83\'49\'83\'75\'83\'57\'83\'46\'83\'4e\'83\'67\'82\'f0\'8d\'ec\'90\'ac\'82\'b5\'82\'c4\'94\'7a\'97\'f1\'82\'c9\'93\'fc\'82\'ea\'82\'e9\'82\'e6\'82\'a4\'82\'c9\'8f\'43\'90\'b3\par
 \pard\'82\'b1\'82\'cc\'82\'d6\'82\'f1\'81\'69http://www.techscore.com/blog/2012/11/28/%E6%95%B0%E5%80%A4-%E2%87%94-%E6%96%87%E5%AD%97%E5%88%97%E5%A4%89%E6%8F%9B-java%E7%B7%A8/\'81\'6a\'82\'f0\'82\'e0\'82\'c6\'82\'c9\'90\'94\'92\'6c\'82\'f0\'95\'b6\'8e\'9a\'97\'f1\'82\'c9\'95\'cf\'8a\'b7\'82\'b7\'82\'e9\'95\'fb\'96\'40\'82\'f0\'92\'54\'82\'e9\par
 \par
 \'81\'a1\'97\'fb\'8f\'4b\'96\'e2\'91\'e81.13\par
-\pard{\pntext\f1\'B7\tab}{\*\pn\pnlvlblt\pnf1\pnindent0{\pntxtb\'B7}}\fi-200\li200 printf (\'83\'74\'83\'48\'81\'5b\'83\'7d\'83\'62\'83\'67\'89\'bb\'82\'b3\'82\'ea\'82\'bdprint) \'82\'f0\'97\'70\'82\'a2\'82\'c4ImprovedFibonacci \'82\'f0\'8f\'91\'82\'ab\'92\'bc\'82\'b7\par
+\pard{\pntext\f2\'B7\tab}{\*\pn\pnlvlblt\pnf2\pnindent0{\pntxtb\'B7}}\fi-200\li200 printf (\'83\'74\'83\'48\'81\'5b\'83\'7d\'83\'62\'83\'67\'89\'bb\'82\'b3\'82\'ea\'82\'bdprint) \'82\'f0\'97\'70\'82\'a2\'82\'c4ImprovedFibonacci \'82\'f0\'8f\'91\'82\'ab\'92\'bc\'82\'b7\par
 \pard\par
+\'8c\'5e\'95\'cf\'8a\'b7\'82\'cd\'81\'41(Sting)obj\'81\'40\'82\'cc\'82\'e6\'82\'a4\'82\'c9\'8f\'91\'82\'ad\par
+Java\'82\'cd\'81\'41\'8b\'ad\'82\'ad\'8c\'5e\'95\'74\'82\'af\'82\'b3\'82\'ea\'82\'bd\'8c\'be\'8c\'ea\'82\'cc\'82\'bd\'82\'df\'81\'41\'8c\'5e\'82\'cc\'88\'d9\'82\'c8\'82\'e92\'82\'c2\'82\'cc\'95\'cf\'90\'94\'82\'cc\'91\'e3\'93\'fc\'82\'f0\'8b\'d6\'82\'b6\'82\'c4\'82\'a2\'82\'e9\par
+\par
+\'81\'a1\'97\'fb\'8f\'4b\'96\'e2\'91\'e81.14\par
+\'83\'5c\'83\'6a\'81\'5b\'83\'45\'83\'48\'81\'5b\'83\'4e\'83\'7d\'83\'93\'90\'bb\'95\'69\'83\'74\'83\'40\'83\'7e\'83\'8a\'81\'5b\'82\'cc\'83\'4e\'83\'89\'83\'58\'8d\'5c\'91\'a2\'82\'f0\'94\'bd\'89\'66\'82\'b5\'82\'c4\'82\'a2\'82\'e9\'83\'4e\'83\'89\'83\'58\'82\'f0\'90\'dd\'8c\'76\'82\'b9\'82\'e6\'81\'42\par
+\pard{\pntext\f2\'B7\tab}{\*\pn\pnlvlblt\pnf2\pnindent0{\pntxtb\'B7}}\fi-200\li200\'8d\'c5\'8f\'89\'82\'cc\'83\'82\'83\'66\'83\'8b\'81\'461\'82\'c2\'82\'cc\'92\'5b\'8e\'71\'81\'40\'81\'cbWalkman\'83\'4e\'83\'89\'83\'58\par
+{\pntext\f2\'B7\tab}\'8e\'9f\'82\'cc\'83\'82\'83\'66\'83\'8b\'81\'462\'82\'c2\'82\'cc\'92\'5b\'8e\'71\'82\'f0\'8e\'9d\'82\'c2\'81\'40\'81\'cbWalkman2\'83\'4e\'83\'89\'83\'58\par
+{\pntext\f2\'B7\tab}\'82\'bb\'82\'cc\'8e\'9f\'82\'cc\'83\'82\'83\'66\'83\'8b\'81\'46\'91\'6f\'95\'fb\'8c\'fc\'83\'52\'83\'7e\'83\'85\'83\'6a\'83\'50\'81\'5b\'83\'56\'83\'87\'83\'93\'8b\'40\'94\'5c\'82\'f0\'92\'c7\'89\'c1\'81\'40\'81\'cbWalkman3\'83\'4e\'83\'89\'83\'58\par
+\pard\par
+private\'82\'c8\'83\'81\'83\'93\'83\'6f\'95\'cf\'90\'94\'82\'c9\'82\'c2\'82\'a2\'82\'c4\'83\'65\'83\'58\'83\'67\'82\'c5\'8a\'6d\'94\'46\'82\'b5\'82\'bd\'82\'a2\par
+\'81\'cb\'82\'b1\'82\'b1\'81\'69http://write-remember.com/archives/4286/\'81\'6a\'82\'ccJMokit\'82\'c5\'83\'41\'83\'4e\'83\'5a\'83\'58\'82\'b5\'82\'c4\'82\'dd\'82\'e9\par
+\'81\'40 \'83\'76\'83\'8d\'83\'57\'83\'46\'83\'4e\'83\'67\'82\'cc\'83\'76\'83\'8d\'83\'70\'83\'65\'83\'42\'81\'cb\'83\'89\'83\'43\'83\'75\'83\'89\'83\'8a\'82\'cc\'92\'c7\'89\'c1\'81\'cb\'8a\'4f\'95\'94Jar\'82\'cc\'92\'c7\'89\'c1\'81\'cbJMokit.jar \'82\'c5\'82\'a2\'82\'af\'82\'e9\par
+\f1\'81\'40 \'88\'c8\'89\'ba\'82\'cc\'82\'e6\'82\'a4\'82\'c8\'8a\'b4\'82\'b6\'82\'c5\'83\'65\'83\'58\'83\'67\'83\'52\'81\'5b\'83\'68\'82\'aa\'8f\'91\'82\'af\'82\'e9\'81\'42\par
+\tab\cf2 @Test\cf0\par
+\cf1\tab\cf3\b public\cf1\b0  \cf3\b void\cf1\b0  testConnectTerminal() \{\cf0\par
+\cf1\tab\tab Walkman \cf4\b obj\cf1\b0  = \cf3\b new\cf1\b0  Walkman();\cf0\par
+\cf1\tab\tab\cf4 obj\cf1 .connectTerminal();\cf0\par
+\par
+\cf1\tab\tab Boolean \cf4\b actual\cf1\b0  = Deencapsulation.\b getField\b0 (\cf4 obj\cf1 , \cf5 "terminal"\cf1 );\cf0\par
+\cf1\tab\tab\b assertEquals\b0 (\cf3\b true\cf1\b0 , \cf4 actual\cf1 );\cf0\par
+\cf1\tab\}\cf0\par
+\cf1\f0\par
+private\'82\'c8\'83\'81\'83\'93\'83\'6f\'95\'cf\'90\'94\'82\'c9\'83\'5a\'83\'62\'83\'67\'82\'b7\'82\'e9\'8f\'ea\'8d\'87\'82\'cd\'81\'41\'88\'c8\'89\'ba\'82\'cc\'82\'e6\'82\'a4\'82\'c8\'8a\'b4\'82\'b6\par
+\cf2\f1 @Test\cf0\par
+\cf1\tab\cf3\b public\cf1\b0  \cf3\b void\cf1\b0  testPlay1() \{\cf0\par
+\cf1\tab\tab Walkman \cf4\b obj\cf1\b0  = \cf3\b new\cf1\b0  Walkman();\cf0\par
+\cf1\tab\tab Deencapsulation.\b setField\b0 (\cf4 obj\cf1 , \cf5 "terminal"\cf1 , \cf3\b true\cf1\b0 );\cf0\par
+\cf1\tab\tab\cf0\par
+\cf1\tab\tab\cf4 obj\cf1 .play();\cf0\par
+\cf1\tab\}\par
+\par
+\f0\par
 \par
 \par
 \par
