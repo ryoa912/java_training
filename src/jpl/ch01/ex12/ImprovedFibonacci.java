@@ -15,6 +15,5 @@ public class ImprovedFibonacci {
 			hi = lo + hi;
 			lo = hi - lo;
 		}
-		return;
 	}
 }
