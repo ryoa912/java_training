@@ -7,11 +7,11 @@ public class Vehicle {
 	private static int nextIdNumber;
 	public int idNumber;
 
-	Vehicle() {
+	public Vehicle() {
 		idNumber = nextIdNumber++;
 	}
 
-	Vehicle(String ownerName) {
+	public Vehicle(String ownerName) {
 		idNumber = nextIdNumber++;
 		owner = ownerName;
 	}
