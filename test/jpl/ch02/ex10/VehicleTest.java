@@ -14,7 +14,8 @@ public class VehicleTest {
 
 		String str = obj.toString();
 
-		assertEquals("speed=0, angle=0, owner=Brown, id=1/1", str);
+		if (str != null) {
+			assertEquals("speed=0, angle=0, owner=Brown, id=1/1", str);
+		}
 	}
-
 }

@@ -20,8 +20,8 @@ public class Vehicle {
 	}
 
 	public String toString() {
-		String desc = "speed=" + speed + ", angle=" + angle + ", owner=" + owner
+		String ret = "speed=" + speed + ", angle=" + angle + ", owner=" + owner
 				+ ", id=" + idNumber + "/" + maxIdNumber;
-		return desc;
+		return ret;
 	}
 }
