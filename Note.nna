@@ -575,12 +575,92 @@ Thread\'82\'e6\'82\'e8\'8d\'82\'83\'8c\'83\'78\'83\'8b\'82\'c8\'95\'c0\'8d\'73\'
 \cf1\}\par
 \'81\'aa\'8b\'4e\'93\'ae\'82\'b5\'82\'c41\'95\'62\'8c\'e3\'82\'c91\'95\'62\'82\'a8\'82\'ab\'82\'c9"Wake Up"\'82\'c6\'95\'5c\'8e\'a6\'82\'b3\'82\'b9\'82\'e9\'83\'54\'83\'93\'83\'76\'83\'8b\'81\'42\f0\par
 \par
+\cf3\b\f3 package\cf1\b0  gui.ex11;\cf0\par
+\par
+\cf3\b import\cf1\b0  java.util.Date;\cf0\par
+\cf3\b import\cf1\b0  java.util.Timer;\cf0\par
+\cf3\b import\cf1\b0  java.util.TimerTask;\cf0\par
+\par
+\cf3\b public\cf1\b0  \cf3\b class\cf1\b0  Clock \{\cf0\par
+\cf1\tab\cf3\b static\cf1\b0  \cf3\b public\cf1\b0  \cf3\b void\cf1\b0  main(String[] \cf4 args\cf1 ) \{\cf0\par
+\cf1         TimerTask \cf5\b task\cf1\b0  = \cf3\b new\cf1\b0  TimerTask() \{\cf0\par
+\cf1             \cf3\b public\cf1\b0  \cf3\b void\cf1\b0  run() \{\cf0\par
+\cf1             \tab Date \cf5\b date\cf1\b0  = \cf3\b new\cf1\b0  Date();\cf0\par
+\cf1                 System.\cf6\b out\cf1\b0 .println(\cf5 date\cf1 .toString());\cf0\par
+\cf1             \}\cf0\par
+\cf1         \};\cf0\par
+\par
+\cf1         Timer \cf5\b timer\cf1\b0  = \cf3\b new\cf1\b0  Timer();\cf0\par
+\cf1         \cf5 timer\cf1 .schedule(\cf5 task\cf1 , 1000L, 1000L);\cf0\par
+\cf1\tab\}\cf0\par
+\cf1\}\par
+\'81\'aa1\'95\'62\'82\'a8\'82\'ab\'82\'c9\'83\'52\'83\'93\'83\'5c\'81\'5b\'83\'8b\'82\'c9\'8c\'bb\'8d\'dd\'8e\'9e\'8d\'8f\'82\'f0\'95\'5c\'8e\'a6\'82\'b3\'82\'b9\'82\'e9\'83\'54\'83\'93\'83\'76\'83\'8b\f0\par
+\par
 \par
 \pard{\pntext\f4\'B7\tab}{\*\pn\pnlvlblt\pnf4\pnindent0{\pntxtb\'B7}}\fi-200\li200\'8c\'bb\'8d\'dd\'8e\'9e\'8d\'8f\'82\'f0\'8e\'e6\'93\'be\'82\'b5\'82\'c4\'81\'41\'82\'bb\'82\'ea\'82\'f0paint(Graphics g)\'82\'c5\'95\'60\'89\'e6\'81\'42\par
-\pard\par
+\pard repaint()\'82\'f0\'8e\'67\'82\'a6\'82\'ce\'82\'c8\'82\'f1\'82\'c6\'82\'a9\'82\'c8\'82\'c1\'82\'bd\'81\'42\par
+package gui.ex11;\par
+\par
+import java.awt.Frame;\par
+import java.awt.Graphics;\par
+import java.awt.event.WindowAdapter;\par
+import java.awt.event.WindowEvent;\par
+import java.util.Date;\par
+import java.util.Timer;\par
+import java.util.TimerTask;\par
+\par
+public class Clock extends Frame \{\par
+\tab Clock() \{\par
+        super("Clock");\par
+        setSize(300, 250);\par
+        addWindowListener(new ClosingWindowListener());\par
+    \}\par
+\par
+\tab public void paint(Graphics g)\{\par
+\tab\tab Date date = new Date();\par
+\par
+        //(50,100)\'82\'f0\'83\'78\'81\'5b\'83\'58\'83\'89\'83\'43\'83\'93\'82\'cc\'90\'e6\'93\'aa\'82\'c9\'82\'b5\'82\'c4\'95\'b6\'8e\'9a\'97\'f1\'82\'f0\'95\'60\'82\'ad\par
+        g.drawString(date.toString(),50,100);\par
+\par
+        //\'8d\'b6\'8f\'e3\'82\'cc\'88\'ca\'92\'75\'82\'aa(10,50)\'82\'c5\'8f\'63150,\'89\'a1120\'83\'73\'83\'4e\'83\'5a\'83\'8b\'82\'cc\'8b\'e9\'8c\'60\'82\'f0\'95\'60\'82\'ad\par
+        g.drawRect(10,50,150,120);\par
+\par
+        //\'8d\'b6\'8f\'e3\'82\'cc\'88\'ca\'92\'75\'82\'aa(100,100)\'82\'c5\'8f\'63100,\'89\'a1100\'82\'cc\'8b\'e9\'8c\'60\'82\'c9\'93\'e0\'90\'da\'82\'b7\'82\'e9\'89\'7e\'82\'f0\'95\'60\'82\'ad\par
+        g.drawOval(100,100,100,100);\par
+\par
+        System.out.println("paint done.");\par
+\par
+   \}\par
+\par
+\tab class ClosingWindowListener extends WindowAdapter \{\par
+\tab\tab public void windowClosing(WindowEvent e) \{\par
+\tab\tab\tab System.exit(0);\par
+\tab\tab\}\par
+\tab\}\par
+\par
+\tab static public void main(String[] args) \{\par
+\tab\tab Clock obj = new Clock();\par
+\tab\tab obj.setVisible(true);\par
+\par
+\tab\tab TimerTask task = new TimerTask() \{\par
+            public void run() \{\par
+            \tab Date date = new Date();\par
+                System.out.println(date.toString());\par
+                \cf4 obj.repaint();\cf1\par
+            \}\par
+        \};\par
+\par
+        Timer timer = new Timer();\par
+        timer.schedule(task, 1000L, 1000L);\par
+\tab\}\par
+\}\par
+\par
+\'82\'b1\'82\'b1\'82\'a9\'82\'e7\'81\'41\'82\'b3\'82\'e7\'82\'c9\'95\'b6\'8e\'9a\'97\'f1\'95\'5c\'8e\'a6\'82\'f0\'8e\'67\'82\'ed\'82\'b8\'82\'c9\'8e\'9e\'8c\'76\'82\'f0\'95\'5c\'8e\'a6\'82\'b7\'82\'e9\'95\'4b\'97\'76\'82\'aa\'82\'a0\'82\'e9\'81\'42\par
 \par
 \par
-\par
+\'94\'f5\'8d\'6c\par
+\'82\'b1\'82\'b1\'82\'cd\'82\'a9\'82\'c8\'82\'e8\'8f\'da\'82\'b5\'82\'ad\'8f\'91\'82\'a2\'82\'c4\'82\'a0\'82\'e9\'81\'42\par
+http://www.tohoho-web.com/java/index.htm\par
 \par
 \par
 \par
