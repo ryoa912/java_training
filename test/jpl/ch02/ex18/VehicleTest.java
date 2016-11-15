@@ -37,6 +37,6 @@ public class VehicleTest {
 		int actual_id = Deencapsulation.getField(obj, "idNum");
 
 		assertEquals(null, actual_owner);
-		assertEquals(1, actual_id);
+		assertEquals(2, actual_id);
 	}
 }
