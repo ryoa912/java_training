@@ -411,7 +411,7 @@ JPL\'82\'cc\'96\'e2\'91\'e8\'90\'94\'82\'cd\'88\'c8\'89\'ba\'81\'42\par
 </content>
 <group>
 <chapter>ëÊ3èÕ
-<attribute>-1,1,0
+<attribute>-1,1,1
 <content>
 {\rtf1\ansi\ansicpg932\deff0\deflang1033\deflangfe1041{\fonttbl{\f0\fnil\fcharset128 \'82\'6c\'82\'72 \'82\'6f\'83\'53\'83\'56\'83\'62\'83\'4e;}}
 {\colortbl ;\red0\green0\blue0;}
@@ -419,13 +419,14 @@ JPL\'82\'cc\'96\'e2\'91\'e8\'90\'94\'82\'cd\'88\'c8\'89\'ba\'81\'42\par
 \'82\'d0\'82\'c6\'82\'dc\'82\'b8GUI\'96\'e2\'91\'e8\'82\'a9\'82\'e7\'90\'e6\'82\'c9\'92\'85\'8e\'e8\'81\'42\par
 JPL\'82\'cd\'8c\'e3\'89\'f1\'82\'b5\'81\'42\par
 \par
+---2016/11/15---\par
 \par
 \par
 \par
 }
 </content>
 <chapter>GUI1-1
-<attribute>-1,1,1
+<attribute>-1,1,0
 <content>
 {\rtf1\ansi\ansicpg932\deff0\deflang1033\deflangfe1041{\fonttbl{\f0\fnil\fcharset128 \'82\'6c\'82\'72 \'82\'6f\'83\'53\'83\'56\'83\'62\'83\'4e;}{\f1\fnil\fcharset2 Wingdings;}{\f2\fswiss\fcharset0 Arial;}{\f3\fnil\fcharset128 \'82\'6c\'82\'72 \'83\'53\'83\'56\'83\'62\'83\'4e;}{\f4\fnil\fcharset2 Symbol;}}
 {\colortbl ;\red0\green0\blue0;\red232\green242\blue254;\red127\green0\blue85;\red255\green0\blue0;\red255\green0\blue255;\red0\green0\blue192;\red42\green0\blue255;}
@@ -661,6 +662,12 @@ public class Clock extends Frame \{\par
 \'94\'f5\'8d\'6c\par
 \'82\'b1\'82\'b1\'82\'cd\'82\'a9\'82\'c8\'82\'e8\'8f\'da\'82\'b5\'82\'ad\'8f\'91\'82\'a2\'82\'c4\'82\'a0\'82\'e9\'81\'42\par
 http://www.tohoho-web.com/java/index.htm\par
+\par
+\'81\'a1Jar\'83\'74\'83\'40\'83\'43\'83\'8b\'82\'c9\'82\'b7\'82\'e9\'95\'fb\'96\'40\par
+http://yosimasa4403.b.osdn.me/2015/03/09/%E3%82%A8%E3%82%AF%E3%83%AA%E3%83%97%E3%82%B9%E3%81%AE%E3%83%97%E3%83%AD%E3%82%B8%E3%82%A7%E3%82%AF%E3%83%88%E3%81%8B%E3%82%89jar%E3%83%95%E3%82%A1%E3%82%A4%E3%83%AB%E3%82%92%E4%BD%9C%E3%82%8B/\par
+\par
+\'83\'76\'83\'8d\'83\'57\'83\'46\'83\'4e\'83\'67\'8f\'e3\'82\'c5\'89\'45\'83\'4e\'83\'8a\'83\'62\'83\'4e\'81\'cb\'83\'47\'83\'4e\'83\'58\'83\'7c\'81\'5b\'83\'67\'82\'c5\'8d\'73\'82\'af\'82\'e9\'81\'42\par
+main\'8a\'d6\'90\'94\'82\'cc\'97\'4c\'82\'e8\'82\'a9\'82\'f0\'8e\'77\'92\'e8\'82\'b5\'82\'c8\'82\'a2\'82\'c6\'8f\'e3\'8e\'e8\'82\'ad\'8b\'4e\'93\'ae\'82\'b5\'82\'c8\'82\'a2\'82\'a9\'82\'e0\'81\'42\par
 \par
 \par
 \par
