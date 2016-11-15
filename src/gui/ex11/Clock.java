@@ -1,7 +1,10 @@
 package gui.ex11;
 
+import java.awt.Font;
 import java.awt.Frame;
 import java.awt.Graphics;
+import java.awt.Graphics2D;
+import java.awt.RenderingHints;
 import java.awt.event.WindowAdapter;
 import java.awt.event.WindowEvent;
 import java.util.Date;
@@ -11,24 +14,23 @@ import java.util.TimerTask;
 public class Clock extends Frame {
 	Clock() {
         super("Clock");
-        setSize(300, 250);
+        setSize(600, 250);
         addWindowListener(new ClosingWindowListener());
     }
 
 	public void paint(Graphics g){
 		Date date = new Date();
 
+		Graphics2D g2 = (Graphics2D)g;
+
+	    g2.setRenderingHint(RenderingHints.KEY_TEXT_ANTIALIASING,
+	                        RenderingHints.VALUE_TEXT_ANTIALIAS_ON);
+
+		Font font1 = new Font("Arial", Font.PLAIN, 36);
+	    g2.setFont(font1);
+
         //(50,100)をベースラインの先頭にして文字列を描く
-        g.drawString(date.toString(),50,100);
-
-        //左上の位置が(10,50)で縦150,横120ピクセルの矩形を描く
-        g.drawRect(10,50,150,120);
-
-        //左上の位置が(100,100)で縦100,横100の矩形に内接する円を描く
-        g.drawOval(100,100,100,100);
-
-        System.out.println("paint done.");
-
+        g.drawString(date.toString(),30,100);
    }
 
 	class ClosingWindowListener extends WindowAdapter {
