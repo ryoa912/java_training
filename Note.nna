@@ -413,16 +413,25 @@ JPL\'82\'cc\'96\'e2\'91\'e8\'90\'94\'82\'cd\'88\'c8\'89\'ba\'81\'42\par
 <chapter>ëÊ3èÕ
 <attribute>-1,1,1
 <content>
-{\rtf1\ansi\ansicpg932\deff0\deflang1033\deflangfe1041{\fonttbl{\f0\fnil\fcharset128 \'82\'6c\'82\'72 \'82\'6f\'83\'53\'83\'56\'83\'62\'83\'4e;}}
-{\colortbl ;\red0\green0\blue0;}
+{\rtf1\ansi\ansicpg932\deff0\deflang1033\deflangfe1041{\fonttbl{\f0\fnil\fcharset128 \'82\'6c\'82\'72 \'82\'6f\'83\'53\'83\'56\'83\'62\'83\'4e;}{\f1\fnil\fcharset128 \'82\'6c\'82\'72 \'83\'53\'83\'56\'83\'62\'83\'4e;}}
+{\colortbl ;\red0\green0\blue0;\red232\green242\blue254;\red0\green0\blue192;\red42\green0\blue255;}
 \viewkind4\uc1\pard\cf1\lang1041\f0\fs18 ---2016/11/08---\par
 \'82\'d0\'82\'c6\'82\'dc\'82\'b8GUI\'96\'e2\'91\'e8\'82\'a9\'82\'e7\'90\'e6\'82\'c9\'92\'85\'8e\'e8\'81\'42\par
 JPL\'82\'cd\'8c\'e3\'89\'f1\'82\'b5\'81\'42\par
 \par
 ---2016/11/15---\par
+\'81\'a1\'97\'fb\'8f\'4b\'96\'e2\'91\'e83.1\par
+Vehicle\'83\'4e\'83\'89\'83\'58\'82\'f0\'8a\'67\'92\'a3\'82\'b5\'82\'c4PassengerVehicle\'83\'4e\'83\'89\'83\'58\'82\'f0\'8d\'ec\'90\'ac\'82\'b7\'82\'e9\par
+\'8d\'c0\'90\'c8\'90\'94\'82\'c6\'8c\'bb\'8d\'dd\'8d\'c0\'82\'c1\'82\'c4\'82\'a2\'82\'e9\'90\'6c\'90\'94\'82\'f0\'95\'d4\'82\'b7\'8b\'40\'94\'5c\'82\'f0\'92\'c7\'89\'c1\'82\'b7\'82\'e9\par
 \par
+\'81\'a1\'97\'fb\'8f\'4b\'96\'e2\'91\'e83.2\par
+X, Y\'83\'4e\'83\'89\'83\'58\'82\'f0\'8d\'ec\'90\'ac\'82\'b5\'82\'c4\'81\'41\'83\'65\'83\'4c\'83\'58\'83\'67\'82\'cc\'8e\'c0\'91\'95\'82\'f0\'8e\'ca\'82\'b7\'81\'42\par
+\'8a\'65\'8f\'8a\'82\'c9\par
+\highlight2\f1 System.\cf3\b out\cf1\b0 .printf(\cf4 "6 0x%04x 0x%04x 0x%04x%n"\cf1 , \cf3 xMask\cf1 , \cf3 yMask\cf1 , \cf3 fullMask\cf1 );\par
+\highlight0\f0\'93\'49\'82\'c8\'8e\'c0\'91\'95\'82\'f0\'92\'c7\'89\'c1\'82\'b5\'82\'c4\'8a\'65\'95\'cf\'90\'94\'82\'cc\'92\'6c\'82\'f0\'92\'b2\'82\'d7\'82\'bd\'81\'42\par
 \par
-\par
+\highlight2\f1\par
+\highlight0\f0\par
 }
 </content>
 <chapter>GUI1-1
