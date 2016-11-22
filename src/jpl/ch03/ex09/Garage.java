@@ -6,8 +6,11 @@ public class Garage implements Cloneable{
 
 	public Garage clone() {
 		try {
-			Garage nObj = (Garage) super.clone();
-			nObj.vehicles = vehicles.clone();
+			Garage nObj = new Garage();
+			for (int i=0; i<GARAGE_SIZE; i++) {
+				if (vehicles[i] != null)
+					nObj.vehicles[i] = vehicles[i].clone();
+			}
 			return nObj;
 		} catch (CloneNotSupportedException e) {
 			throw new InternalError(e.toString());

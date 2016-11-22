@@ -1,6 +1,6 @@
 package jpl.ch03.ex09;
 
-public class Vehicle {
+public class Vehicle implements Cloneable{
 	private int speed;
 	public int angle;
 	private String owner;
