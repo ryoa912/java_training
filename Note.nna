@@ -392,7 +392,7 @@ Vehicle\'83\'4e\'83\'89\'83\'58\'82\'c9main\'83\'81\'83\'5c\'83\'62\'83\'68\'82\
 </content>
 </group>
 <chapter>ëÊ2âÒ
-<attribute>-1,1,1
+<attribute>-1,1,0
 <content>
 {\rtf1\ansi\ansicpg932\deff0\deflang1033\deflangfe1041{\fonttbl{\f0\fnil\fcharset128 \'82\'6c\'82\'72 \'82\'6f\'83\'53\'83\'56\'83\'62\'83\'4e;}{\f1\fnil\fcharset2 Symbol;}}
 {\colortbl ;\red0\green0\blue0;}
@@ -411,7 +411,7 @@ JPL\'82\'cc\'96\'e2\'91\'e8\'90\'94\'82\'cd\'88\'c8\'89\'ba\'81\'42\par
 </content>
 <group>
 <chapter>ëÊ3èÕ
-<attribute>-1,1,0
+<attribute>-1,1,1
 <content>
 {\rtf1\ansi\ansicpg932\deff0\deflang1033\deflangfe1041{\fonttbl{\f0\fnil\fcharset128 \'82\'6c\'82\'72 \'82\'6f\'83\'53\'83\'56\'83\'62\'83\'4e;}{\f1\fnil\fcharset128 \'82\'6c\'82\'72 \'83\'53\'83\'56\'83\'62\'83\'4e;}}
 {\colortbl ;\red0\green0\blue0;\red232\green242\blue254;\red0\green0\blue192;\red42\green0\blue255;}
@@ -465,6 +465,8 @@ Object.clone() \'82\'c9\'82\'e6\'82\'e9\'92\'50\'8f\'83\'82\'c8\'83\'52\'83\'73\
 \'81\'a1\'97\'fb\'8f\'4b\'96\'e2\'91\'e83.9\par
 \'89\'bd\'8c\'c2\'82\'a9\'82\'ccVehicle\'83\'4e\'83\'89\'83\'58\'82\'cc\'83\'49\'83\'75\'83\'57\'83\'46\'83\'4e\'83\'67\'82\'f0\'94\'7a\'97\'f1\'82\'c9\'95\'db\'8e\'9d\'82\'c5\'82\'ab\'82\'e9Garage\'83\'4e\'83\'89\'83\'58\'82\'f0\'8d\'ec\'90\'ac\'82\'b9\'82\'e6\'81\'42\par
 \par
+\'81\'a1\'97\'fb\'8f\'4b\'96\'e2\'91\'e83.10\par
+LinkedList\'82\'f0deep copy\'82\'b7\'82\'e9\'8e\'c0\'91\'95\'82\'f0\'8d\'ec\'90\'ac\'81\'42\par
 \par
 \par
 \par
