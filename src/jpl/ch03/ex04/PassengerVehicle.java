@@ -1,6 +1,6 @@
 package jpl.ch03.ex04;
 
-public class PassengerVehicle {
+public class PassengerVehicle extends Vehicle {
 	public static final int SHEET_NUM = 4;
 	public int passengers;
 
