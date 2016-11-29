@@ -33,7 +33,7 @@ public class BankAccount {
 
 	public void withdraw(long amount) {
 		balance -= amount;
-		lastAct = new Action("whitdraw", amount);
+		lastAct = new Action("withdraw", amount);
 		history.add(lastAct);
 	}
 
