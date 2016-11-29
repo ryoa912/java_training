@@ -681,7 +681,7 @@ abstract\'82\'c5\'82\'c8\'82\'a2\'92\'ca\'8f\'ed\'82\'cc\'83\'81\'83\'5c\'83\'62
 }
 </content>
 <chapter>ëÊ5èÕ
-<attribute>-1,1,1
+<attribute>-1,1,0
 <content>
 {\rtf1\ansi\ansicpg932\deff0\deflang1033\deflangfe1041{\fonttbl{\f0\fnil\fcharset128 \'82\'6c\'82\'72 \'82\'6f\'83\'53\'83\'56\'83\'62\'83\'4e;}{\f1\fnil\fcharset2 Symbol;}}
 {\colortbl ;\red0\green0\blue0;}
@@ -707,6 +707,20 @@ abstract\'82\'c5\'82\'c8\'82\'a2\'92\'ca\'8f\'ed\'82\'cc\'83\'81\'83\'5c\'83\'62
 \par
 \'83\'43\'83\'93\'83\'66\'83\'62\'83\'4e\'83\'58\'8e\'77\'92\'e8\'82\'c5\'8e\'e6\'93\'be\'82\'c5\'82\'ab\'82\'e9\'83\'4c\'83\'85\'81\'5b\'82\'f0\'8e\'67\'82\'a4\par
 \'81\'69http://stackoverflow.com/questions/9637631/how-do-i-get-the-nth-item-in-a-queue-in-java\'81\'6a\par
+}
+</content>
+<chapter>ëÊ6èÕ
+<attribute>-1,1,1
+<content>
+{\rtf1\ansi\ansicpg932\deff0\deflang1033\deflangfe1041{\fonttbl{\f0\fnil\fcharset128 \'82\'6c\'82\'72 \'82\'6f\'83\'53\'83\'56\'83\'62\'83\'4e;}}
+{\colortbl ;\red0\green0\blue0;}
+\viewkind4\uc1\pard\cf1\lang1041\f0\fs18 ---2016/11/29---\par
+\'91\'e66\'8f\'cd\'81\'46\'97\'f1\'8b\'93\'8c\'5e\'81\'69ENUM\'81\'6a\par
+\par
+\'81\'a1\'97\'fb\'8f\'4b\'96\'e2\'91\'e86.1\par
+\'8f\'54\'82\'cc\'97\'6a\'93\'fa\'81\'69Day of week\'81\'6a\'82\'c6\'81\'41\'90\'4d\'8d\'86\'8b\'40\'82\'cc\'90\'46\'81\'69Signal color\'81\'6a\'82\'ccENUM\'82\'f0\'92\'e8\'8b\'60\'82\'b9\'82\'e6\'81\'42\par
+\par
+\par
 }
 </content>
 <chapter>GUI1-1
