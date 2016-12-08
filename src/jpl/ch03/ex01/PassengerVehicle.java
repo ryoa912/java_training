@@ -5,6 +5,7 @@ public class PassengerVehicle extends Vehicle {
 	public int passengers;
 
 	public PassengerVehicle() {
+		//superを呼ぶ
 	}
 
 	public void setPassengers(int aPassengers) {

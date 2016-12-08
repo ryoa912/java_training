@@ -11,6 +11,7 @@ public class LinkedList {
 	}
 
 	public String toString() {
+		//再帰呼び出しの場合は、スタックオーバーフローに注意する。
 		String ret = obj.toString();
 
 		if (next != null) {
