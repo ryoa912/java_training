@@ -38,7 +38,7 @@ public class MenuClock extends Frame implements ActionListener{
     }
     MenuClock() {
 		setTitle("MenuClock");
-		setSize(600, 250);
+		setSize(600, 150);
 		setLayout(new FlowLayout());
 		addWindowListener(new ClosingWindowListener());
 		show();
@@ -80,11 +80,12 @@ public class MenuClock extends Frame implements ActionListener{
 			this.setBackground(Color.black);
 			break;
 		case "大" :
-			this.setSize(600, 250);
+			this.setSize(600, 150);
+	    	this.f_font = new Font("Arial", Font.PLAIN, 36);
 			break;
 		case "小" :
-			this.setSize(300, 125);
-	    	this.f_font = new Font("Arial", Font.PLAIN, 36);
+			this.setSize(350, 150);
+	    	this.f_font = new Font("Arial", Font.PLAIN, 18);
 			break;
 		default :
 			System.out.println("内部エラー");
@@ -107,7 +108,7 @@ public class MenuClock extends Frame implements ActionListener{
 	    g2.setFont(f_font);
 
 		//(50,100)をベースラインの先頭にして文字列を描く
-	    g.drawString(date.toString(),30,100);
+	    g.drawString(date.toString(),50,115);
 	}
 
 	class ClosingWindowListener extends WindowAdapter {
