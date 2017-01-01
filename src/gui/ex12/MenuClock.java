@@ -154,19 +154,20 @@ public class MenuClock extends Frame implements ActionListener{
 
 	public void paint(Graphics g){
 		if (ct == null) ct = buf.getGraphics();
+
+		//アンチエイリアス機能ON
+		Graphics2D ct2 = (Graphics2D)ct;
+		ct2.setRenderingHint(RenderingHints.KEY_TEXT_ANTIALIASING,
+	                        RenderingHints.VALUE_TEXT_ANTIALIAS_ON);
+
+		//オフスクリーンに描画
 		ct.setColor(f_back_color);
 		ct.fillRect(0 , 0 , dim.width , dim.height);
 
-		//オフスクリーンに描画
 		ct.setColor(f_color);
 		ct.setFont(f_font);
 		Date date = new Date();
 		ct.drawString(date.toString(),50,115);
-
-		//アンチエイリアス機能ON
-		Graphics2D g2 = (Graphics2D)g;
-	    g2.setRenderingHint(RenderingHints.KEY_TEXT_ANTIALIASING,
-	                        RenderingHints.VALUE_TEXT_ANTIALIAS_ON);
 
 		//オフスクリーンの中身をオンスクリーンに描画する
 		g.drawImage(buf , 0 , 0 ,this);
