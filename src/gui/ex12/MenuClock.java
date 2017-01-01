@@ -1,5 +1,6 @@
 package gui.ex12;
 
+import java.awt.Color;
 import java.awt.FlowLayout;
 import java.awt.Font;
 import java.awt.Frame;
@@ -18,8 +19,11 @@ import java.util.Timer;
 import java.util.TimerTask;
 
 public class MenuClock extends Frame implements ActionListener{
-    public static void main(String[] args) {
+    public Font f_font;
+	public static void main(String[] args) {
     	MenuClock clock = new MenuClock();
+    	clock.f_font = new Font("Arial", Font.PLAIN, 36);
+    	clock.setResizable(false);
 
 		TimerTask task = new TimerTask() {
 			public void run() {
@@ -68,6 +72,24 @@ public class MenuClock extends Frame implements ActionListener{
 	@Override
 	public void actionPerformed(ActionEvent e) {
 		System.out.println(e.getActionCommand());
+		switch (e.getActionCommand()) {
+		case "明" :
+			this.setBackground(Color.white);
+			break;
+		case "暗" :
+			this.setBackground(Color.black);
+			break;
+		case "大" :
+			this.setSize(600, 250);
+			break;
+		case "小" :
+			this.setSize(300, 125);
+	    	this.f_font = new Font("Arial", Font.PLAIN, 36);
+			break;
+		default :
+			System.out.println("内部エラー");
+			break;
+		}
 	}
 
 	public void windowClosing(WindowEvent e) {
@@ -82,8 +104,7 @@ public class MenuClock extends Frame implements ActionListener{
 	    g2.setRenderingHint(RenderingHints.KEY_TEXT_ANTIALIASING,
 	                        RenderingHints.VALUE_TEXT_ANTIALIAS_ON);
 
-		Font font1 = new Font("Arial", Font.PLAIN, 36);
-	    g2.setFont(font1);
+	    g2.setFont(f_font);
 
 		//(50,100)をベースラインの先頭にして文字列を描く
 	    g.drawString(date.toString(),30,100);

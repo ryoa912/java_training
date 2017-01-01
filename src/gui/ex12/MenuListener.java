@@ -35,21 +35,21 @@ public class MenuListener extends WindowAdapter implements ActionListener{
 		//背景色変更メニュー
 		Menu backgroundColor = mb.add(new Menu("Background color"));
 
-		MenuItem rena = backgroundColor.add(new MenuItem("Red"));
-		MenuItem yuki = backgroundColor.add(new MenuItem("Blue"));
-		MenuItem mimi = backgroundColor.add(new MenuItem("Green"));
+		MenuItem red = backgroundColor.add(new MenuItem("Red"));
+		MenuItem blue = backgroundColor.add(new MenuItem("Blue"));
+		MenuItem green = backgroundColor.add(new MenuItem("Green"));
 
-		rena.addActionListener(this);
-		yuki.addActionListener(this);
-		mimi.addActionListener(this);
+		red.addActionListener(this);
+		blue.addActionListener(this);
+		green.addActionListener(this);
 
 		frm.setMenuBar(mb);
 	}
 	@Override
 	public void actionPerformed(ActionEvent e) {
-		if (e.getActionCommand() == "Gothic") frm.setFont(null);
-		if (e.getActionCommand() == "Arial") frm.setFont(null);
-		if (e.getActionCommand() == "Times New Roman") frm.setFont(null);
+		if (e.getActionCommand() == "Gothic") frm.setSize(400 , 400);
+		if (e.getActionCommand() == "Arial") frm.setSize(600 , 600);
+		if (e.getActionCommand() == "Times New Roman") frm.setSize(800 , 800);
 		if (e.getActionCommand() == "Red") frm.setBackground(Color.red);
 		if (e.getActionCommand() == "Blue") frm.setBackground(Color.blue);
 		if (e.getActionCommand() == "Green") frm.setBackground(Color.green);
