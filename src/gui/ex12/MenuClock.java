@@ -75,9 +75,11 @@ public class MenuClock extends Frame implements ActionListener{
 		switch (e.getActionCommand()) {
 		case "明" :
 			this.setBackground(Color.white);
+			this.setForeground(Color.black);
 			break;
 		case "暗" :
 			this.setBackground(Color.black);
+			this.setForeground(Color.white);
 			break;
 		case "大" :
 			this.setSize(600, 150);
