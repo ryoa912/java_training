@@ -51,48 +51,79 @@ public class MenuClock extends Frame implements ActionListener{
 		Menu settings = new Menu("設定");
 		settings.addActionListener(this);
 		menuBar.add(settings);
-		//テーマ設定
-		Menu theme = new Menu("テーマ");
-		theme.addActionListener(this);
-		settings.add(theme);
-		MenuItem themeWhite = new MenuItem("明");
-		theme.add(themeWhite);
-		MenuItem themeBlack = new MenuItem("暗");
-		theme.add(themeBlack);
+
+		//フォント設定
+		Menu fontFamily = new Menu("フォント");
+		fontFamily.addActionListener(this);
+		settings.add(fontFamily);
+		MenuItem fontFamilyArial = new MenuItem("Arial");
+		fontFamily.add(fontFamilyArial);
+		MenuItem fontFamilyCentury = new MenuItem("Century");
+		fontFamily.add(fontFamilyCentury);
 
 		//文字サイズ設定
 		Menu fontSize = new Menu("文字サイズ");
 		fontSize.addActionListener(this);
 		settings.add(fontSize);
-		MenuItem fontSizeLarge = new MenuItem("大");
+		MenuItem fontSizeLarge = new MenuItem("36pt");
 		fontSize.add(fontSizeLarge);
-		MenuItem fontSizeSmall = new MenuItem("小");
+		MenuItem fontSizeSmall = new MenuItem("18pt");
 		fontSize.add(fontSizeSmall);
+
+		//文字色設定
+		Menu fontColor = new Menu("文字色");
+		fontColor.addActionListener(this);
+		settings.add(fontColor);
+		MenuItem fontColorBlack = new MenuItem("黒");
+		fontColor.add(fontColorBlack);
+		MenuItem fontColorWhite = new MenuItem("白");
+		fontColor.add(fontColorWhite);
+
+		//背景色設定
+		Menu theme = new Menu("	背景色");
+		theme.addActionListener(this);
+		settings.add(theme);
+		MenuItem themeWhite = new MenuItem("白");
+		theme.add(themeWhite);
+		MenuItem themeBlack = new MenuItem("黒");
+		theme.add(themeBlack);
     }
 	@Override
 	public void actionPerformed(ActionEvent e) {
 		System.out.println(e.getActionCommand());
+		Menu obj = (Menu) e.getSource();
 		switch (e.getActionCommand()) {
-		case "明" :
-			this.setBackground(Color.white);
-			this.setForeground(Color.black);
+		case "Arial":
+			this.f_font = new Font("Arial", f_font.getStyle(), f_font.getSize());
 			break;
-		case "暗" :
-			this.setBackground(Color.black);
-			this.setForeground(Color.white);
+		case "Century":
+			this.f_font = new Font("Century", f_font.getStyle(), f_font.getSize());
 			break;
-		case "大" :
+		case "白":
+			if (obj.getLabel() == "文字色")
+				this.setForeground(Color.white);
+			else
+				this.setBackground(Color.white);
+			break;
+		case "黒":
+			if (obj.getLabel() == "文字色")
+				this.setForeground(Color.black);
+			else
+				this.setBackground(Color.black);
+			break;
+		case "36pt":
 			this.setSize(600, 150);
-	    	this.f_font = new Font("Arial", Font.PLAIN, 36);
+	    	this.f_font = new Font(f_font.getFamily(), f_font.getStyle(), 36);
 			break;
-		case "小" :
+		case "18pt":
 			this.setSize(350, 150);
-	    	this.f_font = new Font("Arial", Font.PLAIN, 18);
+	    	this.f_font = new Font(f_font.getFamily(), f_font.getStyle(), 18);
 			break;
-		default :
+		default:
 			System.out.println("内部エラー");
 			break;
 		}
+		this.repaint();
 	}
 
 	public void windowClosing(WindowEvent e) {
