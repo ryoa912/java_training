@@ -100,16 +100,22 @@ public class MenuClock extends Frame implements ActionListener{
 			this.f_font = new Font("Century", f_font.getStyle(), f_font.getSize());
 			break;
 		case "白":
-			if (obj.getLabel() == "文字色")
+			if (obj.getLabel() == "文字色") {
 				this.setForeground(Color.white);
-			else
+				this.setBackground(Color.black);
+			} else {
 				this.setBackground(Color.white);
+				this.setForeground(Color.black);
+			}
 			break;
 		case "黒":
-			if (obj.getLabel() == "文字色")
+			if (obj.getLabel() == "文字色") {
 				this.setForeground(Color.black);
-			else
+				this.setBackground(Color.white);
+			} else {
 				this.setBackground(Color.black);
+				this.setForeground(Color.white);
+			}
 			break;
 		case "36pt":
 			this.setSize(600, 150);
