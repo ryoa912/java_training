@@ -1,11 +1,13 @@
 package gui.ex12;
 
 import java.awt.Color;
+import java.awt.Dimension;
 import java.awt.FlowLayout;
 import java.awt.Font;
 import java.awt.Frame;
 import java.awt.Graphics;
 import java.awt.Graphics2D;
+import java.awt.Image;
 import java.awt.Menu;
 import java.awt.MenuBar;
 import java.awt.MenuItem;
@@ -19,7 +21,13 @@ import java.util.Timer;
 import java.util.TimerTask;
 
 public class MenuClock extends Frame implements ActionListener{
-    public Font f_font;
+	public Dimension dim;
+	public Image buf;
+	public Graphics ct;
+
+	public Font f_font;
+	public Color f_color;
+	public Color f_back_color;
 	public static void main(String[] args) {
     	MenuClock clock = new MenuClock();
     	clock.f_font = new Font("Arial", Font.PLAIN, 36);
@@ -41,7 +49,15 @@ public class MenuClock extends Frame implements ActionListener{
 		setSize(600, 150);
 		setLayout(new FlowLayout());
 		addWindowListener(new ClosingWindowListener());
-		show();
+		setVisible(true);
+
+		//ダブルバッファ用のバッファ作成
+		dim = getSize();
+		buf = createImage(dim.width , dim.height);
+
+		//初期設定
+		f_color = Color.black;
+		f_back_color = Color.white;
 
 		//メニューバーの設定
 		MenuBar menuBar = new MenuBar();
@@ -101,20 +117,20 @@ public class MenuClock extends Frame implements ActionListener{
 			break;
 		case "白":
 			if (obj.getLabel() == "文字色") {
-				this.setForeground(Color.white);
-				this.setBackground(Color.black);
+				f_color = Color.white;
+				f_back_color = Color.black;
 			} else {
-				this.setBackground(Color.white);
-				this.setForeground(Color.black);
+				f_back_color = Color.white;
+				f_color = Color.black;
 			}
 			break;
 		case "黒":
 			if (obj.getLabel() == "文字色") {
-				this.setForeground(Color.black);
-				this.setBackground(Color.white);
+				f_back_color = Color.white;
+				f_color = Color.black;
 			} else {
-				this.setBackground(Color.black);
-				this.setForeground(Color.white);
+				f_color = Color.white;
+				f_back_color = Color.black;
 			}
 			break;
 		case "36pt":
@@ -137,17 +153,23 @@ public class MenuClock extends Frame implements ActionListener{
 	}
 
 	public void paint(Graphics g){
+		if (ct == null) ct = buf.getGraphics();
+		ct.setColor(f_back_color);
+		ct.fillRect(0 , 0 , dim.width , dim.height);
+
+		//オフスクリーンに描画
+		ct.setColor(f_color);
+		ct.setFont(f_font);
 		Date date = new Date();
+		ct.drawString(date.toString(),50,115);
 
+		//アンチエイリアス機能ON
 		Graphics2D g2 = (Graphics2D)g;
-
 	    g2.setRenderingHint(RenderingHints.KEY_TEXT_ANTIALIASING,
 	                        RenderingHints.VALUE_TEXT_ANTIALIAS_ON);
 
-	    g2.setFont(f_font);
-
-		//(50,100)をベースラインの先頭にして文字列を描く
-	    g.drawString(date.toString(),50,115);
+		//オフスクリーンの中身をオンスクリーンに描画する
+		g.drawImage(buf , 0 , 0 ,this);
 	}
 
 	class ClosingWindowListener extends WindowAdapter {
