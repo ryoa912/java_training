@@ -411,10 +411,10 @@ JPL\'82\'cc\'96\'e2\'91\'e8\'90\'94\'82\'cd\'88\'c8\'89\'ba\'81\'42\par
 </content>
 <group>
 <chapter>ëÊ3èÕ
-<attribute>-1,1,0
+<attribute>-1,1,1
 <content>
 {\rtf1\ansi\ansicpg932\deff0\deflang1033\deflangfe1041{\fonttbl{\f0\fnil\fcharset128 \'82\'6c\'82\'72 \'82\'6f\'83\'53\'83\'56\'83\'62\'83\'4e;}{\f1\fnil\fcharset128 \'82\'6c\'82\'72 \'83\'53\'83\'56\'83\'62\'83\'4e;}{\f2\fnil\fcharset2 Symbol;}}
-{\colortbl ;\red0\green0\blue0;\red232\green242\blue254;\red0\green0\blue192;\red42\green0\blue255;\red127\green0\blue85;\red0\green255\blue255;\red63\green95\blue191;\red255\green0\blue0;\red63\green127\blue95;\red100\green100\blue100;\red255\green0\blue255;}
+{\colortbl ;\red0\green0\blue0;\red232\green242\blue254;\red0\green0\blue192;\red42\green0\blue255;\red255\green0\blue0;\red127\green0\blue85;\red0\green255\blue255;\red63\green95\blue191;\red63\green127\blue95;\red100\green100\blue100;\red255\green0\blue255;}
 \viewkind4\uc1\pard\cf1\lang1041\f0\fs18 ---2016/11/08---\par
 \'82\'d0\'82\'c6\'82\'dc\'82\'b8GUI\'96\'e2\'91\'e8\'82\'a9\'82\'e7\'90\'e6\'82\'c9\'92\'85\'8e\'e8\'81\'42\par
 JPL\'82\'cd\'8c\'e3\'89\'f1\'82\'b5\'81\'42\par
@@ -446,11 +446,12 @@ Vehicle\'83\'4e\'83\'89\'83\'58\'82\'cc\'82\'c7\'82\'cc\'83\'81\'83\'5c\'83\'62\
 \'83\'78\'83\'93\'83\'60\'83\'7d\'81\'5b\'83\'4e\'97\'70\'82\'cc\'90\'56\'82\'b5\'82\'a2\'8a\'67\'92\'a3\'82\'b5\'82\'bd\'83\'4e\'83\'89\'83\'58\'82\'f0\'92\'c7\'89\'c1\'82\'b9\'82\'e6\par
 \'81\'cb\'8e\'77\'92\'e8\'82\'b3\'82\'ea\'82\'bd\'89\'f1\'90\'94\'81\'41char\'82\'f0new\'82\'b7\'82\'e9\'83\'78\'83\'93\'83\'60\'83\'7d\'81\'5b\'83\'4e\'83\'4e\'83\'89\'83\'58NewCharBenchmark\'82\'f0\'8d\'ec\'90\'ac\par
 \par
-\par
 \'81\'a1\'97\'fb\'8f\'4b\'96\'e2\'91\'e83.6\par
 \'83\'41\'83\'75\'83\'58\'83\'67\'83\'89\'83\'4e\'83\'67\'82\'c8EnergySource\'83\'4e\'83\'89\'83\'58\'82\'f0\'8a\'67\'92\'a3\'82\'b5\'82\'bdGasTank\'83\'4e\'83\'89\'83\'58\'82\'c6Battery\'83\'4e\'83\'89\'83\'58\'82\'f0\'8d\'ec\'90\'ac\'81\'42\par
 empty()\'82\'cc\'8e\'c0\'91\'95\'82\'f0\'81\'41GasTank\'82\'cd\'83\'4b\'83\'58\'82\'aa1\'96\'a2\'96\'9e\'81\'41Battery\'82\'cdEnergy\'82\'aa25\'96\'a2\'96\'9e\'82\'c8\'82\'e7true\'82\'f0\'95\'d4\'82\'b7\'82\'e6\'82\'a4\'82\'c9\'82\'b5\'82\'bd\'81\'42\par
 \par
+\cf5\'8e\'4f\'8d\'80\'89\'89\'8e\'5a\'8e\'71\'82\'cc\'8e\'67\'82\'a2\'95\'fb\'82\'aa\'88\'ab\'82\'a2\'81\'42\par
+return energy>=1 ? false : true; \'82\'cd\'81\'41return energy>1\'82\'c5\'97\'c7\'82\'a2\'81\'42\cf1\par
 \par
 ---2016/11/21---\par
 \'81\'a1\'97\'fb\'8f\'4b\'96\'e2\'91\'e83.7\par
@@ -497,25 +498,25 @@ MySortDouble\'82\'f0\'83\'65\'83\'58\'83\'67\'82\'b5\'82\'bd\'83\'81\'83\'67\'83
 \'82\'b1\'82\'cc\'95\'d3\'81\'69http://qiita.com/KeithYokoma/items/4e6e9bd4e44aab63424d\'81\'6a\'82\'c9\'83\'58\'83\'8c\'83\'62\'83\'68\'82\'cc\'8a\'ee\'91\'62\'82\'aa\'8f\'91\'82\'a9\'82\'ea\'82\'c4\'82\'a2\'82\'bd\'82\'cc\'82\'c5\'8e\'51\'8d\'6c\'82\'c9\'82\'b7\'82\'e9\'81\'42\par
 \par
 \cf0\f1\'88\'c8\'89\'ba\'82\'cc\'82\'e6\'82\'a4\'82\'c9\'8f\'91\'82\'af\'82\'ce\'81\'41\'83\'5c\'81\'5b\'83\'67\'92\'86\'82\'cc\'95\'ca\'82\'cc\'83\'5c\'81\'5b\'83\'67\'82\'cd\'8f\'49\'82\'ed\'82\'e9\'82\'dc\'82\'c5\'91\'d2\'82\'bd\'82\'b3\'82\'ea\'82\'e9\'81\'42\par
-\cf5\b import\cf1\b0  java.util.concurrent.locks.Lock;\cf0\par
-\cf5\b import\cf1\b0  java.util.concurrent.locks.ReentrantLock;\par
+\cf6\b import\cf1\b0  java.util.concurrent.locks.Lock;\cf0\par
+\cf6\b import\cf1\b0  java.util.concurrent.locks.ReentrantLock;\par
 \par
-\highlight6 Lock\highlight0  \cf3 lock\cf1  = \cf5\b new\cf1\b0  ReentrantLock();\cf0\par
+\highlight7 Lock\highlight0  \cf3 lock\cf1  = \cf6\b new\cf1\b0  ReentrantLock();\cf0\par
 \par
-\cf1\tab\cf7 /** \'91\'53\'83\'5c\'81\'5b\'83\'67\'82\'f0\'82\'b7\'82\'e9\'82\'bd\'82\'df\'82\'c9\'8c\'c4\'82\'d1\'8f\'6f\'82\'b3\'82\'ea\'82\'e9 */\cf0\par
-\cf1\tab\cf5\b public\cf1\b0  \cf5\b final\cf1\b0  SortMetrics sort(\cf5\b double\cf1\b0 [] \cf8 data\cf1 ) \{\cf0\par
+\cf1\tab\cf8 /** \'91\'53\'83\'5c\'81\'5b\'83\'67\'82\'f0\'82\'b7\'82\'e9\'82\'bd\'82\'df\'82\'c9\'8c\'c4\'82\'d1\'8f\'6f\'82\'b3\'82\'ea\'82\'e9 */\cf0\par
+\cf1\tab\cf6\b public\cf1\b0  \cf6\b final\cf1\b0  SortMetrics sort(\cf6\b double\cf1\b0 [] \cf5 data\cf1 ) \{\cf0\par
 \cf1\tab\tab\cf9 //\'83\'5c\'81\'5b\'83\'67\'8e\'c0\'8d\'73\'92\'86\'82\'c9\'95\'73\'90\'b3\'82\'c9\'83\'5c\'81\'5b\'83\'67\'82\'aa\'8c\'c4\'82\'ce\'82\'ea\'82\'c4Metrics\'82\'aa\'89\'fc\'82\'b4\'82\'f1\'82\'b3\'82\'ea\'82\'c8\'82\'a2\'82\'e6\'82\'a4\'82\'c9\'83\'8d\'83\'62\'83\'4e\'82\'b7\'82\'e9\'81\'42\cf0\par
-\cf1\tab\tab\cf5\b try\cf1\b0  \{\cf0\par
+\cf1\tab\tab\cf6\b try\cf1\b0  \{\cf0\par
 \cf1\tab\tab\tab\cf3 lock\cf1 .lock(); \cf9 // \'83\'8d\'83\'62\'83\'4e\cf0\par
 \cf1\tab\tab\tab\cf3 curMetrics\cf1 .init();\cf0\par
 \cf1\tab\tab\tab\cf9 //null\'83\'60\'83\'46\'83\'62\'83\'4e\'82\'f0\'92\'c7\'89\'c1\cf0\par
-\cf1\tab\tab\tab\cf5\b if\cf1\b0  (\cf5\b null\cf1\b0  == \cf8 data\cf1 ) \{\cf0\par
-\cf1\tab\tab\tab\tab\cf5\ul\b return\cf1\ulnone\b0  getMetrics();\cf0\par
+\cf1\tab\tab\tab\cf6\b if\cf1\b0  (\cf6\b null\cf1\b0  == \cf5 data\cf1 ) \{\cf0\par
+\cf1\tab\tab\tab\tab\cf6\ul\b return\cf1\ulnone\b0  getMetrics();\cf0\par
 \cf1\tab\tab\tab\}\cf0\par
-\cf1\tab\tab\tab\cf3 values\cf1  = \cf8 data\cf1 ;\cf0\par
+\cf1\tab\tab\tab\cf3 values\cf1  = \cf5 data\cf1 ;\cf0\par
 \cf1\tab\tab\tab doSort();\cf0\par
-\cf1\tab\tab\tab\cf5\ul\b return\cf1\ulnone\b0  getMetrics();\cf0\par
-\cf1\tab\tab\} \cf5\b finally\cf1\b0  \{\cf0\par
+\cf1\tab\tab\tab\cf6\ul\b return\cf1\ulnone\b0  getMetrics();\cf0\par
+\cf1\tab\tab\} \cf6\b finally\cf1\b0  \{\cf0\par
 \cf1\tab\tab\tab\cf3 lock\cf1 .unlock(); \cf9 // \'83\'41\'83\'93\'83\'8d\'83\'62\'83\'4e\cf0\par
 \cf1\tab\tab\}\cf0\par
 \cf1\tab\}\f0\par
@@ -523,11 +524,11 @@ MySortDouble\'82\'f0\'83\'65\'83\'58\'83\'67\'82\'b5\'82\'bd\'83\'81\'83\'67\'83
 \'83\'65\'83\'58\'83\'67\'83\'52\'81\'5b\'83\'68\'82\'c5\'82\'cd\'81\'41\'83\'7d\'83\'8b\'83\'60\'83\'5e\'83\'58\'83\'4e\'82\'c5\'83\'5c\'81\'5b\'83\'67\'82\'f0\'8c\'c4\'82\'d1\'8f\'6f\'82\'b7\'82\'e6\'82\'a4\'82\'c9\'82\'b7\'82\'e9\'81\'42\par
 \'83\'8d\'83\'4f\'82\'e6\'82\'e8\'81\'41\'83\'5c\'81\'5b\'83\'67\'92\'86\'82\'c9\'8a\'84\'82\'e8\'8d\'9e\'82\'df\'82\'bd\'82\'a9\'83\'60\'83\'46\'83\'62\'83\'4e\'82\'b5\'82\'c4\'81\'41Lock\'82\'b5\'82\'c4\'82\'a2\'82\'e9\'82\'a9\'82\'b5\'82\'c4\'82\'a2\'82\'c8\'82\'a2\'82\'a9\'82\'c5\'8c\'8b\'89\'ca\'82\'aa\'95\'cf\'82\'ed\'82\'e9\'82\'b1\'82\'c6\'82\'f0\'8a\'6d\'94\'46\'82\'b7\'82\'e9\'81\'42\par
 \par
-\cf5\b\f1 new\cf1\b0  Thread(\cf5\b new\cf1\b0  Runnable() \{\cf0\par
+\cf6\b\f1 new\cf1\b0  Thread(\cf6\b new\cf1\b0  Runnable() \{\cf0\par
 \cf1             \cf10 @Override\cf0\par
-\cf1             \cf5\b public\cf1\b0  \cf5\b void\cf1\b0  run() \{\cf0\par
+\cf1             \cf6\b public\cf1\b0  \cf6\b void\cf1\b0  run() \{\cf0\par
 \cf1                 System.\cf3\b out\cf1\b0 .println(\cf4 "\'95\'ca\'83\'58\'83\'8c\'83\'62\'83\'68\'8a\'4a\'8e\'6e"\cf1 );\cf0\par
-\cf1                 \cf5\b double\cf1\b0 [] \cf11\b data2\cf1\b0  = \{0\};\cf0\par
+\cf1                 \cf6\b double\cf1\b0 [] \cf11\b data2\cf1\b0  = \{0\};\cf0\par
 \cf1                 SortMetrics \cf11\ul\b metrics\cf1\ulnone\b0  = \cf11 bsort\cf1 .sort(\cf11 data2\cf1 );\cf0\par
 \cf1                 System.\cf3\b out\cf1\b0 .println(\cf4 "\'95\'ca\'83\'58\'83\'8c\'83\'62\'83\'68\'8f\'49\'97\'b9"\cf1 );\cf0\par
 \cf1             \}\cf0\par
@@ -1106,7 +1107,7 @@ Float\'82\'c6Double\'82\'f0\'89\'c1\'8c\'b8\'8f\'e6\'8f\'9c\'82\'b7\'82\'e9\'8a\
 }
 </content>
 <chapter>ëÊ10èÕ
-<attribute>-1,1,1
+<attribute>-1,1,0
 <content>
 {\rtf1\ansi\ansicpg932\deff0\deflang1033\deflangfe1041{\fonttbl{\f0\fnil\fcharset128 \'82\'6c\'82\'72 \'82\'6f\'83\'53\'83\'56\'83\'62\'83\'4e;}}
 {\colortbl ;\red0\green0\blue0;}
