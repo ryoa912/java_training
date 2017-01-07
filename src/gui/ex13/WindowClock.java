@@ -9,14 +9,14 @@ import java.awt.Graphics2D;
 import java.awt.Image;
 import java.awt.RenderingHints;
 import java.awt.Window;
-import java.awt.event.WindowAdapter;
-import java.awt.event.WindowEvent;
+import java.awt.event.MouseEvent;
+import java.awt.event.MouseListener;
 import java.util.Date;
 import java.util.Timer;
 import java.util.TimerTask;
 
 
-public class WindowClock extends Window {
+public class WindowClock extends Window implements MouseListener{
 
 	public WindowClock(Frame owner) {
 		super(owner);
@@ -38,6 +38,7 @@ public class WindowClock extends Window {
 		//WindowClockインスタンスの生成
 		WindowClock clock = new WindowClock(f);
 		clock.setSize(600, 150);
+		clock.addMouseListener(clock);
 		clock.setVisible(true);
 
 
@@ -77,10 +78,33 @@ public class WindowClock extends Window {
 		g.drawImage(buf , 0 , 0 ,this);
 	}
 
-	class ClosingWindowListener extends WindowAdapter {
-		public void windowClosing(WindowEvent e) {
-			System.exit(0);
-		}
+	@Override
+	public void mouseClicked(MouseEvent e) {
+		System.exit(0);
+	}
+
+	@Override
+	public void mousePressed(MouseEvent e) {
+		// TODO 自動生成されたメソッド・スタブ
+
+	}
+
+	@Override
+	public void mouseReleased(MouseEvent e) {
+		// TODO 自動生成されたメソッド・スタブ
+
+	}
+
+	@Override
+	public void mouseEntered(MouseEvent e) {
+		// TODO 自動生成されたメソッド・スタブ
+
+	}
+
+	@Override
+	public void mouseExited(MouseEvent e) {
+		// TODO 自動生成されたメソッド・スタブ
+
 	}
 
 }
