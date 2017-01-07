@@ -7,6 +7,8 @@ import java.awt.Frame;
 import java.awt.Graphics;
 import java.awt.Graphics2D;
 import java.awt.Image;
+import java.awt.MenuItem;
+import java.awt.PopupMenu;
 import java.awt.RenderingHints;
 import java.awt.Window;
 import java.awt.event.MouseEvent;
@@ -17,47 +19,57 @@ import java.util.TimerTask;
 
 
 public class WindowClock extends Window implements MouseListener{
+	public Dimension dim;		//サイズ
+	public Image buf;			//ダブルバッファ用
+	public Graphics ct;			//オフスクリーン描画用
+
+	public Font f_font;			//フォント
+	public Color f_color;		//文字色
+	public Color f_back_color;	//背景色
+
+	PopupMenu pop;	//ポップアップメニュー
 
 	public WindowClock(Frame owner) {
 		super(owner);
-		// TODO 自動生成されたコンストラクター・スタブ
+
+		//初期設定
+		setSize(600, 150);
+		f_font = new Font("Arial", Font.PLAIN, 36);
+		f_color = Color.black;
+		f_back_color = Color.white;
+
+		//リスナの登録
+		addMouseListener(this);
+
+		//可視化（バッファ作成前に可視化する必要あり）
+		setVisible(true);
+
+		//ダブルバッファ用のバッファ作成
+		dim = getSize();
+		buf = createImage(dim.width, dim.height);
+
+		//ポップアップメニューの設定
+		pop = new PopupMenu("popup menu");
+		add(pop);
+
+		MenuItem mi;
+		mi = new MenuItem("Cut");
+        pop.add(mi);
+
+        mi = new MenuItem("Copy");
+        pop.add(mi);
+
+        pop.addSeparator();
+
+        mi = new MenuItem("Paste");
+        pop.add(mi);
 	}
 
-	public Dimension dim;
-	public Image buf;
-	public Graphics ct;
-
-	public Font f_font;
-	public Color f_color;
-	public Color f_back_color;
-
-	public static void main(String[] args) {
-		//Frameインスタンスの生成
-		Frame f = new Frame();
-
-		//WindowClockインスタンスの生成
-		WindowClock clock = new WindowClock(f);
-		clock.setSize(600, 150);
-		clock.addMouseListener(clock);
-		clock.setVisible(true);
-
-
-		//初期フォントの指定
-		clock.f_font = new Font("Arial", Font.PLAIN, 36);
-
-		//タイマタスクの生成
-		TimerTask task = new TimerTask() {
-			public void run() {
-				Date date = new Date();
-			    System.out.println(date.toString());
-			    clock.repaint();
-			}
-		};
-        Timer timer = new Timer();
-		timer.schedule(task, 1000L, 1000L);
-    }
-
 	public void paint(Graphics g){
+		//ダブルバッファ不能の場合は抜ける
+		if (buf == null) return;
+
+		//オフスクリーンの描画領域を取得
 		if (ct == null) ct = buf.getGraphics();
 
 		//アンチエイリアス機能ON
@@ -80,7 +92,8 @@ public class WindowClock extends Window implements MouseListener{
 
 	@Override
 	public void mouseClicked(MouseEvent e) {
-		System.exit(0);
+		//System.exit(0);
+		if (pop != null) pop.show(this , e.getX() , e.getY());
 	}
 
 	@Override
@@ -107,4 +120,22 @@ public class WindowClock extends Window implements MouseListener{
 
 	}
 
+	public static void main(String[] args) {
+		//Frameインスタンスの生成
+		Frame f = new Frame();
+
+		//WindowClockインスタンスの生成
+		WindowClock clock = new WindowClock(f);
+
+		//タイマタスクの生成
+		TimerTask task = new TimerTask() {
+			public void run() {
+				Date date = new Date();
+			    System.out.println(date.toString());
+			    clock.repaint();
+			}
+		};
+        Timer timer = new Timer();
+		timer.schedule(task, 1000L, 1000L);
+    }
 }
