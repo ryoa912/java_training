@@ -2,7 +2,6 @@ package gui.ex13;
 
 import java.awt.Color;
 import java.awt.Dimension;
-import java.awt.FlowLayout;
 import java.awt.Font;
 import java.awt.Frame;
 import java.awt.Graphics;
@@ -17,13 +16,11 @@ import java.util.Timer;
 import java.util.TimerTask;
 
 
-public class WindowClock extends Frame {
+public class WindowClock extends Window {
 
-	public WindowClock() {
-		setTitle("MenuClock");
-		setSize(600, 150);
-		setLayout(new FlowLayout());
-		addWindowListener(new ClosingWindowListener());
+	public WindowClock(Frame owner) {
+		super(owner);
+		// TODO 自動生成されたコンストラクター・スタブ
 	}
 
 	public Dimension dim;
@@ -35,13 +32,13 @@ public class WindowClock extends Frame {
 	public Color f_back_color;
 
 	public static void main(String[] args) {
+		//Frameインスタンスの生成
+		Frame f = new Frame();
 
 		//WindowClockインスタンスの生成
-		WindowClock clock = new WindowClock();
-
-		//Windowインスタンスの生成
-		Window win  = new Window(clock);
-		win.setVisible(true);
+		WindowClock clock = new WindowClock(f);
+		clock.setSize(600, 150);
+		clock.setVisible(true);
 
 
 		//初期フォントの指定
