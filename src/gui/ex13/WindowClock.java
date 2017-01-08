@@ -13,12 +13,13 @@ import java.awt.RenderingHints;
 import java.awt.Window;
 import java.awt.event.MouseEvent;
 import java.awt.event.MouseListener;
+import java.awt.event.MouseMotionListener;
 import java.util.Date;
 import java.util.Timer;
 import java.util.TimerTask;
 
 
-public class WindowClock extends Window implements MouseListener{
+public class WindowClock extends Window implements MouseListener, MouseMotionListener{
 	public Dimension dim;		//サイズ
 	public Image buf;			//ダブルバッファ用
 	public Graphics ct;			//オフスクリーン描画用
@@ -29,11 +30,16 @@ public class WindowClock extends Window implements MouseListener{
 
 	PopupMenu pop;	//ポップアップメニュー
 
+	public static final int RIGHT_CLICK = 1;
+	public static final int CENTER_CLICK = 2;
+	public static final int LEFT_CLICK = 3;
+
 	public WindowClock(Frame owner) {
 		super(owner);
 
 		//初期設定
 		setSize(600, 150);
+		setLocation(0, 0);
 		f_font = new Font("Arial", Font.PLAIN, 36);
 		f_color = Color.black;
 		f_back_color = Color.white;
@@ -90,35 +96,64 @@ public class WindowClock extends Window implements MouseListener{
 		g.drawImage(buf , 0 , 0 ,this);
 	}
 
-	@Override
-	public void mouseClicked(MouseEvent e) {
-		//System.exit(0);
-		if (pop != null) pop.show(this , e.getX() , e.getY());
-	}
-
+	//MouseListenerのabstract methods
 	@Override
 	public void mousePressed(MouseEvent e) {
-		// TODO 自動生成されたメソッド・スタブ
-
+		switch (e.getButton()) {
+		case RIGHT_CLICK:
+			System.out.println("Right pressed.");
+			break;
+		case CENTER_CLICK:
+			System.out.println("System exit.");
+			System.exit(0);
+			break;
+		case LEFT_CLICK:
+			System.out.println("Left pressed.");
+			if (pop != null) pop.show(this , e.getX() , e.getY());
+			break;
+		default:
+			System.out.println(e.getButton());
+			break;
+		}
 	}
 
 	@Override
-	public void mouseReleased(MouseEvent e) {
-		// TODO 自動生成されたメソッド・スタブ
+	public void mouseReleased(MouseEvent e) {} //Nothing.
 
+	@Override
+	public void mouseClicked(MouseEvent e) {} //Nothing.
+
+	@Override
+	public void mouseEntered(MouseEvent e) {} //Nothing.
+
+	@Override
+	public void mouseExited(MouseEvent e) {} //Nothing.
+
+	//MouseMotionListenerのabstract methods
+	@Override
+	public void mouseDragged(MouseEvent e) {
+		switch (e.getButton()) {
+		case RIGHT_CLICK:
+			System.out.println("Right dragged.");
+			break;
+		case CENTER_CLICK:
+			System.out.println("System exit.");
+			System.exit(0);
+			break;
+		case LEFT_CLICK:
+			System.out.println("Left dragged.");
+			if (pop != null) pop.show(this , e.getX() , e.getY());
+			break;
+		default:
+			System.out.println(e.getButton());
+			break;
+		}
 	}
 
 	@Override
-	public void mouseEntered(MouseEvent e) {
-		// TODO 自動生成されたメソッド・スタブ
-
-	}
-
-	@Override
-	public void mouseExited(MouseEvent e) {
-		// TODO 自動生成されたメソッド・スタブ
-
-	}
+	public void mouseMoved(MouseEvent e) {
+		System.out.println("Mouse moved.");
+	} //Nothing.
 
 	public static void main(String[] args) {
 		//Frameインスタンスの生成
