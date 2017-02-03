@@ -227,6 +227,11 @@ public class WindowClock extends Window implements MouseListener, MouseMotionLis
 		this.repaint();
 	}
 
+	public void update(Graphics g)
+	{
+		paint(g);
+	}
+
 	public static void main(String[] args) {
 		//Frameインスタンスの生成
 		Frame f = new Frame();
