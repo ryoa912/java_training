@@ -41,5 +41,9 @@ public class Constants {
 	public static final void printConstant13() {
 		int i = 3;
 		System.out.println(i++ + i++ + --i);
+
+		//式の型を正しく判定するには、
+		//同じ名前のメソッドで、各型の引数を取るようにオーバーロードする。
+		//判定したい式を渡すと、コンパイラが呼び分けてくれる。
 	}
 }
