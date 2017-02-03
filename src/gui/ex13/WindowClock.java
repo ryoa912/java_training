@@ -94,6 +94,8 @@ public class WindowClock extends Window implements MouseListener, MouseMotionLis
 		m.add(mi);
 		mi = new MenuItem("白");
 		m.add(mi);
+		mi = new MenuItem("グレー");
+		m.add(mi);
 
 		//---背景色---
 		m = new Menu("背景色");
@@ -102,6 +104,8 @@ public class WindowClock extends Window implements MouseListener, MouseMotionLis
 		mi = new MenuItem("白");
 		m.add(mi);
 		mi = new MenuItem("黒");
+		m.add(mi);
+		mi = new MenuItem("グレー");
 		m.add(mi);
 
         pop.addSeparator();
@@ -205,6 +209,13 @@ public class WindowClock extends Window implements MouseListener, MouseMotionLis
 				f_color = Color.black;
 			} else {
 				f_back_color = Color.black;
+			}
+			break;
+		case "グレー":
+			if (obj.getLabel() == "文字色") {
+				f_color = Color.gray;
+			} else {
+				f_back_color = Color.gray;
 			}
 			break;
 		case "36pt":
