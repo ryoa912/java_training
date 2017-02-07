@@ -1,5 +1,4 @@
-//Copyright © 2017 Ryoh Aruga
-package jpl.ch14.ex03;
+package jpl.ch14.ex04;
 
 public class MyThread {
 	public static int addNum1 = 100;
@@ -7,12 +6,12 @@ public class MyThread {
 	public static int delayTime1 = 300;
 	public static int delayTime2 = 400;
 
-	public MyThread(Number obj, int addNum, int delayTime) {
+	public MyThread(int addNum, int delayTime) {
 		Runnable service = new Runnable() {
 			public void run() {
 				for (;;) {
-					obj.addNum(addNum);
-					System.out.println(obj.getNum());
+					Number.addNum(addNum);
+					System.out.println(Number.getNum());
 					try {
 						Thread.sleep(delayTime);
 					} catch (InterruptedException e) {
@@ -26,8 +25,7 @@ public class MyThread {
 	}
 
 	public static void main(String[] args) {
-		Number obj = new Number();
-		new MyThread(obj, addNum1, delayTime1);
-		new MyThread(obj, addNum2, delayTime2);
+		new MyThread(addNum1, delayTime1);
+		new MyThread(addNum2, delayTime2);
 	}
 }
