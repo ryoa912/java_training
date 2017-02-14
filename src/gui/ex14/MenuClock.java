@@ -36,6 +36,7 @@ public class MenuClock extends Window implements MouseListener, MouseMotionListe
 	public int f_height = 120;				//高さ
 
 	PopupMenu pop;	//ポップアップメニュー
+	PropertyDialog pd;	//プロパティダイアログ
 
 	public static final int RIGHT_CLICK = 1;
 	public static final int CENTER_CLICK = 2;
@@ -64,6 +65,10 @@ public class MenuClock extends Window implements MouseListener, MouseMotionListe
 		pop = new PopupMenu("popup menu");
 		pop.addActionListener(this);
 		add(pop);
+
+		//プロパティダイアログの設定
+		pd = new PropertyDialog(owner);
+		pd.addMouseListener(this);
 
 		//---プロパティ---
 		MenuItem mi = new MenuItem("プロパティ");
@@ -153,6 +158,7 @@ public class MenuClock extends Window implements MouseListener, MouseMotionListe
 		System.out.println(e.getActionCommand());
 		switch (e.getActionCommand()) {
 		case "プロパティ":
+			if (pd != null) pd.setVisible(true);
 			break;
 		case "終了":
 			System.exit(0);
