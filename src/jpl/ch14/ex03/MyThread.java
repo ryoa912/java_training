@@ -1,4 +1,4 @@
-//Copyright © 2017 Ryoh Aruga
+//Copyright © 2017 Ryoh Aruga, All Rights Reserved.
 package jpl.ch14.ex03;
 
 public class MyThread {
