@@ -158,6 +158,7 @@ public class MenuClock extends Window implements MouseListener, MouseMotionListe
 		System.out.println(e.getActionCommand());
 		switch (e.getActionCommand()) {
 		case "プロパティ":
+			pd.setProperty(f_font, f_color, f_back_color);
 			if (pd != null) pd.setVisible(true);
 			break;
 		case "終了":

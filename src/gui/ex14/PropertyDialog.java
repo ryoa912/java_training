@@ -5,6 +5,7 @@ import java.awt.Button;
 import java.awt.Choice;
 import java.awt.Color;
 import java.awt.Dialog;
+import java.awt.Font;
 import java.awt.Frame;
 import java.awt.GridBagConstraints;
 import java.awt.GridBagLayout;
@@ -19,6 +20,13 @@ import java.awt.event.WindowEvent;
 
 public class PropertyDialog extends Dialog implements ActionListener {
 	GridBagLayout gbl = new GridBagLayout();
+	Choice c1;
+	Choice c2;
+	Choice c3;
+	Choice c4;
+	Font f_font;
+	Color f_font_color;
+	Color f_background_color;
 
 	public PropertyDialog(Frame owner) {
 		super(owner, true);
@@ -40,7 +48,7 @@ public class PropertyDialog extends Dialog implements ActionListener {
 	    gbc = addConstraints(0, 0, 1, 1, 1.0d, 1.0d, GridBagConstraints.BASELINE, 0, 0, 0, 0);
 	    layout.setConstraints(label1, gbc);
 
-	    Choice c1 = new Choice();
+	    c1 = new Choice();
 	    c1.add("Arial");
 	    c1.add("Century");
 	    gbc = addConstraints(1, 0, 1, 1, 1.0d, 1.0d, GridBagConstraints.BASELINE, 0, 0, 0, 0);
@@ -50,7 +58,7 @@ public class PropertyDialog extends Dialog implements ActionListener {
 	    gbc = addConstraints(0, 1, 1, 1, 1.0d, 1.0d, GridBagConstraints.BASELINE, 0, 0, 0, 0);
 	    layout.setConstraints(label2, gbc);
 
-	    Choice c2 = new Choice();
+	    c2 = new Choice();
 	    c2.add("36pt");
 	    c2.add("18pt");
 	    gbc = addConstraints(1, 1, 1, 1, 1.0d, 1.0d, GridBagConstraints.BASELINE, 0, 0, 0, 0);
@@ -60,7 +68,7 @@ public class PropertyDialog extends Dialog implements ActionListener {
 	    gbc = addConstraints(0, 2, 1, 1, 1.0d, 1.0d, GridBagConstraints.BASELINE, 0, 0, 0, 0);
 	    layout.setConstraints(label3, gbc);
 
-	    Choice c3 = new Choice();
+	    c3 = new Choice();
 	    c3.add("黒");
 	    c3.add("白");
 	    c3.add("グレー");
@@ -71,11 +79,10 @@ public class PropertyDialog extends Dialog implements ActionListener {
 	    gbc = addConstraints(0, 3, 1, 1, 1.0d, 1.0d, GridBagConstraints.BASELINE, 0, 0, 0, 0);
 	    layout.setConstraints(label4, gbc);
 
-	    Choice c4 = new Choice();
+	    c4 = new Choice();
 	    c4.add("黒");
 	    c4.add("白");
 	    c4.add("グレー");
-	    c4.select(getBackGroundColorString(owner));
 	    gbc = addConstraints(1, 3, 1, 1, 1.0d, 1.0d, GridBagConstraints.BASELINE, 0, 0, 0, 0);
 	    layout.setConstraints(c4, gbc);
 
@@ -118,8 +125,16 @@ public class PropertyDialog extends Dialog implements ActionListener {
 	    gbc.insets = new Insets(mergin_top, mergin_left, mergin_right, mergin_bottom);
 		return gbc;
 	}
-	private String getBackGroundColorString(Frame f) {
-		Color c = f.getBackground();
+	private String getFontSizeString(int s) {
+		if (s == 18) {
+			return "18pt";
+		} else if (s == 36) {
+			return "36pt";
+		} else {
+			return "内部エラー";
+		}
+	}
+	private String getColorString(Color c) {
 		if (c == Color.black) {
 			return "黒";
 		} else if (c == Color.white) {
@@ -129,6 +144,16 @@ public class PropertyDialog extends Dialog implements ActionListener {
 		} else {
 			return "内部エラー";
 		}
+	}
+	public void setProperty(Font font, Color font_color, Color background_color) {
+		f_font = font;
+		f_font_color = font_color;
+		f_background_color = background_color;
+
+		c1.select(f_font.getFamily());
+		c2.select(getFontSizeString(f_font.getSize()));
+		c3.select(getColorString(font_color));
+		c4.select(getColorString(background_color));
 	}
 
 	@Override
