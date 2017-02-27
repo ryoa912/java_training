@@ -20,9 +20,10 @@ import java.util.LinkedList;
  *  Don't use java.util.concurrent package.
  */
 public class ThreadPool {
+	private final int f_queue_size;
 	private final int f_thread_num;
-	private final PoolWorker[] f_threads;
-	private final LinkedList<Runnable> f_queue;
+	private PoolWorker[] f_threads;
+	private LinkedList<Runnable> f_queue;
 	private Boolean f_started = false;
     /**
      * Constructs ThreadPool.
@@ -36,12 +37,8 @@ public class ThreadPool {
     public ThreadPool(int queueSize, int numberOfThreads) {
     	if (queueSize < 1 || numberOfThreads < 1)
     		throw new IllegalArgumentException();
+    	f_queue_size = queueSize;
     	f_thread_num = numberOfThreads;
-    	f_queue = new LinkedList<Runnable>();
-    	f_threads = new PoolWorker[f_thread_num];
-    	for (int i=0; i<f_thread_num; i++) {
-    		f_threads[i] = new PoolWorker();
-    	}
     }
 
     /**
@@ -52,7 +49,10 @@ public class ThreadPool {
     public void start() {
     	if (f_started)
     		throw new IllegalStateException();
+    	f_queue = new LinkedList<Runnable>();
+    	f_threads = new PoolWorker[f_thread_num];
     	for (int i=0; i<f_thread_num; i++) {
+    		f_threads[i] = new PoolWorker();
     		f_threads[i].start();
     	}
     	f_started = true;
@@ -94,7 +94,7 @@ public class ThreadPool {
     }
 
     private class PoolWorker extends Thread {
-        public void run() {
+    	public void run() {
             Runnable r;
             while (true) {
                 synchronized(f_queue) {
