@@ -68,6 +68,7 @@ public class MenuClock extends Window implements MouseListener, MouseMotionListe
 
 		//プロパティダイアログの設定
 		pd = new PropertyDialog(owner);
+		pd.setActionListener(this);
 		pd.addMouseListener(this);
 
 		//---プロパティ---
@@ -164,18 +165,44 @@ public class MenuClock extends Window implements MouseListener, MouseMotionListe
 		case "終了":
 			System.exit(0);
 			break;
+		case "OK":
+			f_font = getFontFamily(pd.c1.getSelectedItem(), pd.c2.getSelectedItem());
+			f_color = getColor(pd.c3.getSelectedItem());
+			f_back_color = getColor(pd.c4.getSelectedItem());
+			pd.setVisible(false);
+			break;
+		case "キャンセル":
+			pd.setVisible(false);
+			break;
 		default:
 			System.out.println("内部エラー");
 			break;
 		}
 		this.repaint();
 	}
-
+	private Font getFontFamily(String family, String size_str) {
+		if (size_str == "36pt")
+			return new Font(family, Font.PLAIN, 36);
+		else if (size_str == "18pt")
+			return new Font(family, Font.PLAIN, 18);
+		else
+			return null;
+	}
+	private Color getColor(String s) {
+		if (s == "黒") {
+			return Color.black;
+		} else if (s == "白") {
+			return Color.white;
+		} else if (s == "グレー") {
+			return Color.gray;
+		} else {
+			return null;
+		}
+	}
 	public void update(Graphics g)
 	{
 		paint(g);
 	}
-
 	public static void main(String[] args) {
 		//Frameインスタンスの生成
 		Frame f = new Frame();

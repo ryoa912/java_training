@@ -12,6 +12,7 @@ import java.awt.GridBagLayout;
 import java.awt.Insets;
 import java.awt.Label;
 import java.awt.Panel;
+import java.awt.Window;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.awt.event.WindowAdapter;
@@ -19,17 +20,25 @@ import java.awt.event.WindowEvent;
 
 
 public class PropertyDialog extends Dialog implements ActionListener {
+	Window f_window;
 	GridBagLayout gbl = new GridBagLayout();
 	Choice c1;
 	Choice c2;
 	Choice c3;
 	Choice c4;
+	Button ok_button;
+	Button cancel_button;
 	Font f_font;
 	Color f_font_color;
 	Color f_background_color;
 
+	public void setActionListener(ActionListener al) {
+	    ok_button.addActionListener(al);
+	    cancel_button.addActionListener(al);
+	}
 	public PropertyDialog(Frame owner) {
 		super(owner, true);
+
 		//初期設定
 		setSize(400, 300);				//ダイアログサイズ
 		this.setTitle("プロパティ");	//タイトル
@@ -86,16 +95,13 @@ public class PropertyDialog extends Dialog implements ActionListener {
 	    gbc = addConstraints(1, 3, 1, 1, 1.0d, 1.0d, GridBagConstraints.BASELINE, 0, 0, 0, 0);
 	    layout.setConstraints(c4, gbc);
 
-	    Button ok_button = new Button("OK");
+	    ok_button = new Button("OK");
 	    gbc = addConstraints(0, 4, 1, 1, 1.0d, 1.0d, GridBagConstraints.BASELINE, 0, 0, 0, 0);
 	    layout.setConstraints(ok_button, gbc);
-	    ok_button.addActionListener(this);
 
-	    Button cancel_button = new Button("キャンセル");
+	    cancel_button = new Button("キャンセル");
 	    gbc = addConstraints(1, 4, 1, 1, 1.0d, 1.0d, GridBagConstraints.BASELINE, 0, 0, 0, 0);
 	    layout.setConstraints(cancel_button, gbc);
-	    cancel_button.addActionListener(this);
-
 
 	    p.add(label1);
 	    p.add(c1);
@@ -110,7 +116,6 @@ public class PropertyDialog extends Dialog implements ActionListener {
 
 	    this.add(p, BorderLayout.CENTER);
 	}
-
 	private GridBagConstraints addConstraints(int x, int y, int width, int height,
 			double weightx, double weighty, int fill,
 			int mergin_top, int mergin_left, int mergin_right, int mergin_bottom) {
@@ -145,6 +150,7 @@ public class PropertyDialog extends Dialog implements ActionListener {
 			return "内部エラー";
 		}
 	}
+
 	public void setProperty(Font font, Color font_color, Color background_color) {
 		f_font = font;
 		f_font_color = font_color;
