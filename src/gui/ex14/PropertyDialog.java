@@ -1,10 +1,13 @@
 package gui.ex14;
 
+import java.awt.BorderLayout;
 import java.awt.Button;
 import java.awt.Dialog;
 import java.awt.Frame;
 import java.awt.GridBagConstraints;
 import java.awt.GridBagLayout;
+import java.awt.Insets;
+import java.awt.Panel;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.awt.event.WindowAdapter;
@@ -17,33 +20,49 @@ public class PropertyDialog extends Dialog implements ActionListener {
 	public PropertyDialog(Frame owner) {
 		super(owner, true);
 		//初期設定
-		setSize(600, 120);				//ダイアログサイズ
+		setSize(600, 600);				//ダイアログサイズ
 		this.setTitle("プロパティ");	//タイトル
 		this.setResizable(false);		//リサイズ禁止
 
 		//閉じるボタンの設定
 		addWindowListener(new ClosingWindowListener(this));
 
-		Button but = (Button)this.add(new Button("OK"));
-		but.addActionListener(this);
-		but = (Button)this.add(new Button("キャンセル"));
-		but.addActionListener(this);
+		GridBagLayout layout = new GridBagLayout();
+		Panel p = new Panel();
+	    p.setLayout(layout);
 
-		setLayout(gbl);
-		Button b1 = new Button();
-		addButton(b1, 0, 0, 1, 3);
+	    GridBagConstraints gbc = new GridBagConstraints();
+
+	    Button button1 = new Button("OK");
+
+
+	    gbc.gridx = 0;
+	    gbc.gridy = 0;
+	    gbc.gridheight = 2;
+	    gbc.weightx = 1.0d;
+	    gbc.weighty = 1.0d;
+	    gbc.fill = GridBagConstraints.BASELINE;
+	    gbc.insets = new Insets(10, 10, 10, 10);
+	    layout.setConstraints(button1, gbc);
+	    button1.addActionListener(this);
+
+	    Button button2 = new Button("Cancel");
+
+	    gbc.gridx = 1;
+	    gbc.gridy = 0;
+	    gbc.gridheight = 1;
+	    gbc.weightx = 1.0d;
+	    gbc.weighty = 1.0d;
+	    gbc.fill = GridBagConstraints.SOUTHEAST;
+	    layout.setConstraints(button2, gbc);
+	    button2.addActionListener(this);
+
+	    p.add(button1);
+	    p.add(button2);
+
+	    this.add(p, BorderLayout.CENTER);
 	}
 
-	private void addButton(Button b, int x, int y, int w, int h) {
-		GridBagConstraints gbc = new GridBagConstraints();
-        gbc.fill = GridBagConstraints.BOTH;
-        gbc.gridx = x;
-        gbc.gridy = y;
-        gbc.gridwidth = w;
-        gbc.gridheight = h;
-        gbl.setConstraints(b, gbc);
-        add(b);
-	}
 	@Override
 	public void actionPerformed(ActionEvent e) {
 		System.out.println(e.getActionCommand());
