@@ -54,53 +54,57 @@ public class PropertyDialog extends Dialog implements ActionListener {
 	    GridBagConstraints gbc = new GridBagConstraints();
 
 	    Label label1 = new Label("フォント");
-	    gbc = addConstraints(0, 0, 1, 1, 1.0d, 1.0d, GridBagConstraints.BASELINE, 0, 0, 0, 0);
+	    gbc = addConstraints(0, 0, 1, 1, 1.0d, 1.0d, GridBagConstraints.NONE, 0, 50, 0, 25);
+	    gbc.anchor = GridBagConstraints.EAST;
 	    layout.setConstraints(label1, gbc);
 
 	    c1 = new Choice();
 	    c1.add("Arial");
 	    c1.add("Century");
-	    gbc = addConstraints(1, 0, 1, 1, 1.0d, 1.0d, GridBagConstraints.BASELINE, 0, 0, 0, 0);
+	    gbc = addConstraints(1, 0, 1, 1, 1.0d, 1.0d, GridBagConstraints.HORIZONTAL, 0, 25, 0, 50);
 	    layout.setConstraints(c1, gbc);
 
 	    Label label2 = new Label("フォントサイズ");
-	    gbc = addConstraints(0, 1, 1, 1, 1.0d, 1.0d, GridBagConstraints.BASELINE, 0, 0, 0, 0);
+	    gbc = addConstraints(0, 1, 1, 1, 1.0d, 1.0d, GridBagConstraints.NONE, 0, 50, 0, 25);
+	    gbc.anchor = GridBagConstraints.EAST;
 	    layout.setConstraints(label2, gbc);
 
 	    c2 = new Choice();
 	    c2.add("36pt");
 	    c2.add("18pt");
-	    gbc = addConstraints(1, 1, 1, 1, 1.0d, 1.0d, GridBagConstraints.BASELINE, 0, 0, 0, 0);
+	    gbc = addConstraints(1, 1, 1, 1, 1.0d, 1.0d, GridBagConstraints.HORIZONTAL, 0, 25, 0, 50);
 	    layout.setConstraints(c2, gbc);
 
 	    Label label3 = new Label("文字色");
-	    gbc = addConstraints(0, 2, 1, 1, 1.0d, 1.0d, GridBagConstraints.BASELINE, 0, 0, 0, 0);
+	    gbc = addConstraints(0, 2, 1, 1, 1.0d, 1.0d, GridBagConstraints.NONE, 0, 50, 0, 25);
+	    gbc.anchor = GridBagConstraints.EAST;
 	    layout.setConstraints(label3, gbc);
 
 	    c3 = new Choice();
 	    c3.add("黒");
 	    c3.add("白");
 	    c3.add("グレー");
-	    gbc = addConstraints(1, 2, 1, 1, 1.0d, 1.0d, GridBagConstraints.BASELINE, 0, 0, 0, 0);
+	    gbc = addConstraints(1, 2, 1, 1, 1.0d, 1.0d, GridBagConstraints.HORIZONTAL, 0, 25, 0, 50);
 	    layout.setConstraints(c3, gbc);
 
 	    Label label4 = new Label("背景色");
-	    gbc = addConstraints(0, 3, 1, 1, 1.0d, 1.0d, GridBagConstraints.BASELINE, 0, 0, 0, 0);
+	    gbc = addConstraints(0, 3, 1, 1, 1.0d, 1.0d, GridBagConstraints.NONE, 0, 50, 0, 25);
+	    gbc.anchor = GridBagConstraints.EAST;
 	    layout.setConstraints(label4, gbc);
 
 	    c4 = new Choice();
 	    c4.add("黒");
 	    c4.add("白");
 	    c4.add("グレー");
-	    gbc = addConstraints(1, 3, 1, 1, 1.0d, 1.0d, GridBagConstraints.BASELINE, 0, 0, 0, 0);
+	    gbc = addConstraints(1, 3, 1, 1, 1.0d, 1.0d, GridBagConstraints.HORIZONTAL, 0, 25, 0, 50);
 	    layout.setConstraints(c4, gbc);
 
 	    ok_button = new Button("OK");
-	    gbc = addConstraints(0, 4, 1, 1, 1.0d, 1.0d, GridBagConstraints.BASELINE, 0, 0, 0, 0);
+	    gbc = addConstraints(0, 4, 1, 1, 1.0d, 1.0d, GridBagConstraints.HORIZONTAL, 0, 50, 0, 25);
 	    layout.setConstraints(ok_button, gbc);
 
 	    cancel_button = new Button("キャンセル");
-	    gbc = addConstraints(1, 4, 1, 1, 1.0d, 1.0d, GridBagConstraints.BASELINE, 0, 0, 0, 0);
+	    gbc = addConstraints(1, 4, 1, 1, 1.0d, 1.0d, GridBagConstraints.HORIZONTAL, 0, 25, 0, 50);
 	    layout.setConstraints(cancel_button, gbc);
 
 	    p.add(label1);
@@ -118,7 +122,7 @@ public class PropertyDialog extends Dialog implements ActionListener {
 	}
 	private GridBagConstraints addConstraints(int x, int y, int width, int height,
 			double weightx, double weighty, int fill,
-			int mergin_top, int mergin_left, int mergin_right, int mergin_bottom) {
+			int mergin_top, int mergin_left, int mergin_bottom, int mergin_right) {
 		GridBagConstraints gbc = new GridBagConstraints();
 		gbc.gridx = x;
 	    gbc.gridy = y;
@@ -127,7 +131,7 @@ public class PropertyDialog extends Dialog implements ActionListener {
 	    gbc.weightx = weightx;
 	    gbc.weighty = weighty;
 	    gbc.fill = fill;
-	    gbc.insets = new Insets(mergin_top, mergin_left, mergin_right, mergin_bottom);
+	    gbc.insets = new Insets(mergin_top, mergin_left, mergin_bottom, mergin_right);
 		return gbc;
 	}
 	private String getFontSizeString(int s) {

@@ -19,6 +19,8 @@ import java.awt.event.MouseMotionListener;
 import java.util.Date;
 import java.util.Timer;
 import java.util.TimerTask;
+import java.util.prefs.BackingStoreException;
+import java.util.prefs.Preferences;
 
 public class MenuClock extends Window implements MouseListener, MouseMotionListener, ActionListener {
 	public Dimension dim;		//サイズ
@@ -26,8 +28,8 @@ public class MenuClock extends Window implements MouseListener, MouseMotionListe
 	public Graphics ct;			//オフスクリーン描画用
 
 	public Font f_font;			//フォント
-	public Color f_color = Color.black;		//文字色
-	public Color f_back_color = Color.white;	//背景色
+	public Color f_color;		//文字色
+	public Color f_back_color;	//背景色
 	public int f_window_x = 100;			//ウィンドウX座標
 	public int f_window_y = 100;			//ウィンドウY座標
 	public int f_click_position_x = 0;		//クリックX座標
@@ -37,18 +39,31 @@ public class MenuClock extends Window implements MouseListener, MouseMotionListe
 
 	PopupMenu pop;	//ポップアップメニュー
 	PropertyDialog pd;	//プロパティダイアログ
+	private Preferences prefs;	//Preference
 
 	public static final int RIGHT_CLICK = 1;
 	public static final int CENTER_CLICK = 2;
 	public static final int LEFT_CLICK = 3;
+	public static final String FONT_FAMILY = "font_family";
+	public static final String FONT_SIZE = "font_size";
+	public static final String FONT_COLOR = "font_color";
+	public static final String BACKGROUND_COLOR = "background_color";
+	public static final String X_POSITION = "x_position";
+	public static final String Y_POSITION = "y_position";
 
 	public MenuClock(Frame owner) {
 		super(owner);
+		//Prefs
+		prefs = Preferences.userRoot().node("ra_app");;
 
 		//初期設定
+		f_font = this.getFontFamily(prefs.get(FONT_FAMILY, "Arial"), prefs.get(FONT_SIZE, "36pt"));
+		f_color = this.getColor(prefs.get(FONT_COLOR, "黒"));
+		f_back_color = this.getColor(prefs.get(BACKGROUND_COLOR, "白"));
+		f_window_x = prefs.getInt(X_POSITION, 100);
+		f_window_y = prefs.getInt(Y_POSITION, 100);
 		setSize(600, 120);
 		setLocation(f_window_x, f_window_y);
-		f_font = new Font("Arial", Font.PLAIN, 36);
 
 		//リスナの登録
 		addMouseListener(this);
@@ -148,6 +163,14 @@ public class MenuClock extends Window implements MouseListener, MouseMotionListe
 		System.out.println("Right dragged."+ e.getX()+"."+e.getY());
 		f_window_x = e.getXOnScreen() - f_click_position_x;
 		f_window_y = e.getYOnScreen() - f_click_position_y;
+		//設定の保存
+		prefs.putInt(X_POSITION, f_window_x);
+		prefs.putInt(Y_POSITION, f_window_y);
+		try {
+			prefs.flush();
+		} catch (BackingStoreException e1) {
+			e1.printStackTrace();
+		}
 		this.repaint();
 	}
 	@Override
@@ -169,6 +192,17 @@ public class MenuClock extends Window implements MouseListener, MouseMotionListe
 			f_font = getFontFamily(pd.c1.getSelectedItem(), pd.c2.getSelectedItem());
 			f_color = getColor(pd.c3.getSelectedItem());
 			f_back_color = getColor(pd.c4.getSelectedItem());
+
+			//設定の保存
+			prefs.put(FONT_FAMILY, pd.c1.getSelectedItem());
+			prefs.put(FONT_SIZE, pd.c2.getSelectedItem());
+			prefs.put(FONT_COLOR, pd.c3.getSelectedItem());
+			prefs.put(BACKGROUND_COLOR, pd.c4.getSelectedItem());
+			try {
+				prefs.flush();
+			} catch (BackingStoreException e1) {
+				e1.printStackTrace();
+			}
 			pd.setVisible(false);
 			break;
 		case "キャンセル":
@@ -181,19 +215,19 @@ public class MenuClock extends Window implements MouseListener, MouseMotionListe
 		this.repaint();
 	}
 	private Font getFontFamily(String family, String size_str) {
-		if (size_str == "36pt")
+		if (size_str.equals("36pt"))
 			return new Font(family, Font.PLAIN, 36);
-		else if (size_str == "18pt")
+		else if (size_str.equals("18pt"))
 			return new Font(family, Font.PLAIN, 18);
 		else
 			return null;
 	}
 	private Color getColor(String s) {
-		if (s == "黒") {
+		if (s.equals("黒")) {
 			return Color.black;
-		} else if (s == "白") {
+		} else if (s.equals("白")) {
 			return Color.white;
-		} else if (s == "グレー") {
+		} else if (s.equals("グレー")) {
 			return Color.gray;
 		} else {
 			return null;
