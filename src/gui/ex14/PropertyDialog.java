@@ -70,8 +70,9 @@ public class PropertyDialog extends Dialog implements ActionListener {
 	    layout.setConstraints(label2, gbc);
 
 	    c2 = new Choice();
-	    c2.add("36pt");
-	    c2.add("18pt");
+	    c2.add("18");
+	    c2.add("36");
+	    c2.add("72");
 	    gbc = addConstraints(1, 1, 1, 1, 1.0d, 1.0d, GridBagConstraints.HORIZONTAL, 0, 25, 0, 50);
 	    layout.setConstraints(c2, gbc);
 
@@ -136,9 +137,11 @@ public class PropertyDialog extends Dialog implements ActionListener {
 	}
 	private String getFontSizeString(int s) {
 		if (s == 18) {
-			return "18pt";
+			return "18";
 		} else if (s == 36) {
-			return "36pt";
+			return "36";
+		}  else if (s == 72) {
+			return "72";
 		} else {
 			return "内部エラー";
 		}
