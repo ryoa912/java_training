@@ -37,8 +37,8 @@ public class MenuClock extends Window implements MouseListener, MouseMotionListe
 	public int f_width = 600;				//幅
 	public int f_height = 120;				//高さ
 
-	PopupMenu pop;	//ポップアップメニュー
-	PropertyDialog pd;	//プロパティダイアログ
+	private PopupMenu pop;	//ポップアップメニュー
+	private PropertyDialog pd;	//プロパティダイアログ
 	private Preferences prefs;	//Preference
 
 	public static final int RIGHT_CLICK = 1;
@@ -54,7 +54,7 @@ public class MenuClock extends Window implements MouseListener, MouseMotionListe
 	public MenuClock(Frame owner) {
 		super(owner);
 		//Prefs
-		prefs = Preferences.userRoot().node("ra_app");;
+		prefs = Preferences.userRoot().node("ra_app");
 
 		//初期設定
 		f_font = this.getFontFamily(prefs.get(FONT_FAMILY, "Arial"), prefs.get(FONT_SIZE, "36pt"));
