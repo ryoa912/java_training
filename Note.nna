@@ -1870,9 +1870,50 @@ class java.lang.String\cf0\par
 \cf1  implements java.lang.CharSequence\cf0\par
 \par
 \par
+\'81\'a1\'97\'fb\'8f\'4b\'96\'e2\'91\'e816.2\par
+getDeclaringClass()\'82\'f0\'8e\'67\'82\'a4\'81\'42\par
+\par
+\'81\'a1\'97\'fb\'8f\'4b\'96\'e2\'91\'e816.3\par
+ClassContents\'82\'f0\'8f\'43\'90\'b3\'82\'b7\'82\'e9\'81\'42\par
+\par
+\'8f\'43\'90\'b3\'91\'4f\'81\'ab\par
+\cf1 class jpl.ch16.ex03.ColorAttr\par
+ public jpl.ch16.ex03.ColorAttr(String,jpl.ch16.ex03.ScreenColor)\par
+ public jpl.ch16.ex03.ColorAttr(String)\par
+ public jpl.ch16.ex03.ColorAttr(String,Object)\par
+ public boolean jpl.ch16.ex03.ColorAttr.equals(Object)\par
+ public int jpl.ch16.ex03.ColorAttr.hashCode()\par
+ public jpl.ch16.ex03.ScreenColor jpl.ch16.ex03.ColorAttr.setValue(jpl.ch16.ex03.ScreenColor)\par
+ public Object jpl.ch16.ex03.ColorAttr.setValue(Object)\par
+ public jpl.ch16.ex03.ScreenColor jpl.ch16.ex03.ColorAttr.getColor()\par
+ public String jpl.ch16.ex03.Attr.toString()\par
+ public String jpl.ch16.ex03.Attr.getName()\par
+ public Object jpl.ch16.ex03.Attr.getValue()\cf0\par
+\par
+\'8f\'43\'90\'b3\'8c\'e3\'81\'ab\par
+class jpl.ch16.ex03.ColorAttr\par
+ public jpl.ch16.ex03.ColorAttr(String,jpl.ch16.ex03.ScreenColor)\par
+ public jpl.ch16.ex03.ColorAttr(String)\par
+ public jpl.ch16.ex03.ColorAttr(String,Object)\par
+ public boolean jpl.ch16.ex03.ColorAttr.equals(Object)\par
+ public int jpl.ch16.ex03.ColorAttr.hashCode()\par
+ public jpl.ch16.ex03.ScreenColor jpl.ch16.ex03.ColorAttr.setValue(jpl.ch16.ex03.ScreenColor)\par
+ public Object jpl.ch16.ex03.ColorAttr.setValue(Object)\par
+ public jpl.ch16.ex03.ScreenColor jpl.ch16.ex03.ColorAttr.getColor()\par
+ public String jpl.ch16.ex03.Attr.toString()\par
+ public String jpl.ch16.ex03.Attr.getName()\par
+ public Object jpl.ch16.ex03.Attr.getValue()\par
+ public jpl.ch16.ex03.Attr(String)\par
+ public jpl.ch16.ex03.Attr(String,Object)\par
+ public String jpl.ch16.ex03.Attr.toString()\par
+ public String jpl.ch16.ex03.Attr.getName()\par
+ public Object jpl.ch16.ex03.Attr.getValue()\par
+ public Object jpl.ch16.ex03.Attr.setValue(Object)\par
 \par
 \par
 \cf1\f0\par
+\par
+\par
 \par
 \par
 }
