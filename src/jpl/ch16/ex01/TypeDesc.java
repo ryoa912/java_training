@@ -43,8 +43,8 @@ public class TypeDesc {
 			throw new Error("Unexpected non-class type");
 
 		//Objectクラスの場合、return
-		//if (cls.getCanonicalName() == Object.class.getName())
-		//	return;
+		if (cls.getCanonicalName() == Object.class.getName())
+			return;
 
 
 		//この型を表示
