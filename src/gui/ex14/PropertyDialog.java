@@ -159,7 +159,7 @@ public class PropertyDialog extends Dialog implements ActionListener {
 	}
 
 	public void setProperty(Font font, Color font_color, Color background_color) {
-		f_font = font;
+		f_font = font != null ? font : new Font("Arial", Font.PLAIN, 36);
 		f_font_color = font_color;
 		f_background_color = background_color;
 
