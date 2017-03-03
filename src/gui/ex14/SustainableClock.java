@@ -82,7 +82,7 @@ public class SustainableClock extends Window implements MouseListener, MouseMoti
 		setVisible(true);
 
 		//ダブルバッファ用のバッファ作成
-		dim = getSize();
+		dim = new Dimension(864, 120);
 		buf = createImage(dim.width, dim.height);
 
 		//ポップアップメニューの設定
