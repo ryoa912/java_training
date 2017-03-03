@@ -13,15 +13,33 @@ public class SpecialCharaConverter {
 	private final String convertSpecialChara(char b) {
 		String ans;
 		switch (b) {
-			case '\n': ans = "\\n";		//改行\u000A
-			case '\t': ans = "\\t";		//タブ\u0009
-			case '\b': ans = "\\b";//バックスペース\u0008
-			case '\r': ans = "\\r";//復帰\u000D
-			case '\f': ans = "\\f";//フォームフィールド\u000C
-			case '\\': ans = "\\\\";//バックスラッシュ自身\u005C
-			case '\'': ans = "\\\'";//シングルクォート\u0027
-			case '\"': ans = "\\\"";//ダブルクォート\u0022
-			default: ans = String.valueOf(b);
+			case '\n':
+				ans = "\\n";		//改行\u000A
+				break;
+			case '\t':
+				ans = "\\t";		//タブ\u0009
+				break;
+			case '\b':
+				ans = "\\b";//バックスペース\u0008
+				break;
+			case '\r':
+				ans = "\\r";//復帰\u000D
+				break;
+			case '\f':
+				ans = "\\f";//フォームフィールド\u000C
+				break;
+			case '\\':
+				ans = "\\\\";//バックスラッシュ自身\u005C
+				break;
+			case '\'':
+				ans = "\\\'";//シングルクォート\u0027
+				break;
+			case '\"':
+				ans = "\\\"";//ダブルクォート\u0022
+				break;
+			default:
+				ans = String.valueOf(b);
+				break;
 		}
 		return ans;
 	}
