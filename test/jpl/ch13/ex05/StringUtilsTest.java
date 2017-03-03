@@ -13,5 +13,19 @@ public class StringUtilsTest {
 		String ret = StringUtils.insertComma(str1);
 		assertEquals(expected1, ret);
 	}
+	@Test
+	public void testInsertComma_2() {
+		String input = "123";
+		String expected = "123";
+		String ret = StringUtils.insertComma(input);
+		assertEquals(expected, ret);
+	}
+	@Test
+	public void testInsertComma_0() {
+		String input = "";
+		String expected = "";
+		String ret = StringUtils.insertComma(input);
+		assertEquals(expected, ret);
+	}
 
 }

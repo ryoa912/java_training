@@ -85,5 +85,11 @@ public class CounterTest {
 		int result = obj.countString(str10, target);
 		assertEquals(10, result);
 	}
+	@Test
+	public void testCountString_aa() {
+		Counter obj = new Counter();
+		int result = obj.countString("aaaaa", "aa");
+		assertEquals(4, result);
+	}
 
 }
