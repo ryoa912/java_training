@@ -66,7 +66,7 @@ public class SustainableClock extends Window implements MouseListener, MouseMoti
 
 		//初期設定
 		f_font = this.getFontFamily(prefs.get(FONT_FAMILY, "Arial"), prefs.get(FONT_SIZE, "36pt"));
-		f_color = this.getColor(prefs.get(FONT_COLOR, "黒"));
+		f_color = this.getFontColor(prefs.get(FONT_COLOR, "黒"));
 		f_back_color = this.getColor(prefs.get(BACKGROUND_COLOR, "白"));
 		f_window_x = prefs.getInt(X_POSITION, 100);
 		f_window_y = prefs.getInt(Y_POSITION, 100);
@@ -250,7 +250,7 @@ public class SustainableClock extends Window implements MouseListener, MouseMoti
 		else if (size_str.equals("72"))
 			return new Font(family, Font.PLAIN, 72);
 		else
-			return null;
+			return new Font(family, Font.PLAIN, 36);
 	}
 	private Color getColor(String s) {
 		if (s.equals("黒")) {
@@ -260,7 +260,18 @@ public class SustainableClock extends Window implements MouseListener, MouseMoti
 		} else if (s.equals("グレー")) {
 			return Color.gray;
 		} else {
-			return null;
+			return Color.white;
+		}
+	}
+	private Color getFontColor(String s) {
+		if (s.equals("黒")) {
+			return Color.black;
+		} else if (s.equals("白")) {
+			return Color.white;
+		} else if (s.equals("グレー")) {
+			return Color.gray;
+		} else {
+			return Color.black;
 		}
 	}
 	private int getFrameWidth(String size_str) {
