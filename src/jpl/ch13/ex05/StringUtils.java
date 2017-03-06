@@ -14,4 +14,14 @@ public class StringUtils {
 		}
 		return sb.toString();
 	}
+	
+	//Ä‹AŒÄ‚Ño‚µ‚ÅŽÀŒ»‚·‚é•û–@
+	public static String insertCommaAnswer(String src) {
+		StringBuilder sb = new StringBuilder(src);
+
+		for (int i=src.length()-3; i>0; i-=3) {
+			sb.insert(i, ',');
+		}
+		return sb.toString();
+	}
 }
