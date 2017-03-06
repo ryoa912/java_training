@@ -1499,7 +1499,7 @@ Modifier Names\'81\'40Arguments\par
 </content>
 <group>
 <chapter>ëÊ14èÕ
-<attribute>-1,0,0
+<attribute>-1,1,1
 <content>
 {\rtf1\ansi\ansicpg932\deff0\deflang1033\deflangfe1041{\fonttbl{\f0\fnil\fcharset128 \'82\'6c\'82\'72 \'82\'6f\'83\'53\'83\'56\'83\'62\'83\'4e;}{\f1\fnil\fcharset128 \'82\'6c\'82\'72 \'83\'53\'83\'56\'83\'62\'83\'4e;}}
 {\colortbl ;\red0\green0\blue0;\red255\green0\blue0;}
@@ -1784,14 +1784,14 @@ dispatch\'82\'aa\'8c\'c4\'82\'ce\'82\'ea\'82\'bd\'82\'e7\'81\'41LinkedList\'82\'
 \par
 stop()\'82\'c9\'8a\'d6\'82\'b7\'82\'e9\'83\'65\'83\'58\'83\'67\'82\'aa\'8f\'e3\'8e\'e8\'82\'ad\'8d\'73\'82\'a9\'82\'c8\'82\'a2\'82\'af\'82\'c7\'81\'41\'82\'e0\'82\'a4\'83\'53\'81\'5b\'83\'8b\'82\'b5\'82\'c4\'82\'a2\'82\'a2\'82\'e6\'82\'cb\'81\'48\par
 \par
-\par
+14\'90\'ac\'8c\'f7\'81\'415\'8e\'b8\'94\'73\par
 \par
 \par
 \par
 }
 </content>
 <chapter>GUI1-4
-<attribute>-1,0,0
+<attribute>-1,1,0
 <content>
 {\rtf1\ansi\ansicpg932\deff0\deflang1033\deflangfe1041{\fonttbl{\f0\fnil\fcharset128 \'82\'6c\'82\'72 \'82\'6f\'83\'53\'83\'56\'83\'62\'83\'4e;}}
 {\colortbl ;\red0\green0\blue0;}
@@ -1815,7 +1815,7 @@ http://ututel.blog121.fc2.com/blog-entry-164.html\par
 }
 </content>
 <chapter>ëÊ15èÕ
-<attribute>-1,0,0
+<attribute>-1,1,0
 <content>
 {\rtf1\ansi\ansicpg932\deff0\deflang1033\deflangfe1041{\fonttbl{\f0\fnil\fcharset128 \'82\'6c\'82\'72 \'82\'6f\'83\'53\'83\'56\'83\'62\'83\'4e;}}
 {\colortbl ;\red0\green0\blue0;}
@@ -1825,7 +1825,7 @@ http://ututel.blog121.fc2.com/blog-entry-164.html\par
 }
 </content>
 <chapter>ëÊ16èÕ
-<attribute>-1,0,0
+<attribute>-1,1,0
 <content>
 {\rtf1\ansi\ansicpg932\deff0\deflang1033\deflangfe1041{\fonttbl{\f0\fnil\fcharset128 \'82\'6c\'82\'72 \'82\'6f\'83\'53\'83\'56\'83\'62\'83\'4e;}{\f1\fnil\fcharset128 \'82\'6c\'82\'72 \'83\'53\'83\'56\'83\'62\'83\'4e;}{\f2\fnil\fcharset2 Symbol;}}
 {\colortbl ;\red0\green0\blue0;\red255\green0\blue0;}
@@ -1924,7 +1924,7 @@ class jpl.ch16.ex03.ColorAttr\par
 </content>
 </group>
 <chapter>ëÊ6âÒ
-<attribute>-1,1,1
+<attribute>-1,1,0
 <content>
 {\rtf1\ansi\ansicpg932\deff0\deflang1033\deflangfe1041{\fonttbl{\f0\fnil\fcharset128 \'82\'6c\'82\'72 \'82\'6f\'83\'53\'83\'56\'83\'62\'83\'4e;}}
 {\colortbl ;\red0\green0\blue0;}

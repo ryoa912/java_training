@@ -341,7 +341,7 @@ public class ThreadPoolTest {
         tp.stop();
         assertEquals(1, activeThreadCount());
     }
-    //PASS->cant stop
+    //PASS->cant stop->PASS!!!!!(PoolWorkerのsynchronizedを外すと成功する)
     @Test
     public void testLatchSimpleDispatch() {
         final int numberOfThreads = 10;
@@ -460,7 +460,7 @@ public class ThreadPoolTest {
         }
         assertEquals(1, activeThreadCount());
     }
-    //NG->cant stop->NG->PASS!!!!
+    //NG->cant stop->NG->PASS!!!!(intervalを長め100msecにすれば成功)
     @Test
     public void testAllThreadsShouldWait() {
         // This is a test code which detects "busy-loop" implementation of

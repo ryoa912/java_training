@@ -97,7 +97,7 @@ public class ThreadPool {
     		throw new IllegalStateException();
     	synchronized (queue) {
     		queue.addLast(runnable);
-    		queue.notify();
+    		queue.notifyAll();
     	}
     }
 
