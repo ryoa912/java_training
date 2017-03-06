@@ -303,7 +303,7 @@ public class ThreadPoolTest {
         tp.stop();
         assertEquals(1, activeThreadCount());
     }
-    //PASS!!
+    //PASS!!(12秒程度かかる)
     @Test
     public void testComplexRepeatedDispatch() {
         ThreadPool tp = new ThreadPool(10, 10);
@@ -318,7 +318,7 @@ public class ThreadPoolTest {
         tp.stop();
         assertEquals(1, activeThreadCount());
     }
-    //PASS!!
+    //PASS!!(12秒程度かかる)
     @Test
     public void testComplexRepeatedDispatch2() {
         ThreadPool tp = new ThreadPool(10, 10);
@@ -341,7 +341,7 @@ public class ThreadPoolTest {
         tp.stop();
         assertEquals(1, activeThreadCount());
     }
-    //PASS
+    //PASS->cant stop
     @Test
     public void testLatchSimpleDispatch() {
         final int numberOfThreads = 10;
@@ -395,7 +395,7 @@ public class ThreadPoolTest {
         tp.stop();
         assertEquals(1, activeThreadCount());
     }
-    //NG->cant stop->NG
+    //NG->cant stop->NG(10のところが9)
     @Test
     public void testNumberOfThreads() {
         final Set<Thread> threads = Collections.synchronizedSet(new HashSet<Thread>());
@@ -424,7 +424,7 @@ public class ThreadPoolTest {
         assertEquals(numberOfThreads, threads.size());
         assertEquals(1, activeThreadCount());
     }
-    //NG->cant stop->PASS!!
+    //NG->cant stop->PASS!!(12秒程度かかる)
     @Test
     public void testTerminationOfThreads() {
         final List<Thread> threads = Collections.synchronizedList(new ArrayList<Thread>());
@@ -460,7 +460,7 @@ public class ThreadPoolTest {
         }
         assertEquals(1, activeThreadCount());
     }
-    //NG->cant stop->NG
+    //NG->cant stop->NG->PASS!!!!
     @Test
     public void testAllThreadsShouldWait() {
         // This is a test code which detects "busy-loop" implementation of

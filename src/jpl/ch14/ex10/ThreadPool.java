@@ -21,11 +21,11 @@ import java.util.NoSuchElementException;
  *  Don't use java.util.concurrent package.
  */
 public class ThreadPool {
-	private final int f_queue_size;
-	private final int f_thread_num;
-	private PoolWorker[] f_threads;
-	private LinkedList<Runnable> f_queue;
-	private Boolean f_started = false;
+	private final int queue_size;
+	private final int thread_num;
+	private PoolWorker[] threads;
+	private LinkedList<Runnable> queue;
+	private Boolean started = false;
 	private static final int INTERVAL_MSEC = 100;
     /**
      * Constructs ThreadPool.
@@ -39,8 +39,8 @@ public class ThreadPool {
     public ThreadPool(int queueSize, int numberOfThreads) {
     	if (queueSize < 1 || numberOfThreads < 1)
     		throw new IllegalArgumentException();
-    	f_queue_size = queueSize;
-    	f_thread_num = numberOfThreads;
+    	queue_size = queueSize;
+    	thread_num = numberOfThreads;
     }
 
     /**
@@ -49,15 +49,15 @@ public class ThreadPool {
      * @throws IllegalStateException if threads has been already started.
      */
     public void start() {
-    	if (f_started)
+    	if (started)
     		throw new IllegalStateException();
-    	f_queue = new LinkedList<Runnable>();
-    	f_threads = new PoolWorker[f_thread_num];
-    	for (int i=0; i<f_thread_num; i++) {
-    		f_threads[i] = new PoolWorker();
-    		f_threads[i].start();
+    	queue = new LinkedList<Runnable>();
+    	threads = new PoolWorker[thread_num];
+    	for (int i=0; i<thread_num; i++) {
+    		threads[i] = new PoolWorker();
+    		threads[i].start();
     	}
-    	f_started = true;
+    	started = true;
     }
 
     /**
@@ -66,18 +66,18 @@ public class ThreadPool {
      * @throws IllegalStateException if threads has not been started.
      */
     public void stop() {
-    	if (!f_started)
+    	if (!started)
     		throw new IllegalStateException();
-    	for (int i=0; i<f_thread_num; i++) {
-			f_threads[i].stopThread();
+    	for (int i=0; i<thread_num; i++) {
+			threads[i].stopThread();
 			try {
-				f_threads[i].join();
+				threads[i].join();
 				Thread.sleep(INTERVAL_MSEC * 2);
 			} catch (InterruptedException e) {
 				e.printStackTrace();
 			}
     	}
-    	f_started = false;
+    	started = false;
     }
 
     /**
@@ -93,11 +93,11 @@ public class ThreadPool {
     public synchronized void dispatch(Runnable runnable) {
     	if (runnable == null)
     		throw new NullPointerException();
-    	if (!f_started)
+    	if (!started)
     		throw new IllegalStateException();
-    	synchronized (f_queue) {
-    		f_queue.addLast(runnable);
-    		f_queue.notify();
+    	synchronized (queue) {
+    		queue.addLast(runnable);
+    		queue.notify();
     	}
     }
 
@@ -106,14 +106,14 @@ public class ThreadPool {
     	public void run() {
             Runnable r;
             while (this.isActive) {
-            	synchronized(f_queue) {
+            	synchronized(queue) {
             		try {
-            			r = (Runnable) f_queue.removeFirst();
+            			r = (Runnable) queue.removeFirst();
             			try {
                             r.run();
                         }
                         catch (RuntimeException e) {
-                        	// You might want to log something here
+                        	// Nothing.
                         }
             		} catch (NoSuchElementException e) {
             			//Nothing.
