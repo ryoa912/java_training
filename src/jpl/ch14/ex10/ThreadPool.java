@@ -26,6 +26,7 @@ public class ThreadPool {
 	private PoolWorker[] f_threads;
 	private LinkedList<Runnable> f_queue;
 	private Boolean f_started = false;
+	private static final int INTERVAL_MSEC = 100;
     /**
      * Constructs ThreadPool.
      *
@@ -71,6 +72,7 @@ public class ThreadPool {
 			f_threads[i].stopThread();
 			try {
 				f_threads[i].join();
+				Thread.sleep(INTERVAL_MSEC * 2);
 			} catch (InterruptedException e) {
 				e.printStackTrace();
 			}
@@ -118,7 +120,7 @@ public class ThreadPool {
             		}
             	}
             	try {
-    				Thread.sleep(1000);
+    				Thread.sleep(INTERVAL_MSEC);
     			} catch (InterruptedException e) {
     				e.printStackTrace();
     			}
