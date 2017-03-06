@@ -4,6 +4,7 @@
 package jpl.ch14.ex10;
 
 import java.util.LinkedList;
+import java.util.NoSuchElementException;
 
 /**
  * Simple Thread Pool class.
@@ -67,7 +68,12 @@ public class ThreadPool {
     	if (!f_started)
     		throw new IllegalStateException();
     	for (int i=0; i<f_thread_num; i++) {
-    		f_threads[i].stop();
+			f_threads[i].stopThread();
+			try {
+				f_threads[i].join();
+			} catch (InterruptedException e) {
+				e.printStackTrace();
+			}
     	}
     	f_started = false;
     }
@@ -94,29 +100,33 @@ public class ThreadPool {
     }
 
     private class PoolWorker extends Thread {
+    	private boolean isActive = true;
     	public void run() {
             Runnable r;
-            while (true) {
-                synchronized(f_queue) {
-                    while (f_queue.isEmpty()) {
-                        try
-                        {
-                        	f_queue.wait();
+            while (this.isActive) {
+            	synchronized(f_queue) {
+            		try {
+            			r = (Runnable) f_queue.removeFirst();
+            			try {
+                            r.run();
                         }
-                        catch (InterruptedException ignored)
-                        {
+                        catch (RuntimeException e) {
+                        	// You might want to log something here
                         }
-                    }
-                    r = (Runnable) f_queue.removeFirst();
-                }
-                // If we don't catch RuntimeException, // the pool could leak threads
-                try {
-                    r.run();
-                }
-                catch (RuntimeException e) {
-                    // You might want to log something here
-                }
+            		} catch (NoSuchElementException e) {
+            			//Nothing.
+            		}
+            	}
+            	try {
+    				Thread.sleep(1000);
+    			} catch (InterruptedException e) {
+    				e.printStackTrace();
+    			}
             }
         }
+
+    	public void stopThread() {
+    		isActive = false;
+    	}
     }
 }

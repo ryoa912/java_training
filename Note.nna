@@ -155,7 +155,7 @@ Java\'8c\'a4\'8f\'43 \'91\'e61\'89\'f1\par
 </content>
 <group>
 <chapter>èòï∂
-<attribute>-1,1,0
+<attribute>-1,0,0
 <content>
 {\rtf1\ansi\ansicpg932\deff0\deflang1033\deflangfe1041{\fonttbl{\f0\fnil\fcharset128 \'82\'6c\'82\'72 \'82\'6f\'83\'53\'83\'56\'83\'62\'83\'4e;}{\f1\fnil\fcharset2 Symbol;}}
 {\colortbl ;\red0\green0\blue0;}
@@ -173,7 +173,7 @@ Java\'8c\'a4\'8f\'43 \'91\'e61\'89\'f1\par
 }
 </content>
 <chapter>ëÊ1èÕ
-<attribute>-1,1,0
+<attribute>-1,0,0
 <content>
 {\rtf1\ansi\ansicpg932\deff0\deflang1033\deflangfe1041{\fonttbl{\f0\fnil\fcharset128 \'82\'6c\'82\'72 \'82\'6f\'83\'53\'83\'56\'83\'62\'83\'4e;}{\f1\fnil\fcharset128 \'82\'6c\'82\'72 \'83\'53\'83\'56\'83\'62\'83\'4e;}{\f2\fnil\fcharset2 Symbol;}}
 {\colortbl ;\red0\green0\blue0;\red100\green100\blue100;\red127\green0\blue85;\red255\green0\blue255;\red42\green0\blue255;}
@@ -306,7 +306,7 @@ private\'82\'c8\'83\'81\'83\'93\'83\'6f\'95\'cf\'90\'94\'82\'c9\'83\'5a\'83\'62\
 }
 </content>
 <chapter>ëÊ2èÕ
-<attribute>-1,1,0
+<attribute>-1,0,0
 <content>
 {\rtf1\ansi\ansicpg932\deff0\deflang1033\deflangfe1041{\fonttbl{\f0\fnil\fcharset128 \'82\'6c\'82\'72 \'82\'6f\'83\'53\'83\'56\'83\'62\'83\'4e;}{\f1\fnil\fcharset2 Symbol;}}
 {\colortbl ;\red0\green0\blue0;}
@@ -411,7 +411,7 @@ JPL\'82\'cc\'96\'e2\'91\'e8\'90\'94\'82\'cd\'88\'c8\'89\'ba\'81\'42\par
 </content>
 <group>
 <chapter>ëÊ3èÕ
-<attribute>-1,1,0
+<attribute>-1,0,0
 <content>
 {\rtf1\ansi\ansicpg932\deff0\deflang1033\deflangfe1041{\fonttbl{\f0\fnil\fcharset128 \'82\'6c\'82\'72 \'82\'6f\'83\'53\'83\'56\'83\'62\'83\'4e;}{\f1\fnil\fcharset128 \'82\'6c\'82\'72 \'83\'53\'83\'56\'83\'62\'83\'4e;}{\f2\fnil\fcharset2 Symbol;}}
 {\colortbl ;\red0\green0\blue0;\red232\green242\blue254;\red0\green0\blue192;\red42\green0\blue255;\red255\green0\blue0;\red127\green0\blue85;\red0\green255\blue255;\red63\green95\blue191;\red63\green127\blue95;\red100\green100\blue100;\red255\green0\blue255;}
@@ -548,7 +548,7 @@ MySortDouble\'82\'f0\'83\'65\'83\'58\'83\'67\'82\'b5\'82\'bd\'83\'81\'83\'67\'83
 }
 </content>
 <chapter>ëÊ4èÕ
-<attribute>-1,1,0
+<attribute>-1,0,0
 <content>
 {\rtf1\ansi\ansicpg932\deff0\deflang1033\deflangfe1041{\fonttbl{\f0\fnil\fcharset128 \'82\'6c\'82\'72 \'82\'6f\'83\'53\'83\'56\'83\'62\'83\'4e;}{\f1\fnil\fcharset2 Symbol;}}
 {\colortbl ;\red0\green0\blue0;}
@@ -690,7 +690,7 @@ Microsoft\'82\'e2Android\'82\'c8\'82\'c7\'82\'cd\'92\'8a\'8f\'db\'83\'4e\'83\'89
 }
 </content>
 <chapter>ëÊ5èÕ
-<attribute>-1,1,0
+<attribute>-1,0,0
 <content>
 {\rtf1\ansi\ansicpg932\deff0\deflang1033\deflangfe1041{\fonttbl{\f0\fnil\fcharset128 \'82\'6c\'82\'72 \'82\'6f\'83\'53\'83\'56\'83\'62\'83\'4e;}{\f1\fnil\fcharset2 Symbol;}}
 {\colortbl ;\red0\green0\blue0;\red255\green0\blue0;}
@@ -730,7 +730,7 @@ History\'82\'cd\'81\'41\'83\'4e\'83\'8d\'81\'5b\'83\'93\'82\'b5\'82\'c4\'95\'d4\
 }
 </content>
 <chapter>ëÊ6èÕ
-<attribute>-1,1,0
+<attribute>-1,0,0
 <content>
 {\rtf1\ansi\ansicpg932\deff0\deflang1033\deflangfe1041{\fonttbl{\f0\fnil\fcharset128 \'82\'6c\'82\'72 \'82\'6f\'83\'53\'83\'56\'83\'62\'83\'4e;}{\f1\fnil\fcharset128 \'82\'6c\'82\'72 \'83\'53\'83\'56\'83\'62\'83\'4e;}}
 {\colortbl ;\red0\green0\blue0;\red127\green0\blue85;}
@@ -763,7 +763,7 @@ enunm\'8e\'a9\'91\'cc\'82\'cdabstract\'82\'c5\'89\'bc\'91\'7a\'81\'69\'82\'c6\'8
 }
 </content>
 <chapter>GUI1-1
-<attribute>-1,1,0
+<attribute>-1,0,0
 <content>
 {\rtf1\ansi\ansicpg932\deff0\deflang1033\deflangfe1041{\fonttbl{\f0\fnil\fcharset128 \'82\'6c\'82\'72 \'82\'6f\'83\'53\'83\'56\'83\'62\'83\'4e;}{\f1\fnil\fcharset2 Wingdings;}{\f2\fswiss\fcharset0 Arial;}{\f3\fnil\fcharset128 \'82\'6c\'82\'72 \'83\'53\'83\'56\'83\'62\'83\'4e;}{\f4\fnil\fcharset2 Symbol;}}
 {\colortbl ;\red0\green0\blue0;\red232\green242\blue254;\red127\green0\blue85;\red255\green0\blue0;\red255\green0\blue255;\red0\green0\blue192;\red42\green0\blue255;}
@@ -1037,7 +1037,7 @@ main\'8a\'d6\'90\'94\'82\'cc\'97\'4c\'82\'e8\'82\'a9\'82\'f0\'8e\'77\'92\'e8\'82
 </content>
 <group>
 <chapter>ëÊ7èÕ
-<attribute>-1,1,0
+<attribute>-1,0,0
 <content>
 {\rtf1\ansi\ansicpg932\deff0\deflang1033\deflangfe1041{\fonttbl{\f0\fnil\fcharset128 \'82\'6c\'82\'72 \'82\'6f\'83\'53\'83\'56\'83\'62\'83\'4e;}{\f1\fnil\fcharset128 \'82\'6c\'82\'72 \'83\'53\'83\'56\'83\'62\'83\'4e;}{\f2\fswiss\fcharset0\cpg-8532 Latha;}}
 {\colortbl ;\red0\green0\blue0;\red42\green0\blue255;\red232\green242\blue254;}
@@ -1084,7 +1084,7 @@ Unicode\'83\'47\'83\'58\'83\'50\'81\'5b\'83\'76\'83\'56\'81\'5b\'83\'50\'83\'93\
 }
 </content>
 <chapter>ëÊ8èÕ
-<attribute>-1,1,0
+<attribute>-1,0,0
 <content>
 {\rtf1\ansi\ansicpg932\deff0\deflang1033\deflangfe1041{\fonttbl{\f0\fnil\fcharset128 \'82\'6c\'82\'72 \'82\'6f\'83\'53\'83\'56\'83\'62\'83\'4e;}}
 {\colortbl ;\red0\green0\blue0;}
@@ -1092,7 +1092,7 @@ Unicode\'83\'47\'83\'58\'83\'50\'81\'5b\'83\'76\'83\'56\'81\'5b\'83\'50\'83\'93\
 }
 </content>
 <chapter>ëÊ9èÕ
-<attribute>-1,1,0
+<attribute>-1,0,0
 <content>
 {\rtf1\ansi\ansicpg932\deff0\deflang1033\deflangfe1041{\fonttbl{\f0\fnil\fcharset128 \'82\'6c\'82\'72 \'82\'6f\'83\'53\'83\'56\'83\'62\'83\'4e;}}
 {\colortbl ;\red0\green0\blue0;}
@@ -1126,7 +1126,7 @@ Float\'82\'c6Double\'82\'f0\'89\'c1\'8c\'b8\'8f\'e6\'8f\'9c\'82\'b7\'82\'e9\'8a\
 }
 </content>
 <chapter>ëÊ10èÕ
-<attribute>-1,1,0
+<attribute>-1,0,0
 <content>
 {\rtf1\ansi\ansicpg932\deff0\deflang1033\deflangfe1041{\fonttbl{\f0\fnil\fcharset128 \'82\'6c\'82\'72 \'82\'6f\'83\'53\'83\'56\'83\'62\'83\'4e;}}
 {\colortbl ;\red0\green0\blue0;}
@@ -1168,7 +1168,7 @@ while(i<31), while\'95\'b6\'96\'96\'82\'c5i++ \'82\'c6\'82\'b7\'82\'ea\'82\'ce\'
 }
 </content>
 <chapter>GUI1-2
-<attribute>-1,1,0
+<attribute>-1,0,0
 <content>
 {\rtf1\ansi\ansicpg932\deff0\deflang1033\deflangfe1041{\fonttbl{\f0\fnil\fcharset128 \'82\'6c\'82\'72 \'82\'6f\'83\'53\'83\'56\'83\'62\'83\'4e;}{\f1\fnil\fcharset2 Symbol;}}
 {\colortbl ;\red0\green0\blue0;}
@@ -1202,7 +1202,7 @@ Art of programming\'82\'cc\'92\'98\'8e\'d2\'81\'42\par
 </content>
 <group>
 <chapter>GUI1-3
-<attribute>-1,1,0
+<attribute>-1,0,0
 <content>
 {\rtf1\ansi\ansicpg932\deff0\deflang1033\deflangfe1041{\fonttbl{\f0\fnil\fcharset128 \'82\'6c\'82\'72 \'82\'6f\'83\'53\'83\'56\'83\'62\'83\'4e;}{\f1\fnil\fcharset128 \'82\'6c\'82\'72 \'83\'53\'83\'56\'83\'62\'83\'4e;}{\f2\fnil\fcharset2 Symbol;}}
 {\colortbl ;\red0\green0\blue0;\red232\green242\blue254;\red0\green255\blue255;\red255\green0\blue0;}
@@ -1264,7 +1264,7 @@ http://www1.megaegg.ne.jp/~yasu/Programmer's%20Page/graphics/graphics.html\par
 }
 </content>
 <chapter>ëÊ11èÕ
-<attribute>-1,1,0
+<attribute>-1,0,0
 <content>
 {\rtf1\ansi\ansicpg932\deff0\deflang1033\deflangfe1041{\fonttbl{\f0\fnil\fcharset128 \'82\'6c\'82\'72 \'82\'6f\'83\'53\'83\'56\'83\'62\'83\'4e;}}
 {\colortbl ;\red0\green0\blue0;}
@@ -1306,7 +1306,7 @@ Attr\'82\'aa\'83\'57\'83\'46\'83\'6c\'83\'8a\'83\'62\'83\'4e\'82\'c5\'82\'a0\'82
 }
 </content>
 <chapter>ëÊ12èÕ
-<attribute>-1,1,0
+<attribute>-1,0,0
 <content>
 {\rtf1\ansi\ansicpg932\deff0\deflang1033\deflangfe1041{\fonttbl{\f0\fnil\fcharset128 \'82\'6c\'82\'72 \'82\'6f\'83\'53\'83\'56\'83\'62\'83\'4e;}{\f1\fnil\fcharset2 Symbol;}}
 {\colortbl ;\red0\green0\blue0;\red255\green0\blue0;}
@@ -1382,7 +1382,7 @@ Attr\'82\'aa\'83\'57\'83\'46\'83\'6c\'83\'8a\'83\'62\'83\'4e\'82\'c5\'82\'a0\'82
 }
 </content>
 <chapter>ëÊ13èÕ
-<attribute>-1,1,0
+<attribute>-1,0,0
 <content>
 {\rtf1\ansi\ansicpg932\deff0\deflang1033\deflangfe1041{\fonttbl{\f0\fnil\fcharset128 \'82\'6c\'82\'72 \'82\'6f\'83\'53\'83\'56\'83\'62\'83\'4e;}{\f1\fnil\fcharset2 Symbol;}}
 {\colortbl ;\red0\green0\blue0;}
@@ -1499,7 +1499,7 @@ Modifier Names\'81\'40Arguments\par
 </content>
 <group>
 <chapter>ëÊ14èÕ
-<attribute>-1,1,0
+<attribute>-1,0,0
 <content>
 {\rtf1\ansi\ansicpg932\deff0\deflang1033\deflangfe1041{\fonttbl{\f0\fnil\fcharset128 \'82\'6c\'82\'72 \'82\'6f\'83\'53\'83\'56\'83\'62\'83\'4e;}{\f1\fnil\fcharset128 \'82\'6c\'82\'72 \'83\'53\'83\'56\'83\'62\'83\'4e;}}
 {\colortbl ;\red0\green0\blue0;\red255\green0\blue0;}
@@ -1791,7 +1791,7 @@ stop()\'82\'c9\'8a\'d6\'82\'b7\'82\'e9\'83\'65\'83\'58\'83\'67\'82\'aa\'8f\'e3\'
 }
 </content>
 <chapter>GUI1-4
-<attribute>-1,1,0
+<attribute>-1,0,0
 <content>
 {\rtf1\ansi\ansicpg932\deff0\deflang1033\deflangfe1041{\fonttbl{\f0\fnil\fcharset128 \'82\'6c\'82\'72 \'82\'6f\'83\'53\'83\'56\'83\'62\'83\'4e;}}
 {\colortbl ;\red0\green0\blue0;}
@@ -1815,7 +1815,7 @@ http://ututel.blog121.fc2.com/blog-entry-164.html\par
 }
 </content>
 <chapter>ëÊ15èÕ
-<attribute>-1,1,0
+<attribute>-1,0,0
 <content>
 {\rtf1\ansi\ansicpg932\deff0\deflang1033\deflangfe1041{\fonttbl{\f0\fnil\fcharset128 \'82\'6c\'82\'72 \'82\'6f\'83\'53\'83\'56\'83\'62\'83\'4e;}}
 {\colortbl ;\red0\green0\blue0;}
@@ -1825,7 +1825,7 @@ http://ututel.blog121.fc2.com/blog-entry-164.html\par
 }
 </content>
 <chapter>ëÊ16èÕ
-<attribute>-1,1,1
+<attribute>-1,0,0
 <content>
 {\rtf1\ansi\ansicpg932\deff0\deflang1033\deflangfe1041{\fonttbl{\f0\fnil\fcharset128 \'82\'6c\'82\'72 \'82\'6f\'83\'53\'83\'56\'83\'62\'83\'4e;}{\f1\fnil\fcharset128 \'82\'6c\'82\'72 \'83\'53\'83\'56\'83\'62\'83\'4e;}{\f2\fnil\fcharset2 Symbol;}}
 {\colortbl ;\red0\green0\blue0;\red255\green0\blue0;}
@@ -1923,3 +1923,18 @@ class jpl.ch16.ex03.ColorAttr\par
 }
 </content>
 </group>
+<chapter>ëÊ6âÒ
+<attribute>-1,1,1
+<content>
+{\rtf1\ansi\ansicpg932\deff0\deflang1033\deflangfe1041{\fonttbl{\f0\fnil\fcharset128 \'82\'6c\'82\'72 \'82\'6f\'83\'53\'83\'56\'83\'62\'83\'4e;}}
+{\colortbl ;\red0\green0\blue0;}
+\viewkind4\uc1\pard\cf1\lang1041\f0\fs18\'81\'45\'91\'e617\'8f\'cd\'82\'a9\'82\'e7\'91\'e620\'8f\'cd\'81\'69108p\'81\'6a\par
+\'81\'45\'83\'43\'83\'93\'83\'5e\'81\'5b\'83\'76\'83\'8a\'83\'5e\'81\'5b\'82\'f0\'8d\'ec\'90\'ac\'82\'b5\'82\'c4\'82\'ad\'82\'e9\'82\'b1\'82\'c6\'81\'42\par
+\'81\'69Tiger\'82\'cd \'91\'e68\'8f\'cd\'81\'42\par
+\'81\'40GUI\'89\'db\'91\'e8\'82\'cd\'96\'b3\'82\'b5\'81\'42\'81\'6a\par
+\par
+\'81\'a5\'83\'43\'83\'93\'83\'5e\'81\'5b\'83\'76\'83\'8a\'83\'5e\'81\'5b\'82\'c9\'82\'c2\'82\'a2\'82\'c4\par
+\'8e\'a9\'95\'aa\'8e\'a9\'90\'67\'82\'cc\'83\'4e\'83\'89\'83\'58\'82\'c9\'82\'c2\'82\'a2\'82\'c4\'82\'e0\'8e\'c0\'8e\'7b\'82\'c5\'82\'ab\'82\'e9\'82\'b1\'82\'c6\'81\'42\par
+\par
+}
+</content>
