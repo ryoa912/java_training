@@ -1804,7 +1804,7 @@ stop()\'82\'c9\'8a\'d6\'82\'b7\'82\'e9\'83\'65\'83\'58\'83\'67\'82\'aa\'8f\'e3\'
 <attribute>-1,1,1
 <content>
 {\rtf1\ansi\ansicpg932\deff0\deflang1033\deflangfe1041{\fonttbl{\f0\fnil\fcharset128 \'82\'6c\'82\'72 \'82\'6f\'83\'53\'83\'56\'83\'62\'83\'4e;}{\f1\fnil\fcharset128 \'82\'6c\'82\'72 \'83\'53\'83\'56\'83\'62\'83\'4e;}{\f2\fnil\fcharset2 Symbol;}}
-{\colortbl ;\red0\green0\blue0;\red255\green0\blue0;\red100\green100\blue100;\red0\green0\blue192;\red127\green0\blue85;}
+{\colortbl ;\red0\green0\blue0;\red255\green0\blue0;\red100\green100\blue100;\red0\green0\blue192;\red127\green0\blue85;\red255\green0\blue255;\red42\green0\blue255;}
 \viewkind4\uc1\pard\cf1\lang1041\f0\fs18\'91\'e616\'8f\'cd \'83\'8a\'83\'74\'83\'8c\'83\'4e\'83\'56\'83\'87\'83\'93\par
 \par
 \'83\'8a\'83\'74\'83\'8c\'83\'4e\'83\'56\'83\'87\'83\'93\'82\'c6\'82\'cd\'81\'48\par
@@ -1906,7 +1906,11 @@ class Foo \{ /*...*/ \}\par
 \'81\'a1\'97\'fb\'8f\'4b\'96\'e2\'91\'e816.5\par
 \'8c\'c2\'81\'58\'82\'cc\'83\'81\'83\'93\'83\'6f\'81\'5b\'82\'c9\'91\'ce\'82\'b5\'82\'c4\'93\'be\'82\'e7\'82\'ea\'82\'e9\'83\'41\'83\'6d\'83\'65\'81\'5b\'83\'56\'83\'87\'83\'93\'8f\'ee\'95\'f1\'82\'f0\'8a\'dc\'82\'de\'82\'e6\'82\'a4\'82\'c9ClassContents\'82\'f0\'8a\'67\'92\'a3\'82\'b5\'82\'c8\'82\'b3\'82\'a2\'81\'42\par
 \cf1\f0\par
+\'82\'b1\'82\'cc\'82\'d6\'82\'f1\'81\'69http://komaken.me/blog/2013/03/13/java%E3%81%AE%E3%82%A2%E3%83%8E%E3%83%86%E3%83%BC%E3%82%B7%E3%83%A7%E3%83%B3%E4%BE%BF%E5%88%A9%E3%81%99%E3%81%8E%E3%83%AF%E3%83%AD%E3%82%BF%EF%BD%97%EF%BD%97%EF%BD%97%EF%BD%97%E3%82%92%E3%81%97/\'81\'6a\'82\'f0\'8c\'a9\'82\'ea\'82\'ce\'82\'c8\'82\'f1\'82\'c6\'82\'a9\'82\'c8\'82\'c1\'82\'bd\'81\'42\par
 \par
+\cf5\b\f1 for\cf1\b0 (Annotation \cf6\b annot\cf1\b0  : ((AccessibleObject) \cf6 m\cf1 ).getAnnotations())\{\cf0\par
+\cf1\tab System.\cf4\b out\cf1\b0 .println(\cf7 "        method annotation is ["\cf1  + \cf6 annot\cf1 .annotationType().getName() + \cf7 "]"\cf1 );\cf0\par
+\cf1\}\f0\par
 \par
 \par
 \par
