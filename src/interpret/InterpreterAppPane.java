@@ -16,6 +16,7 @@ import javax.swing.JTextField;
 
 
 public class InterpreterAppPane extends JPanel {
+	//インスタンス一覧
 	private JList instanceList;
     private DefaultListModel instanceListModel;
 
@@ -28,45 +29,69 @@ public class InterpreterAppPane extends JPanel {
     private JButton editFieldButton;
     private JButton callMethodButton;
 
+    //フィールド一覧
 	private JList fieldList;
     private DefaultListModel fieldListModel;
+
+    //メソッド一覧
+	private JList methodList;
+    private DefaultListModel methodListModel;
 
     @SuppressWarnings("unchecked")
 	public InterpreterAppPane() {
         super(new BorderLayout());
-        // インスタンス一覧を生成
+
+        //インスタンス一覧を生成
         instanceListModel = new DefaultListModel();
         instanceList = new JList(instanceListModel);
-        JScrollPane listScrollPane = new JScrollPane(instanceList);
+        JScrollPane instanceListScrollPane = new JScrollPane(instanceList);
 
-        // 追加用テキストフィールドの生成
+        //追加用テキストフィールドの生成
         instanceNameInputField = new JTextField();
 
-        //ボタンパネルの生成
-        JPanel buttonPanel = new JPanel();
+        //クラス用ボタンパネルの生成
+        JPanel classButtonPanel = new JPanel();
         addInstanceButton = new JButton("追加");
         modifyInstanceButton = new JButton("編集");
         removeInstanceButton = new JButton("削除");
-        buttonPanel.add(addInstanceButton);
-        buttonPanel.add(modifyInstanceButton);
-        buttonPanel.add(removeInstanceButton);
+        classButtonPanel.add(addInstanceButton);
+        classButtonPanel.add(modifyInstanceButton);
+        classButtonPanel.add(removeInstanceButton);
 
-        // ボタンにリスナを設定
+        //ボタンにリスナを設定
         addInstanceButton.addActionListener(new AddActionHandler());
 
         //クラスパネルの生成
         JPanel classPanel = new JPanel();
         classPanel.setLayout(new BorderLayout());
         classPanel.add(instanceNameInputField, BorderLayout.NORTH);
-        classPanel.add(buttonPanel, BorderLayout.CENTER);
-        classPanel.add(listScrollPane, BorderLayout.SOUTH);
+        classPanel.add(classButtonPanel, BorderLayout.CENTER);
+        classPanel.add(instanceListScrollPane, BorderLayout.SOUTH);
 
         //インスタンスパネルの生成
         JPanel instancePanel = new JPanel();
+        instancePanel.setLayout(new BorderLayout());
+        //インスタンス用ボタンパネルの生成
+        JPanel instanceButtonPanel = new JPanel();
         editFieldButton = new JButton("編集");
         callMethodButton = new JButton("call");
-        instancePanel.add(editFieldButton);
-        instancePanel.add(callMethodButton);
+        instanceButtonPanel.add(editFieldButton);
+        instanceButtonPanel.add(callMethodButton);
+
+        //フィールド一覧を生成
+        methodListModel = new DefaultListModel();
+        methodList = new JList(methodListModel);
+        JScrollPane methodListScrollPane = new JScrollPane(methodList);
+
+        //メソッド一覧を生成
+        fieldListModel = new DefaultListModel();
+        fieldList = new JList(fieldListModel);
+        JScrollPane fieldListScrollPane = new JScrollPane(fieldList);
+
+        instancePanel.add(instanceButtonPanel, BorderLayout.NORTH);
+        instancePanel.add(fieldListScrollPane, BorderLayout.CENTER);
+        instancePanel.add(methodListScrollPane, BorderLayout.SOUTH);
+
 
         setLayout(new BorderLayout());
         add(classPanel, BorderLayout.WEST);
