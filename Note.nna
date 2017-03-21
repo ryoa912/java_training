@@ -1975,7 +1975,7 @@ GUI\'89\'db\'91\'e8\'82\'aa\'96\'b3\'82\'a2\'82\'cc\'82\'c5\'81\'41\'8f\'95\'82\
 </content>
 <group>
 <chapter>ëÊ17èÕ
-<attribute>-1,1,1
+<attribute>-1,1,0
 <content>
 {\rtf1\ansi\ansicpg932\deff0\deflang1033\deflangfe1041{\fonttbl{\f0\fnil\fcharset128 \'82\'6c\'82\'72 \'82\'6f\'83\'53\'83\'56\'83\'62\'83\'4e;}}
 {\colortbl ;\red0\green0\blue0;}
@@ -2015,7 +2015,7 @@ lastFile\'82\'c9WeakReference\'82\'f0\'93\'4b\'97\'70\'82\'b7\'82\'e9\'81\'42\pa
 }
 </content>
 <chapter>ëÊ19èÕ
-<attribute>-1,1,0
+<attribute>-1,1,1
 <content>
 {\rtf1\ansi\ansicpg932\deff0\deflang1033\deflangfe1041{\fonttbl{\f0\fnil\fcharset128 \'82\'6c\'82\'72 \'82\'6f\'83\'53\'83\'56\'83\'62\'83\'4e;}}
 {\colortbl ;\red0\green0\blue0;}
@@ -2024,7 +2024,11 @@ lastFile\'82\'c9WeakReference\'82\'f0\'93\'4b\'97\'70\'82\'b7\'82\'e9\'81\'42\pa
 \'97\'fb\'8f\'4b\'96\'e2\'91\'e8\'82\'cd2\'96\'e2\'81\'42\par
 javadoc\'8a\'d6\'98\'41\'81\'42\par
 \par
+\'81\'a1\'97\'fb\'8f\'4b\'96\'e2\'91\'e818.1\par
+\'97\'fb\'8f\'4b\'96\'e2\'91\'e82.16\'82\'ccLinkedList\'82\'c9javadoc\'82\'f0\'92\'c7\'89\'c1\'81\'42\par
 \par
+\'81\'a1\'97\'fb\'8f\'4b\'96\'e2\'91\'e818.2\par
+\'93\'af\'8f\'e3\'82\'c9\'81\'41private\'82\'c8\'83\'81\'83\'93\'83\'6f\'95\'cf\'90\'94\'82\'c9\'82\'e0javadoc\'82\'f0\'92\'c7\'89\'c1\par
 }
 </content>
 <chapter>ëÊ20èÕ
