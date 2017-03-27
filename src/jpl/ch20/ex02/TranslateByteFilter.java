@@ -3,6 +3,7 @@
  */
 package jpl.ch20.ex02;
 
+import java.io.FileInputStream;
 import java.io.FilterInputStream;
 import java.io.IOException;
 import java.io.InputStream;
@@ -22,5 +23,19 @@ public class TranslateByteFilter extends FilterInputStream {
 			buf[i] = (byte) Character.toUpperCase((char)buf[i]);
 		}
 		return nread;
+	}
+	public static void main(String[] args) throws IOException {
+		InputStream in;
+		if (args.length == 0) {
+			in = System.in;
+		} else {
+			in = new FileInputStream(args[0]);
+		}
+		FilterInputStream f = new TranslateByteFilter(in);
+		int c;
+		while ((c = f.read()) != -1) {
+			System.out.println((char)c);
+		}
+		System.out.println();
 	}
 }
