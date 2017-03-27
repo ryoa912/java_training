@@ -7,7 +7,7 @@ public class ResourceImpl implements Resource {
 	int keyHash;
 	boolean needsRelease = false;
 
-	ResourceImpl(Object key) {
+	public ResourceImpl(Object key) {
 		keyHash = System.identityHashCode(key);
 
 		//外部リソースの設定
