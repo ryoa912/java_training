@@ -13,8 +13,7 @@ import javax.annotation.Resource;
 
 import jpl.ch17.ex03.ResourceImpl;
 
-
-public class ResourceManager {
+public final class ResourceManager {
 	final ReferenceQueue<Object> queue;
 	final Map<Reference<?>, Resource> refs;
 	final Thread reaper;
@@ -39,9 +38,30 @@ public class ResourceManager {
 	public synchronized Resource getResource(Object key) {
 		if (shutdown)
 			throw new IllegalStateException();
-		Resource res = new ResourceImpl(key);
+		Resource res = (Resource) new ResourceImpl(key);
 		Reference<?> ref = new PhantomReference<Object>(key, queue);
 		refs.put(ref, res);
 		return res;
+	}
+
+	class ReaperThread extends Thread {
+		public void run() {
+			//割り込まれるまで実行
+			while (true) {
+				try {
+					Reference<?> ref = queue.remove();
+					Resource res = null;
+					synchronized(ResourceManager.this) {
+						res = refs.get(ref);
+						refs.remove(ref);
+					}
+					((ResourceImpl) res).release();
+					ref.clear();
+				}
+				catch(InterruptedException ex) {
+					break;	//全て終了
+				}
+			}
+		}
 	}
 }
