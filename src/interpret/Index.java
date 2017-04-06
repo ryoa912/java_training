@@ -10,7 +10,9 @@ import javax.swing.JComponent;
 import javax.swing.JFrame;
 import javax.swing.SwingUtilities;
 
-public class InterpreterAppMain {
+import interpret.containers.MainFrame;
+
+public class Index {
 	/**
      * アプリケーションの起動
      */
@@ -25,13 +27,13 @@ public class InterpreterAppMain {
      * ウィンドウの生成と表示を行う。
      */
      private static void createAndShowWindow() {
-         JFrame mainFrame = new JFrame("InterpreterApp");
+         JFrame mainFrame = new JFrame("Interpreter");
 
          mainFrame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
          Container contentPane = mainFrame.getContentPane();
 
          //ウィンドウを生成
-         JComponent newContentPane = new InterpreterAppPane();
+         JComponent newContentPane = new MainFrame();
          contentPane.add(newContentPane, BorderLayout.CENTER);
 
          //Windowサイズを調整
