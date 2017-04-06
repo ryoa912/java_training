@@ -4,13 +4,15 @@
 package jpl.ch17.ex02;
 
 import java.io.File;
+import java.io.IOException;
 import java.lang.ref.WeakReference;
+import java.nio.file.Files;
 
 public class DateHandler {
 	private WeakReference<File> lastFile;		//（おそらく）最後に読んだファイル
 	private WeakReference<byte[]> lastData;	//（おそらく）最後のデータ
 
-	byte[] readFile(File file) {
+	byte[] readFile(File file) throws IOException {
 		File lf;
 		byte[] data;
 
@@ -33,8 +35,7 @@ public class DateHandler {
 		return data;
 	}
 
-	private byte[] readBytesFromFile(File file) {
-		//ファイルからデータを読み込む処理
-		return null;
+	private byte[] readBytesFromFile(File file) throws IOException {
+		return Files.readAllBytes(file.toPath());
 	}
 }
