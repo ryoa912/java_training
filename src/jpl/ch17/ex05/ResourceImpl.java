@@ -1,11 +1,11 @@
 /**
  * Copyright © 2017 Ryoh Aruga, All Rights Reserved.
  */
-package jpl.ch17.ex03;
+package jpl.ch17.ex05;
 
 import java.lang.ref.WeakReference;
 
-public class ResourceImpl implements Resource {
+public class ResourceImpl implements Resource{
 	private final WeakReference<Object> keyRef;
 	boolean needsRelease = false;
 

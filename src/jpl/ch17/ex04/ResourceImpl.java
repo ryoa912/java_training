@@ -1,7 +1,7 @@
 /**
  * Copyright © 2017 Ryoh Aruga, All Rights Reserved.
  */
-package jpl.ch17.ex03;
+package jpl.ch17.ex04;
 
 import java.lang.ref.WeakReference;
 

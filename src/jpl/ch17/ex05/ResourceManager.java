@@ -1,7 +1,7 @@
 /**
  * Copyright © 2017 Ryoh Aruga, All Rights Reserved.
  */
-package jpl.ch17.ex04;
+package jpl.ch17.ex05;
 
 import java.lang.ref.PhantomReference;
 import java.lang.ref.Reference;
@@ -9,24 +9,21 @@ import java.lang.ref.ReferenceQueue;
 import java.util.HashMap;
 import java.util.Map;
 
-public final class ResourceManager {
+public class ResourceManager {
 	final ReferenceQueue<Object> queue;
 	final Map<Reference<?>, Resource> refs;
-	final Thread reaper;
 	boolean shutdown = false;
 
 	public ResourceManager() {
 		queue = new ReferenceQueue<Object>();
 		refs = new HashMap<Reference<?>, Resource>();
-		reaper = new ReaperThread();
-		reaper.start();
 		//...リソースの初期化...
 	}
 
 	public synchronized void shutdown() {
 		if (!shutdown) {
 			shutdown = true;
-			reaper.interrupt();
+			releaseResource();
 		}
 	}
 
@@ -39,24 +36,15 @@ public final class ResourceManager {
 		return res;
 	}
 
-	class ReaperThread extends Thread {
-		public void run() {
-			//シャットダウン後、リソースの解放が完了するまで実行
-			while (!shutdown || !refs.isEmpty()) {
-				try {
-					Reference<?> ref = queue.remove();
-					Resource res = null;
-					synchronized(ResourceManager.this) {
-						res = refs.get(ref);
-						refs.remove(ref);
-					}
-					res.release();
-					ref.clear();
-				}
-				catch(InterruptedException ex) {
-					break;	//全て終了
-				}
-			}
+	public void releaseResource() {
+		while (true) {
+			Reference<?> ref = queue.poll();
+			if (ref == null)
+				break;
+			Resource res = refs.get(ref);
+			refs.remove(ref);
+			res.release();
+			ref.clear();
 		}
 	}
 }
