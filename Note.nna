@@ -1801,7 +1801,7 @@ stop()\'82\'c9\'8a\'d6\'82\'b7\'82\'e9\'83\'65\'83\'58\'83\'67\'82\'aa\'8f\'e3\'
 }
 </content>
 <chapter>ëÊ16èÕ
-<attribute>-1,1,0
+<attribute>-1,1,1
 <content>
 {\rtf1\ansi\ansicpg932\deff0\deflang1033\deflangfe1041{\fonttbl{\f0\fnil\fcharset128 \'82\'6c\'82\'72 \'82\'6f\'83\'53\'83\'56\'83\'62\'83\'4e;}{\f1\fnil\fcharset128 \'82\'6c\'82\'72 \'83\'53\'83\'56\'83\'62\'83\'4e;}{\f2\fnil\fcharset2 Symbol;}}
 {\colortbl ;\red0\green0\blue0;\red255\green0\blue0;\red100\green100\blue100;\red0\green0\blue192;\red127\green0\blue85;\red255\green0\blue255;\red42\green0\blue255;}
@@ -1924,6 +1924,11 @@ JFrame\'82\'f0\'8a\'67\'92\'a3\'82\'b5\'82\'bdMainWindow\'83\'4e\'83\'89\'83\'58
 \par
 \'83\'65\'83\'4c\'83\'58\'83\'67\'83\'7b\'83\'62\'83\'4e\'83\'58\'82\'f0\'8d\'ec\'90\'ac\'82\'b5\'82\'c4\'81\'41\'82\'bb\'82\'b1\'82\'c9\'8c\'5e\'96\'bc\'82\'f0\'93\'fc\'97\'cd\'82\'b5\'82\'c4\'82\'e0\'82\'e7\'82\'a4\'81\'42\par
 \'83\'7b\'83\'5e\'83\'93\'82\'f0\'94\'7a\'92\'75\'82\'b5\'82\'c4\'81\'41\'90\'b6\'90\'ac\'82\'b5\'82\'c4\'82\'e0\'82\'e7\'82\'a4\'81\'42\'81\'69\'90\'b6\'90\'ac\'82\'b5\'82\'bd\'82\'e7\'81\'41\'95\'57\'8f\'80\'8f\'6f\'97\'cd\'82\'c9\'8f\'6f\'97\'cd\'81\'42\'81\'6a\par
+\par
+\'81\'a1\'97\'fb\'8f\'4b\'96\'e2\'91\'e816.11\par
+Game\'82\'f0\'8e\'c0\'91\'95\par
+\par
+\par
 }
 </content>
 <chapter>GUI1-4
@@ -2032,7 +2037,7 @@ javadoc\'8a\'d6\'98\'41\'81\'42\par
 }
 </content>
 <chapter>ëÊ20èÕ
-<attribute>-1,1,1
+<attribute>-1,1,0
 <content>
 {\rtf1\ansi\ansicpg932\deff0\deflang1033\deflangfe1041{\fonttbl{\f0\fnil\fcharset128 \'82\'6c\'82\'72 \'82\'6f\'83\'53\'83\'56\'83\'62\'83\'4e;}{\f1\fnil\fcharset2 Symbol;}}
 {\colortbl ;\red0\green0\blue0;}
