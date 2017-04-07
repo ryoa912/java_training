@@ -29,6 +29,7 @@ public class MainFrame extends JPanel {
 
 	MyList constructorList;					//コンストラクタ一覧
 	DefaultListModel constructorListModel;
+	Constructor[] constructors;		//コンストラクタデータ
 
 	MyList instanceList;				//インスタンス一覧
     DefaultListModel instanceListModel;
@@ -71,6 +72,7 @@ public class MainFrame extends JPanel {
 
         constructorListModel = new DefaultListModel();
         constructorList = new MyList(constructorListModel);
+        constructorList.setSelectionMode(ListSelectionModel.SINGLE_SELECTION);
         JScrollPane constructorListScrollPane = new JScrollPane(constructorList);
         ListSelectionModel constructorSelectionModel = constructorList.getSelectionModel();
         constructorSelectionModel.addListSelectionListener(listHandler);
@@ -161,6 +163,7 @@ public class MainFrame extends JPanel {
             		constName += ")";
             		constructorListModel.addElement(constName);
             	}
+            	constructors = consts.clone();
             } else if (event.getActionCommand() == "追加") {
             	instanceListModel.addElement(classNameInputTextField.getText());
             }
@@ -170,9 +173,8 @@ public class MainFrame extends JPanel {
     class ListSelectionHandler implements ListSelectionListener {
 		public void valueChanged(ListSelectionEvent e) {
 			ListSelectionModel lsm = (ListSelectionModel)e.getSource();
-
-	        int firstIndex = e.getFirstIndex();
-	        int lastIndex = e.getLastIndex();
+	        int index = e.getFirstIndex();
+	        Constructor obj = constructors[index];
 		}
     }
 }
