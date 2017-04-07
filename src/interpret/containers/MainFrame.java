@@ -6,13 +6,17 @@ package interpret.containers;
 import java.awt.BorderLayout;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
-import java.lang.reflect.Method;
+import java.lang.reflect.Constructor;
+import java.lang.reflect.Parameter;
 
 import javax.swing.DefaultListModel;
 import javax.swing.JButton;
 import javax.swing.JList;
 import javax.swing.JPanel;
 import javax.swing.JScrollPane;
+import javax.swing.ListSelectionModel;
+import javax.swing.event.ListSelectionEvent;
+import javax.swing.event.ListSelectionListener;
 
 import interpret.components.MyButton;
 import interpret.components.MyList;
@@ -46,6 +50,7 @@ public class MainFrame extends JPanel {
 
     //アクションハンドラ
     ActionHandler actionHandler;
+    ListSelectionHandler listHandler;
 
     @SuppressWarnings("unchecked")
 	public MainFrame() {
@@ -53,6 +58,7 @@ public class MainFrame extends JPanel {
 
         //アクションハンドラを生成
         actionHandler = new ActionHandler();
+        listHandler = new ListSelectionHandler();
 
         //---第1パネル---
         JPanel firstPanel = new JPanel();
@@ -66,6 +72,8 @@ public class MainFrame extends JPanel {
         constructorListModel = new DefaultListModel();
         constructorList = new MyList(constructorListModel);
         JScrollPane constructorListScrollPane = new JScrollPane(constructorList);
+        ListSelectionModel constructorSelectionModel = constructorList.getSelectionModel();
+        constructorSelectionModel.addListSelectionListener(listHandler);
 
         firstPanel.add(classNameInputTextField, BorderLayout.NORTH);
         firstPanel.add(searchButton, BorderLayout.CENTER);
@@ -141,13 +149,30 @@ public class MainFrame extends JPanel {
             	} catch (ClassNotFoundException e) {
             		throw new RuntimeException(e);
             	}
-            	Method[] methods = clazz.getMethods();
-            	for (int i=0; i<methods.length; i++) {
-            		constructorListModel.addElement(methods[i].getName());
+            	Constructor[] consts = clazz.getConstructors();
+            	Parameter[] params;
+            	String constName;
+            	for (int i=0; i<consts.length; i++) {
+            		constName = consts[i].getName() + "(";
+            		params = consts[i].getParameters();
+            		for (int j=0; j<params.length; j++) {
+            			constName += params[j].getParameterizedType().toString();
+            		}
+            		constName += ")";
+            		constructorListModel.addElement(constName);
             	}
             } else if (event.getActionCommand() == "追加") {
             	instanceListModel.addElement(classNameInputTextField.getText());
             }
         }
+    }
+
+    class ListSelectionHandler implements ListSelectionListener {
+		public void valueChanged(ListSelectionEvent e) {
+			ListSelectionModel lsm = (ListSelectionModel)e.getSource();
+
+	        int firstIndex = e.getFirstIndex();
+	        int lastIndex = e.getLastIndex();
+		}
     }
 }
