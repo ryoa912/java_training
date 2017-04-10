@@ -1801,7 +1801,7 @@ stop()\'82\'c9\'8a\'d6\'82\'b7\'82\'e9\'83\'65\'83\'58\'83\'67\'82\'aa\'8f\'e3\'
 }
 </content>
 <chapter>ëÊ16èÕ
-<attribute>-1,1,1
+<attribute>-1,1,0
 <content>
 {\rtf1\ansi\ansicpg932\deff0\deflang1033\deflangfe1041{\fonttbl{\f0\fnil\fcharset128 \'82\'6c\'82\'72 \'82\'6f\'83\'53\'83\'56\'83\'62\'83\'4e;}{\f1\fnil\fcharset128 \'82\'6c\'82\'72 \'83\'53\'83\'56\'83\'62\'83\'4e;}{\f2\fnil\fcharset2 Symbol;}}
 {\colortbl ;\red0\green0\blue0;\red255\green0\blue0;\red100\green100\blue100;\red0\green0\blue192;\red127\green0\blue85;\red255\green0\blue255;\red42\green0\blue255;}
@@ -1952,6 +1952,38 @@ http://kidotaka.hatenablog.com/entry/2012/11/03/131238\par
 \par
 \'81\'a5\'92\'86\'89\'9b\'82\'c9\'95\'60\'89\'e6\'82\'b7\'82\'e9\'95\'fb\'96\'40\par
 http://ututel.blog121.fc2.com/blog-entry-164.html\par
+\par
+}
+</content>
+<chapter>interpret
+<attribute>-1,1,0
+<content>
+{\rtf1\ansi\ansicpg932\deff0\deflang1033\deflangfe1041{\fonttbl{\f0\fnil\fcharset128 \'82\'6c\'82\'72 \'82\'6f\'83\'53\'83\'56\'83\'62\'83\'4e;}}
+{\colortbl ;\red0\green0\blue0;}
+\viewkind4\uc1\pard\cf1\lang1041\f0\fs18\'81\'73interpret\'81\'74\par
+\par
+\par
+\'81\'a1\'83\'65\'83\'58\'83\'67\'90\'dd\'8c\'76\'8e\'64\'97\'6c\par
+[\'8b\'4e\'93\'ae/\'8f\'49\'97\'b9]\par
+\'81\'45\'8b\'4e\'93\'ae\par
+\'81\'45\'8f\'49\'97\'b9\par
+\par
+[\'83\'43\'83\'93\'83\'58\'83\'5e\'83\'93\'83\'58\'90\'b6\'90\'ac]\par
+\'81\'45java.lang.Integer\'83\'43\'83\'93\'83\'58\'83\'5e\'83\'93\'83\'58\'82\'f0\'90\'b6\'90\'ac\par
+\'81\'45[\'97\'e1\'8a\'4f]java.lang.Integer\'83\'43\'83\'93\'83\'58\'83\'5e\'83\'93\'83\'58\'82\'f0\'90\'b6\'90\'ac\'82\'b5\'82\'e6\'82\'a4\'82\'c6\'82\'b5\'82\'c4\'90\'94\'92\'6c\'88\'c8\'8a\'4f\'82\'f0\'91\'e3\'93\'fc\'82\'b5\'82\'c4\'97\'e1\'8a\'4f\par
+\par
+[\'83\'43\'83\'93\'83\'58\'83\'5e\'83\'93\'83\'58\'95\'d2\'8f\'57]\par
+\'81\'45java.lang.Integer\'83\'43\'83\'93\'83\'58\'83\'5e\'83\'93\'83\'58\'82\'cc\'90\'94\'92\'6c\'82\'f0\'95\'cf\'8d\'58\par
+\'81\'45java.lang.Integer\'83\'43\'83\'93\'83\'58\'83\'5e\'83\'93\'83\'58\'82\'ccfinal\'95\'cf\'90\'94\'82\'cc\'90\'94\'92\'6c\'82\'f0\'95\'cf\'8d\'58\par
+\par
+\par
+\par
+\par
+\par
+\par
+\par
+\par
+\par
 \par
 }
 </content>
@@ -2127,5 +2159,73 @@ first = 0 \'82\'c5\'91\'e3\'93\'fc\'81\'41\'82\'c6\'82\'a2\'82\'a4\'8a\'b4\'82\'
 \'81\'a1\'97\'fb\'8f\'4b\'96\'e2\'91\'e820.11\par
 \par
 }
+</content>
+</group>
+<chapter>ëÊ7âÒ
+<attribute>-1,1,0
+<content>
+</content>
+<group>
+<chapter>ëÊ21èÕ
+<attribute>-1,1,1
+<content>
+{\rtf1\ansi\ansicpg932\deff0\deflang1033\deflangfe1041{\fonttbl{\f0\fnil\fcharset128 \'82\'6c\'82\'72 \'82\'6f\'83\'53\'83\'56\'83\'62\'83\'4e;}{\f1\fnil\fcharset2 Symbol;}}
+{\colortbl ;\red0\green0\blue0;}
+\viewkind4\uc1\pard\cf1\lang1041\f0\fs18\'91\'e621\'8f\'cd \'83\'52\'83\'8c\'83\'4e\'83\'56\'83\'87\'83\'93\par
+\par
+\'91\'5349\'95\'c5\'81\'42\par
+\'97\'fb\'8f\'4b\'96\'e2\'91\'e8 \'91\'537\'96\'e2\'81\'42\par
+\par
+java.util\'83\'70\'83\'62\'83\'50\'81\'5b\'83\'57\'82\'c9\'82\'c2\'82\'a2\'82\'c4\'81\'42\par
+\'97\'4c\'97\'70\'82\'c8\'83\'43\'83\'93\'83\'5e\'81\'5b\'83\'74\'83\'46\'81\'5b\'83\'58\'81\'41\'83\'4e\'83\'89\'83\'58\'81\'41\'83\'54\'83\'75\'83\'70\'83\'62\'83\'50\'81\'5b\'83\'57\'8c\'51\'82\'f0\'8a\'dc\'82\'f1\'82\'c5\'82\'a2\'82\'e9\'81\'42\par
+\par
+\'83\'4e\'83\'89\'83\'58\'82\'c6\'83\'43\'83\'93\'83\'5e\'81\'5b\'83\'74\'83\'46\'81\'5b\'83\'58\'82\'cd\'81\'41\'91\'e5\'82\'ab\'82\'ad2\'82\'c2\'82\'c9\'95\'aa\'82\'af\'82\'e9\'82\'b1\'82\'c6\'82\'aa\'8f\'6f\'97\'88\'82\'e9\'81\'42\par
+\pard{\pntext\f1\'B7\tab}{\*\pn\pnlvlblt\pnf1\pnindent0{\pntxtb\'B7}}\fi-200\li200\'83\'52\'83\'8c\'83\'4e\'83\'56\'83\'87\'83\'93\'81\'69\'83\'52\'83\'93\'83\'65\'83\'69\'81\'5b\'81\'6a\'8c\'5e\par
+{\pntext\f1\'B7\tab}\'82\'bb\'82\'cc\'91\'bc\par
+\pard\par
+\'82\'d9\'82\'c6\'82\'f1\'82\'c7\'82\'cc\'83\'76\'83\'8d\'83\'4f\'83\'89\'83\'7e\'83\'93\'83\'4f\'8c\'be\'8c\'ea\'82\'cd\'81\'41\'8a\'4a\'94\'ad\'82\'f0\'8e\'78\'89\'87\'82\'b7\'82\'e9\'89\'bd\'82\'e7\'82\'a9\'82\'cc\'83\'52\'83\'8c\'83\'4e\'83\'56\'83\'87\'83\'93\'82\'f0\'92\'f1\'8b\'9f\'82\'b7\'82\'e9\'81\'42\par
+\'83\'43\'83\'93\'83\'5e\'81\'5b\'83\'74\'83\'46\'81\'5b\'83\'58\'82\'c5\'82\'a0\'82\'e9List, Set, Map\'82\'e2\'81\'41\'82\'bb\'82\'cc\'8e\'c0\'91\'95\'82\'c5\'82\'a0\'82\'e9ArrayList\'82\'e2HashMap\'82\'cd\'82\'b7\'82\'c5\'82\'c9\'8f\'d0\'89\'ee\'82\'b5\'82\'c4\'82\'ab\'82\'bd\'81\'42\par
+\par
+java.util\'82\'c5\'92\'f1\'8b\'9f\'82\'b3\'82\'ea\'82\'c4\'82\'a2\'82\'e9\'83\'52\'83\'8c\'83\'4e\'83\'56\'83\'87\'83\'93\'82\'cc\'83\'43\'83\'93\'83\'5e\'81\'5b\'83\'74\'83\'46\'81\'5b\'83\'58\'82\'c6\'82\'bb\'82\'cc\'8e\'c0\'91\'95\'82\'f0\'8e\'a6\'82\'b7\'81\'42\par
+\par
+\'81\'73\'83\'43\'83\'93\'83\'5e\'81\'5b\'83\'74\'83\'46\'81\'5b\'83\'58\'81\'74\par
+\pard{\pntext\f1\'B7\tab}{\*\pn\pnlvlblt\pnf1\pnindent0{\pntxtb\'B7}}\fi-200\li200 Iterable<E>\par
+\pard\'81\'aa\par
+\pard{\pntext\f1\'B7\tab}{\*\pn\pnlvlblt\pnf1\pnindent0{\pntxtb\'B7}}\fi-200\li200 Collection<E>\par
+\pard\'81\'aa\par
+\pard{\pntext\f1\'B7\tab}{\*\pn\pnlvlblt\pnf1\pnindent0{\pntxtb\'B7}}\fi-200\li200 Set<E>\par
+{\pntext\f1\'B7\tab}Queue<E>\par
+{\pntext\f1\'B7\tab}List<E>\par
+\pard\par
+\pard{\pntext\f1\'B7\tab}{\*\pn\pnlvlblt\pnf1\pnindent0{\pntxtb\'B7}}\fi-200\li200 Map<E>\par
+\pard\'81\'aa\par
+\pard{\pntext\f1\'B7\tab}{\*\pn\pnlvlblt\pnf1\pnindent0{\pntxtb\'B7}}\fi-200\li200 SortedMap<E>\par
+\pard\par
+\pard{\pntext\f1\'B7\tab}{\*\pn\pnlvlblt\pnf1\pnindent0{\pntxtb\'B7}}\fi-200\li200 Iterator<E>\par
+\pard\'81\'aa\par
+\pard{\pntext\f1\'B7\tab}{\*\pn\pnlvlblt\pnf1\pnindent0{\pntxtb\'B7}}\fi-200\li200 ListIterator<E>\par
+\pard\par
+\'81\'73\'8e\'c0\'91\'95\'81\'74\par
+\pard{\pntext\f1\'B7\tab}{\*\pn\pnlvlblt\pnf1\pnindent0{\pntxtb\'B7}}\fi-200\li200 HashSet<E>\par
+{\pntext\f1\'B7\tab}TreeSet<E>\par
+\pard\par
+\pard{\pntext\f1\'B7\tab}{\*\pn\pnlvlblt\pnf1\pnindent0{\pntxtb\'B7}}\fi-200\li200 ArrayList<E>\par
+{\pntext\f1\'B7\tab}LinkedList<E>\par
+\pard\par
+\pard{\pntext\f1\'B7\tab}{\*\pn\pnlvlblt\pnf1\pnindent0{\pntxtb\'B7}}\fi-200\li200 HashMap<K, V>\par
+{\pntext\f1\'B7\tab}TreeMap<K, V>\par
+{\pntext\f1\'B7\tab}WeakHashMap<K, V>\par
+\pard\par
+Clonable\'82\'c5\'82\'c8\'82\'a2\'81\'63 PriorityQueue\par
+Clonable\'82\'c5\'82\'e0Serializable\'82\'c5\'82\'e0\'82\'c8\'82\'a2\'81\'63 WeakHashMap\par
+\par
+\'81\'a1\'97\'fb\'8f\'4b\'96\'e2\'91\'e821.1\par
+\'83\'74\'83\'40\'83\'43\'83\'8b\'82\'a9\'82\'e71\'8d\'73\'82\'b8\'82\'c2\'93\'c7\'82\'dd\'8f\'6f\'82\'b5\'81\'41List\'82\'c9\'93\'fc\'82\'ea\'82\'e9\'83\'76\'83\'8d\'83\'4f\'83\'89\'83\'80\'82\'f0\'8f\'91\'82\'ad\'81\'42\par
+\par
+}
+</content>
+<chapter>GUI2-1
+<attribute>-1,1,0
+<content>
 </content>
 </group>
