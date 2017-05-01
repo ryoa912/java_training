@@ -19,7 +19,7 @@ public class MyScanner {
 	 * CSVファイルを読み込み、要素のリストで出力する
 	 * @param source CSVファイル
 	 * @return 要素のリスト
-	 * @throws IOException 4つ以上のカンマを持つ行が存在する
+	 * @throws IllegalArgumentException 4つ以上のカンマを持つ行が存在する
 	 */
 	public static List<String[]> readCSVTable(Readable source) throws IOException {
 		Scanner in = new Scanner(source);
