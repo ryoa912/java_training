@@ -14,6 +14,13 @@ import java.util.regex.Pattern;
 public class MyScanner {
 	static final int CELLS = 4;
 	static final String COM = ",";
+
+	/**
+	 * CSVファイルを読み込み、要素のリストで出力する
+	 * @param source CSVファイル
+	 * @return 要素のリスト
+	 * @throws IOException 4つ以上のカンマを持つ行が存在する
+	 */
 	public static List<String[]> readCSVTable(Readable source) throws IOException {
 		Scanner in = new Scanner(source);
 		List <String[]> vals = new ArrayList<String[]>();
@@ -24,7 +31,7 @@ public class MyScanner {
 			if (line != null) {
 				int c = countChar(line, COM);
 				if (c >= CELLS) {
-					throw new IOException();
+					throw new IllegalArgumentException();
 				}
 				String[] cells = new String[CELLS];
 				MatchResult match = in.match();
@@ -72,7 +79,13 @@ public class MyScanner {
 		}
 
 		FileReader r = new FileReader(args[0]);
-		List<String[]> ret = readCSVTable(r);
+		List<String[]> ret = null;
+		try {
+			ret = readCSVTable(r);
+		} catch (IllegalArgumentException e) {
+			System.out.println(e);
+			return;
+		}
 
 		for (String[] strs : ret) {
 			for (String str: strs) {
