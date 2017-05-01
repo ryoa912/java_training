@@ -2256,11 +2256,20 @@ ArrayList\'82\'f0\'8e\'67\'97\'70\'82\'b5\'82\'c4\'83\'58\'83\'5e\'83\'62\'83\'4
 }
 </content>
 <chapter>GUI2-1
-<attribute>-1,1,0
+<attribute>-1,1,1
 <content>
+{\rtf1\ansi\ansicpg932\deff0\deflang1033\deflangfe1041{\fonttbl{\f0\fnil\fcharset128 \'82\'6c\'82\'72 \'82\'6f\'83\'53\'83\'56\'83\'62\'83\'4e;}{\f1\fnil\fcharset2 Symbol;}}
+{\colortbl ;\red0\green0\blue0;}
+\viewkind4\uc1\pard\cf1\lang1041\f0\fs18 Swing\'82\'ccJFrame\'82\'f0\'8e\'67\'82\'c1\'82\'c4\'83\'66\'83\'57\'83\'5e\'83\'8b\'8e\'9e\'8c\'76\'82\'f0\'8d\'ec\'90\'ac\'82\'b9\'82\'e6\'81\'42\par
+\'8e\'64\'97\'6c\'82\'cd\'81\'41GUI\'89\'db\'91\'e81-1\'82\'c6\'93\'af\'82\'b6\'81\'42\par
+\par
+\pard{\pntext\f1\'B7\tab}{\*\pn\pnlvlblt\pnf1\pnindent0{\pntxtb\'B7}}\fi-200\li200\'83\'66\'83\'57\'83\'5e\'83\'8b\'8e\'9e\'8c\'76\par
+{\pntext\f1\'B7\tab}\'95\'c2\'82\'b6\'82\'e9\'83\'7b\'83\'5e\'83\'93\'82\'c5\'8f\'49\'97\'b9\'82\'c5\'82\'ab\'82\'e9\'82\'b1\'82\'c6\par
+\pard\par
+}
 </content>
 <chapter>ëÊ22èÕ
-<attribute>-1,1,1
+<attribute>-1,1,0
 <content>
 {\rtf1\ansi\ansicpg932\deff0\deflang1033\deflangfe1041{\fonttbl{\f0\fnil\fcharset128 \'82\'6c\'82\'72 \'82\'6f\'83\'53\'83\'56\'83\'62\'83\'4e;}{\f1\fnil\fcharset2 Symbol;}}
 {\colortbl ;\red0\green0\blue0;}
