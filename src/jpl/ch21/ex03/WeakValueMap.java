@@ -3,21 +3,64 @@
  */
 package jpl.ch21.ex03;
 
+import java.lang.ref.WeakReference;
+import java.util.Collection;
 import java.util.HashMap;
 import java.util.Map;
+import java.util.Set;
 
-public class WeakValueMap<K, V> extends HashMap<K, V> implements Map<K,V> {
-	//値のイテレーションはhasNextがtrueを返した後にnullを返すことが許されるべきか
-	//→Yes.どのタイミングでもValueがガーベッジコレクションに回収されることが起こり得るため。
+public class WeakValueMap<K, V> implements Map<K,V> {
 
-	//値をイテレートしている間は、値は生きているべきか
-	//→No.どのタイミングでもValueがガーベッジコレクションに回収されることが起こり得るため。
+	private Map<K, WeakReference<V>> map = new HashMap<>();
 
-	//ヒント：AbstructMapを拡張しようとしないこと。
-	//代わりに、HashMapに委譲すること。
-
+	@Override
 	public V get(Object key) {
-		//設計したgetを実装する。
-        return null;
+		return map.get(key).get();
     }
+	@Override
+	public V put(K key, V value) {
+        WeakReference<V> valueRef = new WeakReference<>(value);
+        return map.put(key, valueRef).get();
+	}
+	@Override
+	public V remove(Object key) {
+        return map.remove(key).get();
+	}
+	@Override
+	public void clear() {
+        map.clear();
+	}
+	@Override
+	public int size() {
+        return map.size();
+	}
+	@Override
+	public boolean isEmpty() {
+        return map.isEmpty();
+	}
+	@Override
+	public boolean containsKey(Object key) {
+        return map.containsKey(key);
+	}
+	@Override
+	public boolean containsValue(Object value) {
+        return map.containsKey(value);
+	}
+	@Override
+	public void putAll(Map<? extends K, ? extends V> m) {
+	}
+	@Override
+	public Set<K> keySet() {
+		return map.keySet();
+	}
+	@Override
+	public Collection<V> values() {
+		// TODO 自動生成されたメソッド・スタブ
+		return null;
+	}
+	@Override
+	public Set<java.util.Map.Entry<K, V>> entrySet() {
+		// TODO 自動生成されたメソッド・スタブ
+		return null;
+	}
 }
