@@ -4,62 +4,90 @@
 package jpl.ch21.ex04;
 
 import java.util.ListIterator;
+import java.util.NoSuchElementException;
 
 public class MyShortStrings implements ListIterator<String>{
-	//ShortStringsを拡張すべきか
-	//→No.privateな変数にアクセスできないため。
+	private ListIterator<String> strings;
+	private String nextShort;
+	private String prevShort;
+	private final int maxLen;
+	private int index;
 
+	public MyShortStrings(ListIterator<String> strings, int maxLen) {
+		this.strings = strings;
+		this.maxLen = maxLen;
+		nextShort = null;
+		prevShort = null;
+		index = 0;
+	}
 	@Override
 	public boolean hasNext() {
-		// TODO 自動生成されたメソッド・スタブ
+		if (nextShort != null)
+			return true;
+		while (strings.hasNext()) {
+			nextShort = strings.next();
+			if (nextShort.length() <= maxLen)
+				return true;
+		}
+		nextShort = null;
 		return false;
 	}
 
 	@Override
 	public String next() {
-		// TODO 自動生成されたメソッド・スタブ
-		return null;
+		if (nextShort == null && !hasNext())
+			throw new NoSuchElementException();
+		String n = nextShort;
+		nextShort = null;
+		index++;
+		return n;
 	}
 
 	@Override
 	public boolean hasPrevious() {
-		// TODO 自動生成されたメソッド・スタブ
+		if (prevShort != null)
+			return true;
+		while (strings.hasPrevious()) {
+			prevShort = strings.previous();
+			if (prevShort.length() <= maxLen)
+				return true;
+		}
+		prevShort = null;
 		return false;
 	}
 
 	@Override
 	public String previous() {
-		// TODO 自動生成されたメソッド・スタブ
-		return null;
+		if (prevShort == null && !hasPrevious())
+			throw new NoSuchElementException();
+		String n = prevShort;
+		prevShort = null;
+		index--;
+		return n;
 	}
 
 	@Override
 	public int nextIndex() {
-		// TODO 自動生成されたメソッド・スタブ
-		return 0;
+		return index + 1;
 	}
 
 	@Override
 	public int previousIndex() {
-		// TODO 自動生成されたメソッド・スタブ
-		return 0;
+		return index - 1;
 	}
 
 	@Override
 	public void remove() {
-		// TODO 自動生成されたメソッド・スタブ
-
+		throw new UnsupportedOperationException();
 	}
 
 	@Override
 	public void set(String e) {
-		// TODO 自動生成されたメソッド・スタブ
-
+		strings.set(e);
 	}
 
 	@Override
 	public void add(String e) {
-		// TODO 自動生成されたメソッド・スタブ
-
+		strings.add(e);
 	}
 }
