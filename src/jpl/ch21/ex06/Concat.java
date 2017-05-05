@@ -8,8 +8,7 @@ import java.io.FileInputStream;
 import java.io.IOException;
 import java.io.InputStream;
 import java.io.SequenceInputStream;
-import java.util.ArrayList;
-import java.util.Collections;
+import java.util.Arrays;
 import java.util.Enumeration;
 import java.util.List;
 
@@ -19,18 +18,39 @@ public class Concat {
 		if (args.length == 0) {
 			in = System.in;
 		} else {
-			InputStream fileIn, bufIn;
-			List<InputStream> inputs = new ArrayList<InputStream>(args.length);
-			for (String arg: args) {
-				fileIn = new FileInputStream(arg);
-				bufIn = new BufferedInputStream(fileIn);
-				inputs.add(bufIn);
-			}
-			Enumeration<InputStream> files = Collections.enumeration(inputs);
+			List<String> path = Arrays.asList(args);
+			Enumeration<InputStream> files = new FileInputStreamEnumeration<InputStream>(path);
 			in = new SequenceInputStream(files);
 		}
 		int ch;
 		while ((ch = in.read()) != -1)
 			System.out.write(ch);
 	}
+
+	public static class FileInputStreamEnumeration<E> implements Enumeration<E> {
+		private List<String> path;
+		private int pos;
+
+		public FileInputStreamEnumeration(List<String> path) {
+			this.path = path;
+			this.pos = 0;
+		}
+
+		public boolean hasMoreElements() {
+			if (pos < path.size()) {
+				return true;
+			}
+			return false;
+		}
+
+		@SuppressWarnings("unchecked")
+		public E nextElement() {
+			try (BufferedInputStream stream = new BufferedInputStream(new FileInputStream(path.get(pos)))) {
+				return (E) stream;
+			} catch (IOException e) {
+				return null;
+			}
+		}
+
+}
 }
