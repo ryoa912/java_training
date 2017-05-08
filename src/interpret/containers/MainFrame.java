@@ -7,20 +7,18 @@ import java.awt.BorderLayout;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.lang.reflect.Constructor;
-import java.lang.reflect.Parameter;
 
 import javax.swing.DefaultListModel;
 import javax.swing.JButton;
 import javax.swing.JList;
+import javax.swing.JOptionPane;
 import javax.swing.JPanel;
 import javax.swing.JScrollPane;
 import javax.swing.ListSelectionModel;
 import javax.swing.event.ListSelectionEvent;
 import javax.swing.event.ListSelectionListener;
 
-import interpret.components.MyButton;
 import interpret.components.MyList;
-import interpret.components.MyTextField;
 
 /*
  * ・コンストラクタがスローする例外を正しく表示すること（例：java.lang.Integer(String str)に"aaa"でNumberFormatException）
@@ -32,9 +30,10 @@ import interpret.components.MyTextField;
  */
 
 public class MainFrame extends JPanel {
-	MyTextField classNameInputTextField;	//クラス名入力テキストフィールド
+    private static final String DEFAULT_TYPE = "java.lang.Integer";
 
-	MyButton searchButton;					//クラス候補検索ボタン
+	JButton createInstanceButton;			//インスタンス生成ボタン
+	JButton createInstanceArrayButton;		//インスタンス配列生成ボタン
 
 	MyList constructorList;					//コンストラクタ一覧
 	DefaultListModel constructorListModel;
@@ -77,10 +76,14 @@ public class MainFrame extends JPanel {
         JPanel firstPanel = new JPanel();
         firstPanel.setLayout(new BorderLayout());
 
-        classNameInputTextField = new MyTextField();
-
-        searchButton = new MyButton("検索");
-        searchButton.addActionListener(actionHandler);
+        //インスタンス生成ボタン用パネル
+        JPanel createInstanceButtonPanel = new JPanel();
+        createInstanceButton = new JButton("インスタンス追加");
+        createInstanceArrayButton = new JButton("インスタンス配列追加");
+        createInstanceButtonPanel.add(createInstanceButton);
+        createInstanceButtonPanel.add(createInstanceArrayButton);
+        createInstanceButton.addActionListener(actionHandler);
+        createInstanceArrayButton.addActionListener(actionHandler);
 
         constructorListModel = new DefaultListModel();
         constructorList = new MyList(constructorListModel);
@@ -89,8 +92,7 @@ public class MainFrame extends JPanel {
         ListSelectionModel constructorSelectionModel = constructorList.getSelectionModel();
         constructorSelectionModel.addListSelectionListener(listHandler);
 
-        firstPanel.add(classNameInputTextField, BorderLayout.NORTH);
-        firstPanel.add(searchButton, BorderLayout.CENTER);
+        firstPanel.add(createInstanceButtonPanel, BorderLayout.CENTER);
         firstPanel.add(constructorListScrollPane, BorderLayout.SOUTH);
 
         //インスタンス一覧を生成
@@ -153,34 +155,12 @@ public class MainFrame extends JPanel {
     public class ActionHandler implements ActionListener {
         public void actionPerformed(ActionEvent event) {
             // テキストフィールドの内容をリストモデルに追加
-            if (event.getActionCommand() == "検索") {
-            	//検索時の処理（クラス名入力テキストフィールドの文字を見て、部分一致のクラスを取得）
-            	String className = classNameInputTextField.getText();
-            	System.out.println("検索名：" + className);
-            	Class<?> clazz;
-            	try {
-            		clazz = Class.forName(className);
-            	} catch (ClassNotFoundException e) {
-            		throw new RuntimeException(e);
-            	}
-            	Constructor[] consts = clazz.getConstructors();
-            	Parameter[] params;
-            	String constName;
-            	for (int i=0; i<consts.length; i++) {
-            		constName = consts[i].getName() + "(";
-            		params = consts[i].getParameters();
-            		for (int j=0; j<params.length; j++) {
-            			constName += params[j].getParameterizedType().toString();
-            		}
-            		constName += ")";
-            		constructorListModel.addElement(constName);
-            	}
-            	constructors = consts.clone();
-            } else if (event.getActionCommand() == "追加") {
-            	instanceFrame.setVisible(true);
-            	instanceListModel.addElement(classNameInputTextField.getText());
-            } else if (event.getActionCommand() == "完了") {
-            	instanceFrame.setVisible(false);
+            if (event.getActionCommand() == "インスタンス追加") {
+            	String value = JOptionPane.showInputDialog(MainFrame.this,
+                        "クラス名を入力してください。", DEFAULT_TYPE);
+                if (value == null) {
+                    return;
+                }
             }
         }
     }
