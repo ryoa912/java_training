@@ -30,6 +30,7 @@ public class Index {
          JFrame mainFrame = new JFrame("Interpreter");
 
          mainFrame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+         mainFrame.setResizable(false);
          Container contentPane = mainFrame.getContentPane();
 
          //ウィンドウを生成

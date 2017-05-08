@@ -22,6 +22,15 @@ import interpret.components.MyButton;
 import interpret.components.MyList;
 import interpret.components.MyTextField;
 
+/*
+ * ・コンストラクタがスローする例外を正しく表示すること（例：java.lang.Integer(String str)に"aaa"でNumberFormatException）
+ * ・toStringなどのObjectクラスのメソッドも表示させる。
+ * ・toStringの戻りも表示させること
+ * ・配列の生成、配列にNULLが入っていることも表示させる。
+ * ・java.awt.Frameをnew, setVisible:trueで、表示されること
+ * ・static finalフィールドは書き直せなくて良い
+ */
+
 public class MainFrame extends JPanel {
 	MyTextField classNameInputTextField;	//クラス名入力テキストフィールド
 
@@ -52,6 +61,9 @@ public class MainFrame extends JPanel {
     //アクションハンドラ
     ActionHandler actionHandler;
     ListSelectionHandler listHandler;
+
+    //画面
+    InstanceFrame instanceFrame = new InstanceFrame(actionHandler, listHandler);
 
     @SuppressWarnings("unchecked")
 	public MainFrame() {
@@ -138,7 +150,7 @@ public class MainFrame extends JPanel {
     /**
     * 追加ボタンアクションのハンドラ
     */
-    private class ActionHandler implements ActionListener {
+    public class ActionHandler implements ActionListener {
         public void actionPerformed(ActionEvent event) {
             // テキストフィールドの内容をリストモデルに追加
             if (event.getActionCommand() == "検索") {
@@ -165,7 +177,10 @@ public class MainFrame extends JPanel {
             	}
             	constructors = consts.clone();
             } else if (event.getActionCommand() == "追加") {
+            	instanceFrame.setVisible(true);
             	instanceListModel.addElement(classNameInputTextField.getText());
+            } else if (event.getActionCommand() == "完了") {
+            	instanceFrame.setVisible(false);
             }
         }
     }
@@ -175,6 +190,7 @@ public class MainFrame extends JPanel {
 			ListSelectionModel lsm = (ListSelectionModel)e.getSource();
 	        int index = e.getFirstIndex();
 	        Constructor obj = constructors[index];
+	        instanceFrame.setConstructor(obj);
 		}
     }
 }
