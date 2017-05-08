@@ -24,5 +24,6 @@ public class FormatUtil {
 				1.222222222222,
 				1111.333333333
 		};
+		FormatUtil.printDoubleArray(d_array);
 	}
 }
