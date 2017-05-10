@@ -62,10 +62,6 @@ public class MainFrame extends MyWindow {
     DefaultListModel instanceListModel;
     private JScrollPane objectList;
 
-    private JButton addInstanceButton;
-    private JButton modifyInstanceButton;
-    private JButton removeInstanceButton;
-
     private JButton editFieldButton;
     private JButton callMethodButton;
 
@@ -100,7 +96,6 @@ public class MainFrame extends MyWindow {
 
         //フィールド一覧
         fieldList = new JList<>();
-        fieldList.setFixedCellWidth(COMPONENT_WIDTH);
         fieldListModel = new DefaultListModel<>();
         fieldList.setModel(fieldListModel);
         fieldList.addListSelectionListener(new FieldSelectionListener());
@@ -109,16 +104,11 @@ public class MainFrame extends MyWindow {
 
         //メソッド一覧
         methodList = new JList<>();
-        methodList.setFixedCellWidth(COMPONENT_WIDTH);
         methodListModel = new DefaultListModel<>();
         methodList.setModel(methodListModel);
         methodList.addListSelectionListener(new MethodSelectionListener());
         addGrid(new JLabel("Methods"), 1, 7);
         addGrid(new JScrollPane(methodList), 1, 8);
-
-        //---第1パネル---
-        JPanel firstPanel = new JPanel();
-        firstPanel.setLayout(new BorderLayout());
 
         //インスタンス生成ボタン
         JPanel createInstanceButtonPanel = new JPanel();
@@ -130,40 +120,9 @@ public class MainFrame extends MyWindow {
         createInstanceArrayButton.addActionListener(actionHandler);
         addGrid(createInstanceButtonPanel, 1, 1);
 
-        //クラス用ボタンパネルの生成
-        JPanel classButtonPanel = new JPanel();
-        addInstanceButton = new JButton("追加");
-        modifyInstanceButton = new JButton("編集");
-        removeInstanceButton = new JButton("削除");
-        classButtonPanel.add(addInstanceButton);
-        classButtonPanel.add(modifyInstanceButton);
-        classButtonPanel.add(removeInstanceButton);
-
         //インスタンスパネルの生成
         JPanel instancePanel = new JPanel();
         instancePanel.setLayout(new BorderLayout());
-
-        //インスタンス用ボタンパネルの生成
-        JPanel instanceButtonPanel = new JPanel();
-        editFieldButton = new JButton("編集");
-        callMethodButton = new JButton("call");
-        instanceButtonPanel.add(editFieldButton);
-        instanceButtonPanel.add(callMethodButton);
-
-        //フィールド一覧を生成
-        methodListModel = new DefaultListModel();
-        methodList = new JList(methodListModel);
-        JScrollPane methodListScrollPane = new JScrollPane(methodList);
-
-        //メソッド一覧を生成
-        fieldListModel = new DefaultListModel();
-        fieldList = new JList(fieldListModel);
-        JScrollPane fieldListScrollPane = new JScrollPane(fieldList);
-
-        instancePanel.add(instanceButtonPanel, BorderLayout.NORTH);
-        instancePanel.add(fieldListScrollPane, BorderLayout.CENTER);
-        instancePanel.add(methodListScrollPane, BorderLayout.SOUTH);
-
 
         pack();
         setLocationRelativeTo(null);
