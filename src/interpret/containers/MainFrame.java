@@ -3,8 +3,8 @@
  */
 package interpret.containers;
 
-import java.awt.BorderLayout;
 import java.awt.Dimension;
+import java.awt.FlowLayout;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.awt.event.MouseAdapter;
@@ -13,6 +13,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 import javax.swing.DefaultListModel;
+import javax.swing.DropMode;
 import javax.swing.JButton;
 import javax.swing.JFrame;
 import javax.swing.JLabel;
@@ -20,6 +21,7 @@ import javax.swing.JList;
 import javax.swing.JOptionPane;
 import javax.swing.JPanel;
 import javax.swing.JScrollPane;
+import javax.swing.JTextField;
 import javax.swing.JTree;
 import javax.swing.event.ListSelectionEvent;
 import javax.swing.event.ListSelectionListener;
@@ -45,7 +47,7 @@ import interpret.components.MyWindow;
 public class MainFrame extends MyWindow {
     private static final String DEFAULT_TYPE = "java.lang.Integer";
     private static final int COMPONENT_WIDTH = 500;
-    private static final int COMPONENT_HEIGHT = 200;
+    private static final int COMPONENT_HEIGHT = 100;
 
 
 	JButton createInstanceButton;			//インスタンス生成ボタン
@@ -62,9 +64,6 @@ public class MainFrame extends MyWindow {
     DefaultListModel instanceListModel;
     private JScrollPane objectList;
 
-    private JButton editFieldButton;
-    private JButton callMethodButton;
-
     //フィールド一覧
 	private JList<MyField> fieldList;
     private DefaultListModel<MyField> fieldListModel;
@@ -73,11 +72,18 @@ public class MainFrame extends MyWindow {
 	private JList<MyMethod> methodList;
     private DefaultListModel<MyMethod> methodListModel;
 
+    //フィールド操作パネル
+    private final JLabel valueLabel;
+    private final JButton changeFieldButton;
+
+    //メソッド操作パネル
+    private final JTextField invokeParamsField;
+    private final JButton invokeMethodButton;
+
     //アクションハンドラ
     ActionHandler actionHandler = new ActionHandler();
 
-    @SuppressWarnings("unchecked")
-	public MainFrame() {
+    public MainFrame() {
         instances = new ArrayList<MyInstance>();
         treePreferredSize = new Dimension(COMPONENT_WIDTH, COMPONENT_HEIGHT);
 
@@ -92,7 +98,7 @@ public class MainFrame extends MyWindow {
         objectTree.setDragEnabled(true);
         objectTreeModel = (DefaultTreeModel) objectTree.getModel();
         addGrid(new JLabel("Instances"), 1, 3);
-        addGrid(objectList, 1, 4);
+        addGrid(objectList, 1, 4, 2, 1);
 
         //フィールド一覧
         fieldList = new JList<>();
@@ -102,6 +108,23 @@ public class MainFrame extends MyWindow {
         addGrid(new JLabel("Fields"), 1, 5);
         addGrid(new JScrollPane(fieldList), 1, 6);
 
+        //フィールド操作パネル
+        JPanel fieldControlPanel = new JPanel();
+        FlowLayout fieldControlPanelLayout = new FlowLayout();
+        fieldControlPanelLayout.setAlignment(FlowLayout.LEFT);
+        fieldControlPanel.setLayout(fieldControlPanelLayout);
+        fieldControlPanel.setPreferredSize(new Dimension(180, 100));
+        JLabel valueDescLabel = new JLabel("Value: ");
+        fieldControlPanel.add(valueDescLabel);
+        valueLabel = new JLabel("");
+        valueLabel.setPreferredSize(new Dimension(120, 10));
+        fieldControlPanel.add(valueLabel);
+        changeFieldButton = new JButton("Change");
+        changeFieldButton.addActionListener(new ChangeFieldActionListener());
+        changeFieldButton.setEnabled(false);
+        fieldControlPanel.add(changeFieldButton);
+        addGrid(fieldControlPanel, 2, 6);
+
         //メソッド一覧
         methodList = new JList<>();
         methodListModel = new DefaultListModel<>();
@@ -109,6 +132,24 @@ public class MainFrame extends MyWindow {
         methodList.addListSelectionListener(new MethodSelectionListener());
         addGrid(new JLabel("Methods"), 1, 7);
         addGrid(new JScrollPane(methodList), 1, 8);
+
+        //メソッド操作パネル
+        JPanel methodControlpanel = new JPanel();
+        FlowLayout methodControlPanelLayout = new FlowLayout();
+        methodControlPanelLayout.setAlignment(FlowLayout.LEFT);
+        methodControlpanel.setPreferredSize(new Dimension(180, 100));
+        methodControlpanel.setLayout(methodControlPanelLayout);
+        methodControlpanel.add(new JLabel("Parameters:"));
+        invokeParamsField = new JTextField();
+        invokeParamsField.setPreferredSize(new Dimension(150, 20));
+        invokeParamsField.setDropMode(DropMode.INSERT);
+        invokeParamsField.addActionListener(new TextFieldActionListener());
+        methodControlpanel.add(invokeParamsField);
+        invokeMethodButton = new JButton("Call");
+        invokeMethodButton.setEnabled(false);
+        invokeMethodButton.addActionListener(new InvokeMethodActionListener());
+        methodControlpanel.add(invokeMethodButton);
+        addGrid(methodControlpanel, 2, 8);
 
         //インスタンス生成ボタン
         JPanel createInstanceButtonPanel = new JPanel();
@@ -119,10 +160,6 @@ public class MainFrame extends MyWindow {
         createInstanceButton.addActionListener(actionHandler);
         createInstanceArrayButton.addActionListener(actionHandler);
         addGrid(createInstanceButtonPanel, 1, 1);
-
-        //インスタンスパネルの生成
-        JPanel instancePanel = new JPanel();
-        instancePanel.setLayout(new BorderLayout());
 
         pack();
         setLocationRelativeTo(null);
@@ -164,6 +201,10 @@ public class MainFrame extends MyWindow {
             tree.expandRow(i);
         if (tree.getRowCount() != rowCount)
             expandAll(tree, rowCount, tree.getRowCount());
+    }
+
+    private void invoke() {
+    	System.out.println("Invoke.");
     }
 
     /**
@@ -229,6 +270,93 @@ public class MainFrame extends MyWindow {
                     methodListModel.addElement(m);
                 methodList.setEnabled(true);
             }
+        }
+    }
+
+    private class ChangeFieldActionListener implements ActionListener {
+        @Override
+        public void actionPerformed(ActionEvent e) {
+            MyField field = fieldList.getSelectedValue();
+            if (field == null) {
+                showErrorMessage("Field not selected.");
+                return;
+            }
+
+            // Get field value
+            Object value;
+            try {
+                value = field.getData();
+            } catch (IllegalArgumentException e1) {
+                showErrorMessage("IllegalArgumentException");
+                return;
+            } catch (IllegalAccessException e1) {
+                showErrorMessage("IllegalAccessException");
+                return;
+            } catch (ExceptionInInitializerError e1) {
+                showErrorMessage("ExceptionInInitializerError");
+                return;
+            }
+
+            // Get new value from input dialog
+            while (true) {
+                String newValue = JOptionPane.showInputDialog("Input value:",
+                        value == null ? "(null)" : value);
+                if (newValue == null)
+                    return;
+                if (newValue.isEmpty()) {
+                    showErrorMessage("Value is empty.");
+                    continue;
+                }
+                try {
+                    field.setData(newValue);
+                    valueLabel.setText(field.getData().toString());
+                    pack();
+                    break;
+                } catch (NumberFormatException e1) {
+                    showErrorMessage("NumberFormatException");
+                    continue;
+                } catch (IllegalArgumentException e1) {
+                    showErrorMessage("IllegalArgumentException");
+                    e1.printStackTrace();
+                    continue;
+                } catch (IllegalAccessException e1) {
+                    showErrorMessage("IllegalAccessException");
+                    break;
+                } catch (SecurityException e1) {
+                    showErrorMessage("SecurityException");
+                    break;
+                } catch (ExceptionInInitializerError e1) {
+                    showErrorMessage("ExceptionInInitializerError");
+                    return;
+                } catch (OutOfMemoryError e1) {
+                    showErrorMessage("OutOfMemoryError: " + e1.getMessage());
+                    return;
+                } catch (VirtualMachineError e1) {
+                    showErrorMessage("VirtualMachineError: " + e1.getMessage());
+                    return;
+                } catch (Error e1) {
+                    showErrorMessage("Error: " + e1.getMessage());
+                    return;
+                } catch (RuntimeException e1) {
+                    showErrorMessage("RuntimeException: " + e1.getMessage());
+                    return;
+                }
+            }
+        }
+    }
+
+    private class InvokeMethodActionListener implements ActionListener {
+        @Override
+        public void actionPerformed(ActionEvent e) {
+            invoke();
+        }
+    }
+
+    private class TextFieldActionListener implements ActionListener {
+        @Override
+        public void actionPerformed(ActionEvent e) {
+            if (e.getSource().equals(invokeParamsField))
+                invoke();
         }
     }
 
