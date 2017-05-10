@@ -78,7 +78,7 @@ public class MainFrame extends MyWindow {
     private DefaultListModel<MyMethod> methodListModel;
 
     //アクションハンドラ
-    ActionHandler actionHandler;
+    ActionHandler actionHandler = new ActionHandler();
 
     @SuppressWarnings("unchecked")
 	public MainFrame() {
