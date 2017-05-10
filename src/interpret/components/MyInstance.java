@@ -62,5 +62,5 @@ public class MyInstance {
 	@Override
 	public String toString() {
 		return name;
-}
+	}
 }

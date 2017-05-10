@@ -5,7 +5,6 @@ package interpret.containers;
 
 import java.awt.BorderLayout;
 import java.awt.Dimension;
-import java.awt.Font;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.awt.event.MouseAdapter;
@@ -15,6 +14,7 @@ import java.util.List;
 
 import javax.swing.DefaultListModel;
 import javax.swing.JButton;
+import javax.swing.JFrame;
 import javax.swing.JLabel;
 import javax.swing.JList;
 import javax.swing.JOptionPane;
@@ -44,19 +44,23 @@ import interpret.components.MyWindow;
 
 public class MainFrame extends MyWindow {
     private static final String DEFAULT_TYPE = "java.lang.Integer";
+    private static final int COMPONENT_WIDTH = 500;
+    private static final int COMPONENT_HEIGHT = 200;
+
 
 	JButton createInstanceButton;			//インスタンス生成ボタン
 	JButton createInstanceArrayButton;		//インスタンス配列生成ボタン
 
 	private List<MyInstance> instances;
-    private final JLabel objectsLabel;
     private final JTree objectTree;
     private final DefaultTreeModel objectTreeModel;
     private final DefaultMutableTreeNode objectRootNode;
     private Dimension treePreferredSize;
 
-	JList instanceList;				//インスタンス一覧
+	//インスタンス一覧
+    JList instanceList;
     DefaultListModel instanceListModel;
+    private JScrollPane objectList;
 
     private JButton addInstanceButton;
     private JButton modifyInstanceButton;
@@ -66,57 +70,51 @@ public class MainFrame extends MyWindow {
     private JButton callMethodButton;
 
     //フィールド一覧
-	private JList fieldList;
-    private DefaultListModel fieldListModel;
+	private JList<MyField> fieldList;
+    private DefaultListModel<MyField> fieldListModel;
 
     //メソッド一覧
-	private JList methodList;
-    private DefaultListModel methodListModel;
+	private JList<MyMethod> methodList;
+    private DefaultListModel<MyMethod> methodListModel;
 
     //アクションハンドラ
     ActionHandler actionHandler;
-    ListSelectionHandler listHandler;
-
-    //画面
-    InstanceFrame instanceFrame = new InstanceFrame(this);
 
     @SuppressWarnings("unchecked")
 	public MainFrame() {
         instances = new ArrayList<MyInstance>();
-        treePreferredSize = new Dimension(100, 100);
+        treePreferredSize = new Dimension(COMPONENT_WIDTH, COMPONENT_HEIGHT);
 
         //インスタンス一覧
-        objectRootNode = new DefaultMutableTreeNode("Objects");
+        objectRootNode = new DefaultMutableTreeNode("Instances");
         objectTree = new JTree(objectRootNode);
+        objectList = new JScrollPane(objectTree);
+        objectList.setPreferredSize(treePreferredSize);
         objectTree.addTreeSelectionListener(new ObjectSelectionListener());
         objectTree.addMouseListener(new ObjectMouseAdapter());
         objectTree.setRootVisible(false);
-        objectTree.setSize(300, 300);
         objectTree.setDragEnabled(true);
         objectTreeModel = (DefaultTreeModel) objectTree.getModel();
-        objectsLabel = new JLabel("Objects            ");
-        addGrid(objectsLabel, 1, 1);
-        addGrid(new JScrollPane(objectTree), 1, 2);
+        addGrid(new JLabel("Instances"), 1, 3);
+        addGrid(objectList, 1, 4);
 
         //フィールド一覧
         fieldList = new JList<>();
+        fieldList.setFixedCellWidth(COMPONENT_WIDTH);
         fieldListModel = new DefaultListModel<>();
         fieldList.setModel(fieldListModel);
         fieldList.addListSelectionListener(new FieldSelectionListener());
-        addGrid(new JLabel("Fields"), 2, 1, 2, 1);
-        addGrid(new JScrollPane(fieldList), 2, 2);
+        addGrid(new JLabel("Fields"), 1, 5);
+        addGrid(new JScrollPane(fieldList), 1, 6);
 
         //メソッド一覧
         methodList = new JList<>();
+        methodList.setFixedCellWidth(COMPONENT_WIDTH);
         methodListModel = new DefaultListModel<>();
         methodList.setModel(methodListModel);
         methodList.addListSelectionListener(new MethodSelectionListener());
-        addGrid(new JLabel("Methods"), 2, 3, 2, 1);
-        addGrid(new JScrollPane(methodList), 2, 4);
-
-        //アクションハンドラを生成
-        actionHandler = new ActionHandler();
-        listHandler = new ListSelectionHandler();
+        addGrid(new JLabel("Methods"), 1, 7);
+        addGrid(new JScrollPane(methodList), 1, 8);
 
         //---第1パネル---
         JPanel firstPanel = new JPanel();
@@ -130,7 +128,7 @@ public class MainFrame extends MyWindow {
         createInstanceButtonPanel.add(createInstanceArrayButton);
         createInstanceButton.addActionListener(actionHandler);
         createInstanceArrayButton.addActionListener(actionHandler);
-        addGrid(createInstanceButtonPanel, 3, 2);
+        addGrid(createInstanceButtonPanel, 1, 1);
 
         //クラス用ボタンパネルの生成
         JPanel classButtonPanel = new JPanel();
@@ -144,6 +142,7 @@ public class MainFrame extends MyWindow {
         //インスタンスパネルの生成
         JPanel instancePanel = new JPanel();
         instancePanel.setLayout(new BorderLayout());
+
         //インスタンス用ボタンパネルの生成
         JPanel instanceButtonPanel = new JPanel();
         editFieldButton = new JButton("編集");
@@ -167,8 +166,10 @@ public class MainFrame extends MyWindow {
 
 
         pack();
-        setSize(getPreferredSize());
         setLocationRelativeTo(null);
+        setResizable(false);
+        setTitle("インタープリタ Ver.1.01");
+        setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
         setVisible(true);
     }
 
@@ -183,19 +184,6 @@ public class MainFrame extends MyWindow {
         classNode.add(objectNode);
         objectTreeModel.reload();
         expandAll(objectTree, 0, objectTree.getRowCount());
-        pack();
-        setLocationRelativeTo(null);
-    }
-
-    private void updateCurrentSelectedPane(JLabel label) {
-        Font font = objectsLabel.getFont();
-        Font plain = new Font(font.getName(), Font.PLAIN, font.getSize());
-        Font bold = new Font(font.getName(), Font.BOLD, font.getSize());
-        if (label == null) {
-            objectsLabel.setFont(plain);
-        } else if (label.equals(objectsLabel)) {
-            objectsLabel.setFont(bold);
-        }
     }
 
     private DefaultMutableTreeNode getClassNode(Class<?> cls) {
@@ -232,7 +220,7 @@ public class MainFrame extends MyWindow {
                     return;
                 }
                 try {
-                	instanceFrame.setClass(Class.forName(value));
+                	new InstanceFrame(MainFrame.this).setClass(Class.forName(value));
                 } catch (ClassNotFoundException cnfe) {
                     JOptionPane.showMessageDialog(MainFrame.this,
                             "ClassNotFoundException", "ERROR",
@@ -250,9 +238,7 @@ public class MainFrame extends MyWindow {
     private class ObjectSelectionListener implements TreeSelectionListener {
         @Override
         public void valueChanged(TreeSelectionEvent e) {
-            DefaultMutableTreeNode selectedNode = (DefaultMutableTreeNode) objectTree
-                    .getLastSelectedPathComponent();
-            updateCurrentSelectedPane(objectsLabel);
+            DefaultMutableTreeNode selectedNode = (DefaultMutableTreeNode) objectTree.getLastSelectedPathComponent();
             // Not choice
             if (selectedNode == null) {
                 fieldListModel.clear();
@@ -266,17 +252,16 @@ public class MainFrame extends MyWindow {
                 fieldList.setEnabled(false);
                 methodListModel.clear();
                 methodList.setEnabled(false);
-            } else if (selectedNode.getParent().getParent()
-                    .equals(objectRootNode)) {
-            	MyInstance element = getObjectElement(selectedNode
-                        .toString());
+            } else if (selectedNode.getParent().getParent().equals(objectRootNode)) {
+            	MyInstance element = getObjectElement(selectedNode.toString());
                 if (element == null) {
                     System.out.println("Error: element == null");
                     return;
                 }
                 // Load fields
                 fieldListModel.clear();
-                for (MyField f : element.getFields())
+                List<MyField> fl = element.getFields();
+                for (MyField f : fl)
                     fieldListModel.addElement(f);
                 fieldList.setEnabled(true);
                 // Load methods
