@@ -54,7 +54,8 @@ public final class ResourceManager {
 					ref.clear();
 				}
 				catch(InterruptedException ex) {
-					break;	//全て終了
+					shutdown = true;
+					//終了せずにwhileループに戻る。
 				}
 			}
 		}
