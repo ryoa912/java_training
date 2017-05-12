@@ -13,6 +13,8 @@ public class TranslateByte {
 		while((b = System.in.read()) != -1) {
 			System.out.write(b == from ? to : b);
 		}
+		//bは0～255、fromは-128～127。比較対象として適切でない。（負の値が入ってくると動かない。）
+		//bをbyteにキャストしてやればよい。
 	}
 
 	public static void main(String[] args) {
