@@ -18,6 +18,8 @@ public class TranslateByteFilter extends FilterInputStream {
 	}
 	public int read(byte[] buf, int offset, int count) throws IOException {
 		int nread = super.read(buf, offset, count);
+		if (nread == -1)
+			return nread;
 		int last = offset + nread;
 		for (int i = offset; i < last; i++) {
 			buf[i] = (byte) Character.toUpperCase((char)buf[i]);
