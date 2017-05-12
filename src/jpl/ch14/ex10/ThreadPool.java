@@ -45,6 +45,7 @@ public class ThreadPool {
 
     /**
      * Starts threads.
+     * 同時に2つのスレッドで1行ずつ実行されても良いように実装する！
      *
      * @throws IllegalStateException if threads has been already started.
      */
@@ -72,7 +73,6 @@ public class ThreadPool {
 			threads[i].stopThread();
 			try {
 				threads[i].join();
-				Thread.sleep(INTERVAL_MSEC * 2);
 			} catch (InterruptedException e) {
 				e.printStackTrace();
 			}
@@ -119,11 +119,6 @@ public class ThreadPool {
             			//Nothing.
             		}
             	}
-            	try {
-    				Thread.sleep(INTERVAL_MSEC);
-    			} catch (InterruptedException e) {
-    				e.printStackTrace();
-    			}
             }
         }
 

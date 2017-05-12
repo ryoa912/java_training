@@ -3,7 +3,15 @@
  */
 package jpl.ch14.ex09;
 
-public class MyThread {
+public class MyThread extends Thread {
+	/**
+	 * @param th
+	 * @param string
+	 */
+	public MyThread(ThreadGroup th, String string) {
+		super(th, string);
+	}
+
 	public void startPrintThread(ThreadGroup tg) {
 		Runnable service2 = new Runnable() {
 			public void run() {
@@ -42,7 +50,7 @@ public class MyThread {
 		t1.start();
 		Thread t2 = new Thread(th, "Thread2");
 		t2.start();
-		MyThread mt = new MyThread();
+		MyThread mt = new MyThread(th, "MyThread");
 		mt.startPrintThread(th);
 	}
 }
