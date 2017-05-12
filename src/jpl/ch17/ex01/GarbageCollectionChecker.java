@@ -4,14 +4,14 @@
 package jpl.ch17.ex01;
 
 public final class GarbageCollectionChecker {
-	private String str10;
+	private char[] str;
 
 	public void setInstance() {
-		str10 = new String("aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa");
+		str = new char[100000];
 	}
 
 	public void deleteInstance() {
-		str10 = null;
+		str = null;
 	}
 
 
