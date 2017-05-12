@@ -372,7 +372,6 @@ public class MainFrame extends MyWindow {
     */
     public class ActionHandler implements ActionListener {
         public void actionPerformed(ActionEvent event) {
-            // テキストフィールドの内容をリストモデルに追加
             if (event.getActionCommand() == "インスタンス生成") {
             	String value = JOptionPane.showInputDialog(MainFrame.this,
                         "クラス名を入力してください。", DEFAULT_TYPE);
@@ -385,6 +384,28 @@ public class MainFrame extends MyWindow {
                     JOptionPane.showMessageDialog(MainFrame.this,
                             "ClassNotFoundException", "ERROR",
                             JOptionPane.ERROR_MESSAGE);
+                }
+            } else if (event.getActionCommand() == "インスタンス配列生成") {
+            	String value = JOptionPane.showInputDialog(MainFrame.this,
+                        "クラス名を入力してください。", DEFAULT_TYPE);
+                if (value == null) {
+                    return;
+                }
+            	String size = JOptionPane.showInputDialog(MainFrame.this,
+                        "配列サイズを入力してください。", 3);
+                if (size == null) {
+                    return;
+                }
+                try {
+                	int iSize = Integer.parseInt(size);
+                	new ArrayFrame(MainFrame.this).setClass(Class.forName(value), iSize);
+                } catch (ClassNotFoundException cnfe) {
+                    JOptionPane.showMessageDialog(MainFrame.this,
+                            "ClassNotFoundException", "ERROR",
+                            JOptionPane.ERROR_MESSAGE);
+                } catch (NumberFormatException e) {
+                	showErrorMessage("NumberFormatException");
+                    return;
                 }
             }
         }
