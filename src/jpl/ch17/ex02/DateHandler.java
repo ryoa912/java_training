@@ -20,7 +20,7 @@ public class DateHandler {
 		lf = lastFile.get();
 		if (lf != null) {
 			//データを記憶しているか調べる
-			if (file.equals(lastFile)) {
+			if (file.equals(lastFile.get())) {
 				data = lastData.get();
 				if (data != null) {
 					return data;
