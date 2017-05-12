@@ -33,6 +33,9 @@ public class ResourceManager {
 		Resource res = (Resource) new ResourceImpl(key);
 		Reference<?> ref = new PhantomReference<Object>(key, queue);
 		refs.put(ref, res);
+
+		//get時にもResourceを解放する必要あり
+
 		return res;
 	}
 
@@ -46,5 +49,7 @@ public class ResourceManager {
 			res.release();
 			ref.clear();
 		}
+
+		//ループさせてキューに積むところもやる
 	}
 }
