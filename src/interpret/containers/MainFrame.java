@@ -65,7 +65,7 @@ public class MainFrame extends MyWindow {
     private Dimension treePreferredSize;
 
     //配列
-    private List<MyArray> arrays;
+    private List<MyArray> arrays = null;
 
 	//インスタンス一覧
     JList instanceList;
@@ -359,6 +359,8 @@ public class MainFrame extends MyWindow {
     }
 
     MyArray getArrayElement(String name) {
+    	if (arrays == null)
+    		return null;
         for (MyArray e : arrays)
             if (e.getName().equals(name))
                 return e;

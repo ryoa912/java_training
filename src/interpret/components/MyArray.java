@@ -5,8 +5,6 @@ package interpret.components;
 
 import java.lang.reflect.Array;
 
-import interpret_sample.InterpretObject;
-
 public class MyArray extends MyInstance {
 	protected final int length;
 
@@ -19,8 +17,8 @@ public class MyArray extends MyInstance {
 		return Array.get(object, index);
 	}
 
-	public InterpretObject getObjectElementAt(int index) {
-		return new InterpretObject(Array.get(object, index), name + "[" + index
+	public MyInstance getObjectElementAt(int index) {
+		return new MyInstance(Array.get(object, index), name + "[" + index
 				+ "]");
 	}
 
