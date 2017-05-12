@@ -49,7 +49,7 @@ public class ThreadPool {
      *
      * @throws IllegalStateException if threads has been already started.
      */
-    public void start() {
+    public synchronized void start() {
     	if (started)
     		throw new IllegalStateException();
     	queue = new LinkedList<Runnable>();
@@ -66,7 +66,7 @@ public class ThreadPool {
      *
      * @throws IllegalStateException if threads has not been started.
      */
-    public void stop() {
+    public synchronized void stop() {
     	if (!started)
     		throw new IllegalStateException();
     	for (int i=0; i<thread_num; i++) {
@@ -104,21 +104,19 @@ public class ThreadPool {
     private class PoolWorker extends Thread {
     	private boolean isActive = true;
     	public void run() {
-            Runnable r;
+            Runnable r = null;
             while (this.isActive) {
             	synchronized(queue) {
             		try {
             			r = (Runnable) queue.removeFirst();
-            			try {
-                            r.run();
-                        }
-                        catch (RuntimeException e) {
-                        	// Nothing.
-                        }
             		} catch (NoSuchElementException e) {
             			//Nothing.
             		}
             	}
+            	if (r != null) {
+                    r.run();
+                } else {
+                }
             }
         }
 
