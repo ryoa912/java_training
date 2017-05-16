@@ -1956,7 +1956,7 @@ http://ututel.blog121.fc2.com/blog-entry-164.html\par
 }
 </content>
 <chapter>interpret
-<attribute>-1,1,1
+<attribute>-1,1,0
 <content>
 {\rtf1\ansi\ansicpg932\deff0\deflang1033\deflangfe1041{\fonttbl{\f0\fnil\fcharset128 \'82\'6c\'82\'72 \'82\'6f\'83\'53\'83\'56\'83\'62\'83\'4e;}}
 {\colortbl ;\red0\green0\blue0;}
@@ -2404,3 +2404,34 @@ StreamTokenizer\'82\'f0\'8e\'67\'82\'c1\'82\'c4readCSVFile\'82\'f0\'8f\'91\'82\'
 }
 </content>
 </group>
+<chapter>‘æ8‰ñ
+<attribute>-1,1,1
+<content>
+{\rtf1\ansi\ansicpg932\deff0\deflang1033\deflangfe1041{\fonttbl{\f0\fnil\fcharset128 \'82\'6c\'82\'72 \'82\'6f\'83\'53\'83\'56\'83\'62\'83\'4e;}{\f1\fnil\fcharset2 Symbol;}}
+{\colortbl ;\red0\green0\blue0;}
+\viewkind4\uc1\pard\cf1\lang1041\f0\fs18\'91\'e68\'89\'f1\par
+\par
+\'81\'a1\'8a\'4a\'8d\'c3\'93\'fa\'81\'466/2(\'8b\'e0)\par
+\par
+\'81\'a1\'94\'cd\'88\'cd\'81\'46\par
+\pard{\pntext\f1\'B7\tab}{\*\pn\pnlvlblt\pnf1\pnindent0{\pntxtb\'B7}}\fi-200\li200\'91\'e623\'8f\'cd\'81\'60\'91\'e625\'8f\'cd\'81\'7b\'95\'74\'98\'5eA\'81\'6976\'83\'79\'81\'5b\'83\'57\'81\'6a\par
+{\pntext\f1\'B7\tab}\'97\'fb\'8f\'4b\'96\'e2\'91\'e8\'91\'536\'96\'e2\par
+{\pntext\f1\'B7\tab}GUI\'89\'db\'91\'e82-1\par
+\pard\par
+\'91\'e623\'8f\'cd \'83\'56\'83\'58\'83\'65\'83\'80\'83\'76\'83\'8d\'83\'4f\'83\'89\'83\'7e\'83\'93\'83\'4f \'91\'533\'96\'e2\par
+\'91\'e624\'8f\'cd \'8d\'91\'8d\'db\'89\'bb\'82\'c6\'83\'8d\'81\'5b\'83\'4a\'83\'8a\'83\'5b\'81\'5b\'83\'56\'83\'87\'83\'93 \'91\'533\'96\'e2\par
+\'91\'e625\'8f\'cd \'95\'57\'8f\'80\'83\'70\'83\'62\'83\'50\'81\'5b\'83\'57 0\'96\'e2\par
+\'95\'74\'98\'5eA \'83\'41\'83\'76\'83\'8a\'83\'50\'81\'5b\'83\'56\'83\'87\'83\'93\'82\'cc\'90\'69\'89\'bb 0\'96\'e2\par
+\'95\'74\'98\'5eB \'97\'4c\'8c\'f8\'82\'c8\'95\'5c\par
+\'82\'b3\'82\'e7\'82\'c8\'82\'e9\'8a\'77\'8f\'4b\par
+\'8d\'f5\'88\'f8\par
+\'92\'98\'8e\'d2\'8f\'d0\'89\'ee\'81\'46\'83\'50\'83\'93\'83\'41\'81\'5b\'83\'6d\'83\'8b\'83\'68\'81\'41\'83\'57\'83\'46\'81\'5b\'83\'80\'83\'59\'83\'53\'83\'58\'83\'8a\'83\'93\'81\'41\'83\'66\'83\'43\'83\'72\'83\'62\'83\'67\'83\'7a\'81\'5b\'83\'80\'83\'59\par
+\'96\'f3\'8e\'d2\'8f\'d0\'89\'ee\'81\'46\'8e\'c4\'93\'63\'96\'46\'8e\'f7\par
+\par
+\par
+\par
+\'91\'bc\'82\'c9\'82\'e2\'82\'e9\'82\'d7\'82\'ab\'82\'b1\'82\'c6\'81\'46\par
+\pard{\pntext\f1\'B7\tab}{\*\pn\pnlvlblt\pnf1\pnindent0{\pntxtb\'B7}}\fi-200\li200 Interpreter\par
+{\pntext\f1\'B7\tab}ThreadPool\par
+}
+</content>
