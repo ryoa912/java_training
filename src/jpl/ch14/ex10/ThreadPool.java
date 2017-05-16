@@ -3,8 +3,8 @@
  */
 package jpl.ch14.ex10;
 
+import java.util.Arrays;
 import java.util.LinkedList;
-import java.util.NoSuchElementException;
 
 /**
  * Simple Thread Pool class.
@@ -23,7 +23,7 @@ import java.util.NoSuchElementException;
 public class ThreadPool {
 	private final int queue_size;
 	private final int thread_num;
-	private PoolWorker[] threads;
+	private Thread[] threads;
 	private LinkedList<Runnable> queue;
 	private Boolean started = false;
 	private static final int INTERVAL_MSEC = 100;
@@ -53,9 +53,9 @@ public class ThreadPool {
     	if (started)
     		throw new IllegalStateException();
     	queue = new LinkedList<Runnable>();
-    	threads = new PoolWorker[thread_num];
+    	threads = new Thread[thread_num];
     	for (int i=0; i<thread_num; i++) {
-    		threads[i] = new PoolWorker();
+    		threads[i] = new Thread(new PoolWorker(), "PoolWorker" + i);
     		threads[i].start();
     	}
     	started = true;
@@ -67,17 +67,25 @@ public class ThreadPool {
      * @throws IllegalStateException if threads has not been started.
      */
     public synchronized void stop() {
-    	if (!started)
-    		throw new IllegalStateException();
-    	for (int i=0; i<thread_num; i++) {
-			threads[i].stopThread();
-			try {
-				threads[i].join();
-			} catch (InterruptedException e) {
-				e.printStackTrace();
+    	synchronized (this) {
+			if (!started)
+				throw new IllegalStateException("stopped already");
+
+			started = false;
+		}
+
+		while (Arrays.stream(threads).anyMatch(t -> t.isAlive())) {
+			synchronized (queue) {
+				queue.notifyAll();
 			}
-    	}
-    	started = false;
+			for (final Thread thread : threads) {
+				try {
+					thread.join(1);
+				} catch (final InterruptedException e) {
+					e.printStackTrace();
+				}
+			}
+		}
     }
 
     /**
@@ -96,28 +104,40 @@ public class ThreadPool {
     	if (!started)
     		throw new IllegalStateException();
     	synchronized (queue) {
-    		queue.addLast(runnable);
-    		queue.notifyAll();
-    	}
+			while (queue.size() >= queue_size) {
+				try {
+					queue.wait();
+				} catch (final InterruptedException e) {
+					e.printStackTrace();
+				}
+			}
+			queue.add(runnable);
+			queue.notifyAll();
+		}
     }
 
-    private class PoolWorker extends Thread {
+    private class PoolWorker implements Runnable {
     	private boolean isActive = true;
     	public void run() {
-            Runnable r = null;
-            while (this.isActive) {
-            	synchronized(queue) {
-            		try {
-            			r = (Runnable) queue.removeFirst();
-            		} catch (NoSuchElementException e) {
-            			//Nothing.
-            		}
-            	}
-            	if (r != null) {
-                    r.run();
-                } else {
-                }
-            }
+    		try {
+				while (true) {
+					Runnable head;
+					synchronized (queue) {
+						while (queue.isEmpty()) {
+							queue.wait();
+							synchronized (this) {
+								if (!started && queue.isEmpty())
+									return;
+							}
+						}
+						head = queue.poll();
+						queue.notifyAll();
+					}
+					head.run();
+				}
+			} catch (final InterruptedException e) {
+				return;
+			}
         }
 
     	public void stopThread() {
