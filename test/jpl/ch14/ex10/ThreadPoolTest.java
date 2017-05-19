@@ -103,17 +103,17 @@ public class ThreadPoolTest {
         }
         return activeCount;
     }
-    //PASS
+
     @Test(expected = IllegalArgumentException.class)
     public void testConstructorIllegalArgumentFirst() {
         new ThreadPool(0, 1);
     }
-    //PASS
+
     @Test(expected = IllegalArgumentException.class)
     public void testConstructorIllegalArgumentSecond() {
         new ThreadPool(1, 0);
     }
-    //PASS
+
     @Test
     public void testStartAndStop() {
         ThreadPool tp = new ThreadPool(1, 1);
@@ -152,22 +152,22 @@ public class ThreadPoolTest {
             } catch (IllegalStateException e) {
                 // This is the expected behavior: Do nothing.
             } catch (IllegalThreadStateException e) {
-                // This means that an illegal operation occurred,
-                // because either start() or stop() method couldn't
+                // This means that an illegal operation occurred, 
+                // because either start() or stop() method couldn't 
                 // detect a illegal state.
                 e.printStackTrace();
                 ok = true;
             }
         }
     }
-    //NG
+
     @Test
     public void testRepeatSimultaneousStarts() {
         for (int i = 0; i < 5000; i++) {
             testSimultaneousStarts();
         }
     }
-    //NG
+
     @Test
     public void testRepeatSimultaneousStop() {
         for (int i = 0; i < 5000; i++) {
@@ -230,7 +230,7 @@ public class ThreadPoolTest {
         }
         return okCount;
     }
-    //PASS
+
     @Test
     public void testStopBeforeStart() {
         ThreadPool tp = new ThreadPool(1, 1);
@@ -241,7 +241,7 @@ public class ThreadPoolTest {
             assertEquals(1, activeThreadCount());
         }
     }
-    //PASS
+
     @Test
     public void testRestartWithoutStop() {
         ThreadPool tp = new ThreadPool(1, 1);
@@ -253,7 +253,7 @@ public class ThreadPoolTest {
             tp.stop();
         }
     }
-    //PASS!
+
     @Test
     public void testDispatchNullArgument() {
         ThreadPool tp = new ThreadPool(1, 1);
@@ -265,7 +265,7 @@ public class ThreadPoolTest {
             assertEquals(1, activeThreadCount());
         }
     }
-    //PASS
+
     @Test
     public void testDispatchBeforeStart() {
         ThreadPool tp = new ThreadPool(1, 1);
@@ -277,7 +277,7 @@ public class ThreadPoolTest {
             assertEquals(1, activeThreadCount());
         }
     }
-    //PASS
+
     @Test
     public void testSimpleDispatch() {
         ThreadPool tp = new ThreadPool(1, 1);
@@ -288,7 +288,7 @@ public class ThreadPoolTest {
         tp.stop();
         assertEquals(1, activeThreadCount());
     }
-    //PASS!!
+
     @Test
     public void testSimpleRepeatedDispatch() {
         ThreadPool tp = new ThreadPool(1, 1);
@@ -303,7 +303,7 @@ public class ThreadPoolTest {
         tp.stop();
         assertEquals(1, activeThreadCount());
     }
-    //PASS!!(12秒程度かかる)
+
     @Test
     public void testComplexRepeatedDispatch() {
         ThreadPool tp = new ThreadPool(10, 10);
@@ -318,7 +318,7 @@ public class ThreadPoolTest {
         tp.stop();
         assertEquals(1, activeThreadCount());
     }
-    //PASS!!(12秒程度かかる)
+
     @Test
     public void testComplexRepeatedDispatch2() {
         ThreadPool tp = new ThreadPool(10, 10);
@@ -341,7 +341,7 @@ public class ThreadPoolTest {
         tp.stop();
         assertEquals(1, activeThreadCount());
     }
-    //PASS->cant stop->PASS!!!!!(PoolWorkerのsynchronizedを外すと成功する)
+
     @Test
     public void testLatchSimpleDispatch() {
         final int numberOfThreads = 10;
@@ -358,7 +358,6 @@ public class ThreadPoolTest {
         assertEquals(1, activeThreadCount());
     }
 
-    //PASS!
     @Test
     public void testQueueSize() {
 
@@ -370,7 +369,7 @@ public class ThreadPoolTest {
         tp.stop();
         assertEquals(1, activeThreadCount());
     }
-    //cant stop
+
     @Test
     public void testLatchComplexDispatch() {
         final int numberOfThreads = 10;
@@ -395,7 +394,7 @@ public class ThreadPoolTest {
         tp.stop();
         assertEquals(1, activeThreadCount());
     }
-    //NG->cant stop->NG(10のところが9)
+
     @Test
     public void testNumberOfThreads() {
         final Set<Thread> threads = Collections.synchronizedSet(new HashSet<Thread>());
@@ -424,7 +423,7 @@ public class ThreadPoolTest {
         assertEquals(numberOfThreads, threads.size());
         assertEquals(1, activeThreadCount());
     }
-    //NG->cant stop->PASS!!(12秒程度かかる)
+
     @Test
     public void testTerminationOfThreads() {
         final List<Thread> threads = Collections.synchronizedList(new ArrayList<Thread>());
@@ -460,11 +459,11 @@ public class ThreadPoolTest {
         }
         assertEquals(1, activeThreadCount());
     }
-    //NG->cant stop->NG->PASS!!!!(intervalを長め100msecにすれば成功)
+
     @Test
     public void testAllThreadsShouldWait() {
         // This is a test code which detects "busy-loop" implementation of
-        // ThreadPool.
+        // ThreadPool. 
         ThreadPool tp = new ThreadPool(10, 10);
         tp.start();
 
