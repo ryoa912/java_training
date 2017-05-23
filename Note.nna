@@ -2449,7 +2449,7 @@ StreamTokenizer\'82\'f0\'8e\'67\'82\'c1\'82\'c4readCSVFile\'82\'f0\'8f\'91\'82\'
 </content>
 <group>
 <chapter>ëÊ23èÕ
-<attribute>-1,1,1
+<attribute>-1,1,0
 <content>
 {\rtf1\ansi\ansicpg932\deff0\deflang1033\deflangfe1041{\fonttbl{\f0\fnil\fcharset128 \'82\'6c\'82\'72 \'82\'6f\'83\'53\'83\'56\'83\'62\'83\'4e;}{\f1\fnil\fcharset2 Symbol;}}
 {\colortbl ;\red0\green0\blue0;}
@@ -2482,6 +2482,23 @@ Java\'89\'bc\'91\'7a\'83\'7d\'83\'56\'83\'93\'82\'cc\'83\'89\'83\'93\'83\'5e\'83
 \par
 \par
 \'81\'a1Process\'83\'4e\'83\'89\'83\'58\par
+}
+</content>
+<chapter>ëÊ24èÕ
+<attribute>-1,1,1
+<content>
+{\rtf1\ansi\ansicpg932\deff0\deflang1033\deflangfe1041{\fonttbl{\f0\fnil\fcharset128 \'82\'6c\'82\'72 \'82\'6f\'83\'53\'83\'56\'83\'62\'83\'4e;}}
+{\colortbl ;\red0\green0\blue0;}
+\viewkind4\uc1\pard\cf1\lang1041\f0\fs18\'91\'e624\'8f\'cd \'8d\'91\'8d\'db\'89\'bb\'82\'c6\'83\'8d\'81\'5b\'83\'4a\'83\'8a\'83\'5b\'81\'5b\'83\'56\'83\'87\'83\'93\par
+\'91\'533\'96\'e2\par
+\par
+\'81\'a1\'97\'fb\'8f\'4b\'96\'e2\'91\'e824.1\par
+\'83\'65\'83\'4c\'83\'58\'83\'67\'82\'c9\'8b\'4c\'8d\'da\'82\'b3\'82\'ea\'82\'c4\'82\'a2\'82\'e9GlobalHello\'82\'f0\'8d\'ec\'90\'ac\'82\'b5\'82\'c4\'93\'ae\'82\'a9\'82\'b5\'82\'c4\'82\'dd\'82\'e9\'81\'42\par
+\'90\'56\'82\'bd\'82\'c9ListResourceBundle\'82\'f0\'8a\'67\'92\'a3\'82\'b5\'82\'bdGlobalRes\'82\'f0\'8d\'ec\'90\'ac\'82\'b5\'82\'c4\'81\'41\'83\'8d\'83\'50\'81\'5b\'83\'8b\'82\'f0\'92\'c7\'89\'c1\'82\'b7\'82\'e9\'81\'42\par
+\par
+\'81\'a8\'93\'fa\'96\'7b\'82\'f0\'92\'c7\'89\'c1\'81\'42\par
+\par
+\par
 }
 </content>
 </group>
