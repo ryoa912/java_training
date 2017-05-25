@@ -143,7 +143,6 @@ public class MenuClock extends JFrame {
 		g2.setBackground(backgroundColor);
 		g2.clearRect(0, 0, this.getWidth(), this.getHeight());
 
-		//g.drawString(getDate() + "   " + getTime(),30,100);
 		drawStringCenter(g, getDate() + "   " + getTime());
 	}
 

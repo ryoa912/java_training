@@ -5,6 +5,7 @@ package interpret.containers;
 
 import java.awt.Color;
 import java.awt.Dimension;
+import java.awt.FlowLayout;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.awt.event.MouseAdapter;
@@ -37,6 +38,7 @@ import interpret.components.MyField;
 import interpret.components.MyInstance;
 import interpret.components.MyMethod;
 import interpret.components.MyWindow;
+import interpret_sample.InterpretObject;
 
 /*
  * ・コンストラクタがスローする例外を正しく表示すること（例：java.lang.Integer(String str)に"aaa"でNumberFormatException）
@@ -49,6 +51,7 @@ import interpret.components.MyWindow;
 
 public class MainFrame extends MyWindow {
     private static final String DEFAULT_TYPE = "java.lang.Integer";
+    private static final String DEFAULT_ARRAY_NAME = "array";
     private static final int COMPONENT_WIDTH = 500;
     private static final int COMPONENT_HEIGHT = 100;
     static final String OBJECT_PREFIX = "=";
@@ -64,13 +67,22 @@ public class MainFrame extends MyWindow {
     private final DefaultMutableTreeNode objectRootNode;
     private Dimension treePreferredSize;
 
-    //配列
-    private List<MyArray> arrays = null;
-
 	//インスタンス一覧
     JList instanceList;
     DefaultListModel instanceListModel;
     private JScrollPane objectList;
+
+    //配列一覧
+    private List<MyArray> arrays = null;
+    private JTree arrayTree;
+    private DefaultTreeModel arrayTreeModel;
+    private DefaultMutableTreeNode arrayRootNode;
+    private JList<InterpretObject> arrayCellList;
+    private DefaultListModel<InterpretObject> arrayCellListModel;
+
+    //配列操作パネル
+    private JButton insertNewButton;
+    private JLabel cellIsNullLabel;
 
     //フィールド一覧
 	private JList<MyField> fieldList;
@@ -94,6 +106,7 @@ public class MainFrame extends MyWindow {
     public MainFrame() {
         instances = new ArrayList<MyInstance>();
         treePreferredSize = new Dimension(COMPONENT_WIDTH, COMPONENT_HEIGHT);
+        arrays = new ArrayList<MyArray>();
 
         //インスタンス一覧
         objectRootNode = new DefaultMutableTreeNode("Instances");
@@ -106,15 +119,54 @@ public class MainFrame extends MyWindow {
         objectTree.setDragEnabled(true);
         objectTreeModel = (DefaultTreeModel) objectTree.getModel();
         addGrid(new JLabel("Instances"), 1, 3);
-        addGrid(objectList, 1, 4, 2, 1);
+        addGrid(objectList, 1, 4, 1, 1);
+
+        //配列一覧
+        addGrid(new JLabel("Arrays"), 2, 3);
+        arrayRootNode = new DefaultMutableTreeNode("Arrays");
+        arrayTree = new JTree(arrayRootNode);
+        arrayTree.setRootVisible(false);
+        arrayTree.addTreeSelectionListener(new ArrayObjectSelectionListener());
+        arrayTree.addMouseListener(new ArrayMouseAdapter());
+        arrayTree.setDragEnabled(true);
+        arrayTree.setPreferredSize(treePreferredSize);
+        arrayTreeModel = (DefaultTreeModel) arrayTree.getModel();
+        JScrollPane arrayTreeScroll = new JScrollPane(arrayTree);
+        arrayTreeScroll.setPreferredSize(treePreferredSize);
+        addGrid(arrayTreeScroll, 2, 4);
+
+        //配列内インスタンス一覧
+        addGrid(new JLabel("Cells"), 3, 3);
+        arrayCellListModel = new DefaultListModel<>();
+        arrayCellList = new JList<>();
+        arrayCellList.setModel(arrayCellListModel);
+        arrayCellList
+                .addListSelectionListener(new ArrayCellSelectionListener());
+        arrayCellList.setDragEnabled(true);
+        addGrid(new JScrollPane(arrayCellList), 3, 4);
+
+        //配列操作パネル
+        JPanel arrayCellControlPanel = new JPanel();
+        FlowLayout arrayCellControlPanelLayout = new FlowLayout();
+        arrayCellControlPanelLayout.setAlignment(FlowLayout.LEFT);
+        arrayCellControlPanel.setPreferredSize(new Dimension(180, 100));
+        arrayCellControlPanel.setLayout(arrayCellControlPanelLayout);
+        cellIsNullLabel = new JLabel("");
+        cellIsNullLabel.setForeground(Color.red);
+        arrayCellControlPanel.add(cellIsNullLabel);
+        addGrid(arrayCellControlPanel, 3, 6);
+        insertNewButton = new JButton("Insert new...");
+        insertNewButton.setEnabled(false);
+        insertNewButton.addActionListener(new InsertNewActionListener());
+        arrayCellControlPanel.add(insertNewButton);
 
         //フィールド一覧
         fieldList = new JList<>();
         fieldListModel = new DefaultListModel<>();
         fieldList.setModel(fieldListModel);
         fieldList.addListSelectionListener(new FieldSelectionListener());
-        addGrid(new JLabel("Fields"), 1, 5);
-        addGrid(new JScrollPane(fieldList), 1, 6);
+        addGrid(new JLabel("Fields"), 1, 6);
+        addGrid(new JScrollPane(fieldList), 1, 7);
 
         //フィールド操作パネル
         JPanel fieldControlPanel = new JPanel();
@@ -129,15 +181,15 @@ public class MainFrame extends MyWindow {
         changeFieldButton.addActionListener(new ChangeFieldActionListener());
         changeFieldButton.setEnabled(false);
         fieldControlPanel.add(changeFieldButton);
-        addGrid(fieldControlPanel, 2, 6);
+        addGrid(fieldControlPanel, 2, 7);
 
         //メソッド一覧
         methodList = new JList<>();
         methodListModel = new DefaultListModel<>();
         methodList.setModel(methodListModel);
         methodList.addListSelectionListener(new MethodSelectionListener());
-        addGrid(new JLabel("Methods"), 1, 7);
-        addGrid(new JScrollPane(methodList), 1, 8);
+        addGrid(new JLabel("Methods"), 1, 8);
+        addGrid(new JScrollPane(methodList), 1, 9);
 
         //メソッド操作パネル
         JPanel methodControlpanel = new JPanel();
@@ -152,7 +204,7 @@ public class MainFrame extends MyWindow {
         invokeMethodButton.setEnabled(false);
         invokeMethodButton.addActionListener(new InvokeMethodActionListener());
         methodControlpanel.add(invokeMethodButton);
-        addGrid(methodControlpanel, 2, 8);
+        addGrid(methodControlpanel, 2, 9);
 
         //インスタンス生成ボタン
         JPanel createInstanceButtonPanel = new JPanel();
@@ -185,10 +237,32 @@ public class MainFrame extends MyWindow {
         expandAll(objectTree, 0, objectTree.getRowCount());
     }
 
+    void addArray(Class<?> cls, Object instance, String name, int length) {
+        arrays.add(new MyArray(instance, name, length));
+        DefaultMutableTreeNode arrayNode = getArrayClassNode(cls);
+        if (arrayNode == null) {
+            arrayNode = new DefaultMutableTreeNode(cls.getName());
+            arrayRootNode.add(arrayNode);
+        }
+        DefaultMutableTreeNode objectNode = new DefaultMutableTreeNode(name);
+        arrayNode.add(objectNode);
+        arrayTreeModel.reload();
+        expandAll(arrayTree, 0, arrayTree.getRowCount());
+        pack();
+        setLocationRelativeTo(null);
+    }
+
     private DefaultMutableTreeNode getClassNode(Class<?> cls) {
         for (int i = 0; i < objectRootNode.getChildCount(); i++)
             if (objectRootNode.getChildAt(i).toString().equals(cls.getName()))
                 return (DefaultMutableTreeNode) objectRootNode.getChildAt(i);
+        return null;
+    }
+
+    private DefaultMutableTreeNode getArrayClassNode(Class<?> cls) {
+        for (int i = 0; i < arrayRootNode.getChildCount(); i++)
+            if (arrayRootNode.getChildAt(i).toString().equals(cls.getName()))
+                return (DefaultMutableTreeNode) arrayRootNode.getChildAt(i);
         return null;
     }
 
@@ -367,6 +441,10 @@ public class MainFrame extends MyWindow {
         return null;
     }
 
+    boolean exists(String name) {
+        return getObjectElement(name) != null || getArrayElement(name) != null;
+    }
+
     /**
     * 追加ボタンアクションのハンドラ
     */
@@ -526,6 +604,20 @@ public class MainFrame extends MyWindow {
         }
     }
 
+    private class ArrayObjectSelectionListener implements TreeSelectionListener {
+        @Override
+        public void valueChanged(TreeSelectionEvent e) {
+        }
+    }
+
+    private class ArrayMouseAdapter extends MouseAdapter {
+        @Override
+        public void mouseClicked(MouseEvent e) {
+            new ArrayObjectSelectionListener().valueChanged(null);
+        }
+    }
+
+
     private class InvokeMethodActionListener implements ActionListener {
         @Override
         public void actionPerformed(ActionEvent e) {
@@ -596,6 +688,20 @@ public class MainFrame extends MyWindow {
         @Override
         public void mouseClicked(MouseEvent arg0) {
             new ObjectSelectionListener().valueChanged(null);
+        }
+    }
+
+    private class ArrayCellSelectionListener implements ListSelectionListener {
+
+        @Override
+        public void valueChanged(ListSelectionEvent e) {
+
+        }
+    }
+
+    private class InsertNewActionListener implements ActionListener {
+        @Override
+        public void actionPerformed(ActionEvent e) {
         }
     }
 }
