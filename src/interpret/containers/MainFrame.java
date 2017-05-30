@@ -52,7 +52,7 @@ import interpret_sample.InterpretObject;
 public class MainFrame extends MyWindow {
     private static final String DEFAULT_TYPE = "java.lang.Integer";
     private static final String DEFAULT_ARRAY_NAME = "array";
-    private static final int COMPONENT_WIDTH = 500;
+    private static final int COMPONENT_WIDTH = 400;
     private static final int COMPONENT_HEIGHT = 100;
     static final String OBJECT_PREFIX = "=";
     private static final String BR = System.getProperty("line.separator");
@@ -119,7 +119,7 @@ public class MainFrame extends MyWindow {
         objectTree.setDragEnabled(true);
         objectTreeModel = (DefaultTreeModel) objectTree.getModel();
         addGrid(new JLabel("Instances"), 1, 3);
-        addGrid(objectList, 1, 4, 1, 1);
+        addGrid(objectList, 1, 4, 1, 4);
 
         //配列一覧
         addGrid(new JLabel("Arrays"), 2, 3);
@@ -129,32 +129,32 @@ public class MainFrame extends MyWindow {
         arrayTree.addTreeSelectionListener(new ArrayObjectSelectionListener());
         arrayTree.addMouseListener(new ArrayMouseAdapter());
         arrayTree.setDragEnabled(true);
-        arrayTree.setPreferredSize(treePreferredSize);
+        arrayTree.setPreferredSize(new Dimension(COMPONENT_WIDTH, 100));
         arrayTreeModel = (DefaultTreeModel) arrayTree.getModel();
         JScrollPane arrayTreeScroll = new JScrollPane(arrayTree);
-        arrayTreeScroll.setPreferredSize(treePreferredSize);
+        arrayTreeScroll.setPreferredSize(new Dimension(COMPONENT_WIDTH, 100));
         addGrid(arrayTreeScroll, 2, 4);
 
         //配列内インスタンス一覧
-        addGrid(new JLabel("Cells"), 3, 3);
+        addGrid(new JLabel("Cells"), 2, 5);
         arrayCellListModel = new DefaultListModel<>();
         arrayCellList = new JList<>();
         arrayCellList.setModel(arrayCellListModel);
         arrayCellList
                 .addListSelectionListener(new ArrayCellSelectionListener());
         arrayCellList.setDragEnabled(true);
-        addGrid(new JScrollPane(arrayCellList), 3, 4);
+        addGrid(new JScrollPane(arrayCellList), 2, 6);
 
         //配列操作パネル
         JPanel arrayCellControlPanel = new JPanel();
         FlowLayout arrayCellControlPanelLayout = new FlowLayout();
         arrayCellControlPanelLayout.setAlignment(FlowLayout.LEFT);
-        arrayCellControlPanel.setPreferredSize(new Dimension(180, 100));
+        arrayCellControlPanel.setPreferredSize(new Dimension(200, 200));
         arrayCellControlPanel.setLayout(arrayCellControlPanelLayout);
         cellIsNullLabel = new JLabel("");
         cellIsNullLabel.setForeground(Color.red);
         arrayCellControlPanel.add(cellIsNullLabel);
-        addGrid(arrayCellControlPanel, 3, 6);
+        addGrid(arrayCellControlPanel, 2, 7);
         insertNewButton = new JButton("Insert new...");
         insertNewButton.setEnabled(false);
         insertNewButton.addActionListener(new InsertNewActionListener());
@@ -165,56 +165,63 @@ public class MainFrame extends MyWindow {
         fieldListModel = new DefaultListModel<>();
         fieldList.setModel(fieldListModel);
         fieldList.addListSelectionListener(new FieldSelectionListener());
-        addGrid(new JLabel("Fields"), 1, 6);
-        addGrid(new JScrollPane(fieldList), 1, 7);
+        addGrid(new JLabel("Fields"), 1, 8);
+        addGrid(new JScrollPane(fieldList), 1, 9);
 
         //フィールド操作パネル
         JPanel fieldControlPanel = new JPanel();
         fieldControlPanel.setLayout(new BoxLayout(fieldControlPanel, BoxLayout.Y_AXIS));
-        fieldControlPanel.setPreferredSize(new Dimension(180, 200));
+        fieldControlPanel.setPreferredSize(new Dimension(COMPONENT_WIDTH, 100));
         JLabel valueDescLabel = new JLabel("Value: ");
         fieldControlPanel.add(valueDescLabel);
         valueLabel = new JLabel("");
-        valueLabel.setPreferredSize(new Dimension(120, 100));
+        valueLabel.setPreferredSize(new Dimension(200, 100));
         fieldControlPanel.add(valueLabel);
         changeFieldButton = new JButton("Change");
         changeFieldButton.addActionListener(new ChangeFieldActionListener());
         changeFieldButton.setEnabled(false);
         fieldControlPanel.add(changeFieldButton);
-        addGrid(fieldControlPanel, 2, 7);
+        addGrid(fieldControlPanel, 2, 9);
 
         //メソッド一覧
         methodList = new JList<>();
         methodListModel = new DefaultListModel<>();
         methodList.setModel(methodListModel);
         methodList.addListSelectionListener(new MethodSelectionListener());
-        addGrid(new JLabel("Methods"), 1, 8);
-        addGrid(new JScrollPane(methodList), 1, 9);
+        addGrid(new JLabel("Methods"), 1, 10);
+        addGrid(new JScrollPane(methodList), 1, 11);
 
         //メソッド操作パネル
         JPanel methodControlpanel = new JPanel();
         methodControlpanel.setLayout(new BoxLayout(methodControlpanel, BoxLayout.Y_AXIS));
-        methodControlpanel.setPreferredSize(new Dimension(180, 100));
+        methodControlpanel.setPreferredSize(new Dimension(400, 100));
         methodControlpanel.add(new JLabel("Parameters:"));
         invokeParamsField = new JTextField();
-        invokeParamsField.setMaximumSize(new Dimension(180, 20));
+        invokeParamsField.setMaximumSize(new Dimension(800, 20));
         invokeParamsField.addActionListener(new TextFieldActionListener());
         methodControlpanel.add(invokeParamsField);
         invokeMethodButton = new JButton("Call");
         invokeMethodButton.setEnabled(false);
         invokeMethodButton.addActionListener(new InvokeMethodActionListener());
         methodControlpanel.add(invokeMethodButton);
-        addGrid(methodControlpanel, 2, 9);
+        addGrid(methodControlpanel, 2, 11);
 
         //インスタンス生成ボタン
         JPanel createInstanceButtonPanel = new JPanel();
+        createInstanceButtonPanel.setLayout(new FlowLayout(FlowLayout.LEFT));
         createInstanceButton = new JButton("インスタンス生成");
-        createInstanceArrayButton = new JButton("インスタンス配列生成");
         createInstanceButtonPanel.add(createInstanceButton);
-        createInstanceButtonPanel.add(createInstanceArrayButton);
         createInstanceButton.addActionListener(actionHandler);
-        createInstanceArrayButton.addActionListener(actionHandler);
         addGrid(createInstanceButtonPanel, 1, 1);
+
+
+        //インスタンス生成ボタン
+        JPanel createInstanceArrayButtonPanel = new JPanel();
+        createInstanceArrayButtonPanel.setLayout(new FlowLayout(FlowLayout.LEFT));
+        createInstanceArrayButton = new JButton("インスタンス配列生成");
+        createInstanceArrayButtonPanel.add(createInstanceArrayButton);
+        createInstanceArrayButton.addActionListener(actionHandler);
+        addGrid(createInstanceArrayButtonPanel, 2, 1);
 
         pack();
         setLocationRelativeTo(null);

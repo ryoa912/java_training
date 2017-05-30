@@ -19,8 +19,5 @@ public class Index {
      */
      private static void createAndShowWindow() {
          JFrame mainFrame = new MainFrame();
-
-         //表示
-         mainFrame.setVisible(true);
      }
 }
