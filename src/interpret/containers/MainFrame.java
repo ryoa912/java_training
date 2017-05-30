@@ -129,7 +129,7 @@ public class MainFrame extends MyWindow {
         arrayTree.addTreeSelectionListener(new ArrayObjectSelectionListener());
         arrayTree.addMouseListener(new ArrayMouseAdapter());
         arrayTree.setDragEnabled(true);
-        arrayTree.setPreferredSize(new Dimension(COMPONENT_WIDTH, 100));
+        arrayTree.setPreferredSize(new Dimension(300, 50));
         arrayTreeModel = (DefaultTreeModel) arrayTree.getModel();
         JScrollPane arrayTreeScroll = new JScrollPane(arrayTree);
         arrayTreeScroll.setPreferredSize(new Dimension(COMPONENT_WIDTH, 100));
@@ -143,13 +143,15 @@ public class MainFrame extends MyWindow {
         arrayCellList
                 .addListSelectionListener(new ArrayCellSelectionListener());
         arrayCellList.setDragEnabled(true);
-        addGrid(new JScrollPane(arrayCellList), 2, 6);
+        JScrollPane arrayCellScroll = new JScrollPane(arrayCellList);
+        arrayCellScroll.setPreferredSize(new Dimension(COMPONENT_WIDTH, 100));
+        addGrid(arrayCellScroll, 2, 6);
 
         //配列操作パネル
         JPanel arrayCellControlPanel = new JPanel();
         FlowLayout arrayCellControlPanelLayout = new FlowLayout();
         arrayCellControlPanelLayout.setAlignment(FlowLayout.LEFT);
-        arrayCellControlPanel.setPreferredSize(new Dimension(200, 200));
+        arrayCellControlPanel.setPreferredSize(new Dimension(COMPONENT_WIDTH, 50));
         arrayCellControlPanel.setLayout(arrayCellControlPanelLayout);
         cellIsNullLabel = new JLabel("");
         cellIsNullLabel.setForeground(Color.red);
@@ -175,7 +177,7 @@ public class MainFrame extends MyWindow {
         JLabel valueDescLabel = new JLabel("Value: ");
         fieldControlPanel.add(valueDescLabel);
         valueLabel = new JLabel("");
-        valueLabel.setPreferredSize(new Dimension(200, 100));
+        valueLabel.setPreferredSize(new Dimension(200, 50));
         fieldControlPanel.add(valueLabel);
         changeFieldButton = new JButton("Change");
         changeFieldButton.addActionListener(new ChangeFieldActionListener());
