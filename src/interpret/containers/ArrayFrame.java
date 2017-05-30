@@ -30,7 +30,7 @@ import javax.swing.event.ListSelectionListener;
 import interpret.components.MyWindow;
 
 public class ArrayFrame extends MyWindow {
-    private static final String DEFAULT_ARRAY_NAME = "array";
+	private static final String DEFAULT_ARRAY_NAME = "array";
 
 	private MainFrame mainFrame;
 	private Class<?> cls;
@@ -45,7 +45,7 @@ public class ArrayFrame extends MyWindow {
 		this.mainFrame = mainFrame;
 		setTitle("配列生成");
 		setResizable(false);
-        pack();
+		pack();
 	}
 
 	/**

@@ -9,7 +9,7 @@ public class MyArray extends MyInstance {
 	protected final int length;
 
 	public MyArray(Object object, String name, int length) {
-	    super(object, name);
+		super(object, name);
 		this.length = length;
 	}
 

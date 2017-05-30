@@ -50,784 +50,784 @@ import interpret.components.MyWindow;
  */
 
 public class MainFrame extends MyWindow {
-    private static final String DEFAULT_TYPE = "java.lang.Integer";
-    private static final int COMPONENT_WIDTH = 400;
-    private static final int COMPONENT_HEIGHT = 100;
-    static final String OBJECT_PREFIX = "=";
-    private static final String BR = System.getProperty("line.separator");
+	private static final String DEFAULT_TYPE = "java.lang.Integer";
+	private static final int COMPONENT_WIDTH = 400;
+	private static final int COMPONENT_HEIGHT = 100;
+	static final String OBJECT_PREFIX = "=";
+	private static final String BR = System.getProperty("line.separator");
 
 
 	JButton createInstanceButton;			//インスタンス生成ボタン
 	JButton createInstanceArrayButton;		//インスタンス配列生成ボタン
 
 	private List<MyInstance> instances;
-    private final JTree objectTree;
-    private final DefaultTreeModel objectTreeModel;
-    private final DefaultMutableTreeNode objectRootNode;
-    private Dimension treePreferredSize;
+	private final JTree objectTree;
+	private final DefaultTreeModel objectTreeModel;
+	private final DefaultMutableTreeNode objectRootNode;
+	private Dimension treePreferredSize;
 
 	//インスタンス一覧
-    JList instanceList;
-    DefaultListModel instanceListModel;
-    private JScrollPane objectList;
+	JList instanceList;
+	DefaultListModel instanceListModel;
+	private JScrollPane objectList;
 
-    //配列一覧
-    private List<MyArray> arrays = null;
-    private JTree arrayTree;
-    private DefaultTreeModel arrayTreeModel;
-    private DefaultMutableTreeNode arrayRootNode;
-    private JList<MyInstance> arrayCellList;
-    private DefaultListModel<MyInstance> arrayCellListModel;
+	//配列一覧
+	private List<MyArray> arrays = null;
+	private JTree arrayTree;
+	private DefaultTreeModel arrayTreeModel;
+	private DefaultMutableTreeNode arrayRootNode;
+	private JList<MyInstance> arrayCellList;
+	private DefaultListModel<MyInstance> arrayCellListModel;
 
-    //配列操作パネル
-    private JButton insertNewButton;
-    private JLabel cellIsNullLabel;
+	//配列操作パネル
+	private JButton insertNewButton;
+	private JLabel cellIsNullLabel;
 
-    //フィールド一覧
+	//フィールド一覧
 	private JList<MyField> fieldList;
-    private DefaultListModel<MyField> fieldListModel;
+	private DefaultListModel<MyField> fieldListModel;
 
-    //メソッド一覧
+	//メソッド一覧
 	private JList<MyMethod> methodList;
-    private DefaultListModel<MyMethod> methodListModel;
+	private DefaultListModel<MyMethod> methodListModel;
 
-    //フィールド操作パネル
-    private final JTextField valueLabel;
-    private final JButton changeFieldButton;
+	//フィールド操作パネル
+	private final JTextField valueLabel;
+	private final JButton changeFieldButton;
 
-    //メソッド操作パネル
-    private final JTextField invokeParamsField;
-    private final JButton invokeMethodButton;
+	//メソッド操作パネル
+	private final JTextField invokeParamsField;
+	private final JButton invokeMethodButton;
 
-    //アクションハンドラ
-    ActionHandler actionHandler = new ActionHandler();
+	//アクションハンドラ
+	ActionHandler actionHandler = new ActionHandler();
 
-    public MainFrame() {
-        instances = new ArrayList<MyInstance>();
-        treePreferredSize = new Dimension(COMPONENT_WIDTH, COMPONENT_HEIGHT);
-        arrays = new ArrayList<MyArray>();
+	public MainFrame() {
+		instances = new ArrayList<MyInstance>();
+		treePreferredSize = new Dimension(COMPONENT_WIDTH, COMPONENT_HEIGHT);
+		arrays = new ArrayList<MyArray>();
 
-        //インスタンス一覧
-        objectRootNode = new DefaultMutableTreeNode("Instances");
-        objectTree = new JTree(objectRootNode);
-        objectList = new JScrollPane(objectTree);
-        objectList.setPreferredSize(treePreferredSize);
-        objectTree.addTreeSelectionListener(new ObjectSelectionListener());
-        objectTree.addMouseListener(new ObjectMouseAdapter());
-        objectTree.setRootVisible(false);
-        objectTree.setDragEnabled(true);
-        objectTreeModel = (DefaultTreeModel) objectTree.getModel();
-        addGrid(new JLabel("インスタンス"), 1, 3);
-        addGrid(objectList, 1, 4, 1, 4);
+		//インスタンス一覧
+		objectRootNode = new DefaultMutableTreeNode("Instances");
+		objectTree = new JTree(objectRootNode);
+		objectList = new JScrollPane(objectTree);
+		objectList.setPreferredSize(treePreferredSize);
+		objectTree.addTreeSelectionListener(new ObjectSelectionListener());
+		objectTree.addMouseListener(new ObjectMouseAdapter());
+		objectTree.setRootVisible(false);
+		objectTree.setDragEnabled(true);
+		objectTreeModel = (DefaultTreeModel) objectTree.getModel();
+		addGrid(new JLabel("インスタンス"), 1, 3);
+		addGrid(objectList, 1, 4, 1, 4);
 
-        //配列一覧
-        addGrid(new JLabel("配列"), 2, 3);
-        arrayRootNode = new DefaultMutableTreeNode("Arrays");
-        arrayTree = new JTree(arrayRootNode);
-        arrayTree.setRootVisible(false);
-        arrayTree.addTreeSelectionListener(new ArrayObjectSelectionListener());
-        arrayTree.addMouseListener(new ArrayMouseAdapter());
-        arrayTree.setDragEnabled(true);
-        arrayTree.setPreferredSize(new Dimension(300, 50));
-        arrayTreeModel = (DefaultTreeModel) arrayTree.getModel();
-        JScrollPane arrayTreeScroll = new JScrollPane(arrayTree);
-        arrayTreeScroll.setPreferredSize(new Dimension(COMPONENT_WIDTH, 100));
-        addGrid(arrayTreeScroll, 2, 4);
+		//配列一覧
+		addGrid(new JLabel("配列"), 2, 3);
+		arrayRootNode = new DefaultMutableTreeNode("Arrays");
+		arrayTree = new JTree(arrayRootNode);
+		arrayTree.setRootVisible(false);
+		arrayTree.addTreeSelectionListener(new ArrayObjectSelectionListener());
+		arrayTree.addMouseListener(new ArrayMouseAdapter());
+		arrayTree.setDragEnabled(true);
+		arrayTree.setPreferredSize(new Dimension(300, 50));
+		arrayTreeModel = (DefaultTreeModel) arrayTree.getModel();
+		JScrollPane arrayTreeScroll = new JScrollPane(arrayTree);
+		arrayTreeScroll.setPreferredSize(new Dimension(COMPONENT_WIDTH, 100));
+		addGrid(arrayTreeScroll, 2, 4);
 
-        //配列内インスタンス一覧
-        addGrid(new JLabel("配列内要素"), 2, 5);
-        arrayCellListModel = new DefaultListModel<>();
-        arrayCellList = new JList<>();
-        arrayCellList.setModel(arrayCellListModel);
-        arrayCellList
-                .addListSelectionListener(new ArrayCellSelectionListener());
-        arrayCellList.setDragEnabled(true);
-        JScrollPane arrayCellScroll = new JScrollPane(arrayCellList);
-        arrayCellScroll.setPreferredSize(new Dimension(COMPONENT_WIDTH, 100));
-        addGrid(arrayCellScroll, 2, 6);
+		//配列内インスタンス一覧
+		addGrid(new JLabel("配列内要素"), 2, 5);
+		arrayCellListModel = new DefaultListModel<>();
+		arrayCellList = new JList<>();
+		arrayCellList.setModel(arrayCellListModel);
+		arrayCellList
+				.addListSelectionListener(new ArrayCellSelectionListener());
+		arrayCellList.setDragEnabled(true);
+		JScrollPane arrayCellScroll = new JScrollPane(arrayCellList);
+		arrayCellScroll.setPreferredSize(new Dimension(COMPONENT_WIDTH, 100));
+		addGrid(arrayCellScroll, 2, 6);
 
-        //配列操作パネル
-        JPanel arrayCellControlPanel = new JPanel();
-        FlowLayout arrayCellControlPanelLayout = new FlowLayout();
-        arrayCellControlPanelLayout.setAlignment(FlowLayout.LEFT);
-        arrayCellControlPanel.setPreferredSize(new Dimension(COMPONENT_WIDTH, 50));
-        arrayCellControlPanel.setLayout(arrayCellControlPanelLayout);
-        cellIsNullLabel = new JLabel("");
-        cellIsNullLabel.setForeground(Color.black);
-        arrayCellControlPanel.add(cellIsNullLabel);
-        addGrid(arrayCellControlPanel, 2, 7);
-        insertNewButton = new JButton("要素追加");
-        insertNewButton.setEnabled(false);
-        insertNewButton.addActionListener(new InsertNewActionListener());
-        arrayCellControlPanel.add(insertNewButton);
+		//配列操作パネル
+		JPanel arrayCellControlPanel = new JPanel();
+		FlowLayout arrayCellControlPanelLayout = new FlowLayout();
+		arrayCellControlPanelLayout.setAlignment(FlowLayout.LEFT);
+		arrayCellControlPanel.setPreferredSize(new Dimension(COMPONENT_WIDTH, 50));
+		arrayCellControlPanel.setLayout(arrayCellControlPanelLayout);
+		cellIsNullLabel = new JLabel("");
+		cellIsNullLabel.setForeground(Color.black);
+		arrayCellControlPanel.add(cellIsNullLabel);
+		addGrid(arrayCellControlPanel, 2, 7);
+		insertNewButton = new JButton("要素追加");
+		insertNewButton.setEnabled(false);
+		insertNewButton.addActionListener(new InsertNewActionListener());
+		arrayCellControlPanel.add(insertNewButton);
 
-        //フィールド一覧
-        fieldList = new JList<>();
-        fieldListModel = new DefaultListModel<>();
-        fieldList.setModel(fieldListModel);
-        fieldList.addListSelectionListener(new FieldSelectionListener());
-        addGrid(new JLabel("フィールド"), 1, 8);
-        addGrid(new JScrollPane(fieldList), 1, 9);
+		//フィールド一覧
+		fieldList = new JList<>();
+		fieldListModel = new DefaultListModel<>();
+		fieldList.setModel(fieldListModel);
+		fieldList.addListSelectionListener(new FieldSelectionListener());
+		addGrid(new JLabel("フィールド"), 1, 8);
+		addGrid(new JScrollPane(fieldList), 1, 9);
 
-        //フィールド操作パネル
-        JPanel fieldControlPanel = new JPanel();
-        fieldControlPanel.setLayout(new BoxLayout(fieldControlPanel, BoxLayout.Y_AXIS));
-        fieldControlPanel.setPreferredSize(new Dimension(400, 100));
-        valueLabel = new JTextField();
-        valueLabel.setMaximumSize(new Dimension(200, 20));
-        valueLabel.setBorder(new LineBorder(Color.black));
-        fieldControlPanel.add(valueLabel);
-        changeFieldButton = new JButton("変更");
-        changeFieldButton.addActionListener(new ChangeFieldActionListener());
-        changeFieldButton.setEnabled(false);
-        fieldControlPanel.add(changeFieldButton);
-        addGrid(fieldControlPanel, 2, 9);
+		//フィールド操作パネル
+		JPanel fieldControlPanel = new JPanel();
+		fieldControlPanel.setLayout(new BoxLayout(fieldControlPanel, BoxLayout.Y_AXIS));
+		fieldControlPanel.setPreferredSize(new Dimension(400, 100));
+		valueLabel = new JTextField();
+		valueLabel.setMaximumSize(new Dimension(200, 20));
+		valueLabel.setBorder(new LineBorder(Color.black));
+		fieldControlPanel.add(valueLabel);
+		changeFieldButton = new JButton("変更");
+		changeFieldButton.addActionListener(new ChangeFieldActionListener());
+		changeFieldButton.setEnabled(false);
+		fieldControlPanel.add(changeFieldButton);
+		addGrid(fieldControlPanel, 2, 9);
 
-        //メソッド一覧
-        methodList = new JList<>();
-        methodListModel = new DefaultListModel<>();
-        methodList.setModel(methodListModel);
-        methodList.addListSelectionListener(new MethodSelectionListener());
-        addGrid(new JLabel("メソッド"), 1, 10);
-        addGrid(new JScrollPane(methodList), 1, 11);
+		//メソッド一覧
+		methodList = new JList<>();
+		methodListModel = new DefaultListModel<>();
+		methodList.setModel(methodListModel);
+		methodList.addListSelectionListener(new MethodSelectionListener());
+		addGrid(new JLabel("メソッド"), 1, 10);
+		addGrid(new JScrollPane(methodList), 1, 11);
 
-        //メソッド操作パネル
-        JPanel methodControlpanel = new JPanel();
-        methodControlpanel.setLayout(new BoxLayout(methodControlpanel, BoxLayout.Y_AXIS));
-        methodControlpanel.setPreferredSize(new Dimension(400, 100));
-        invokeParamsField = new JTextField();
-        invokeParamsField.setMaximumSize(new Dimension(200, 20));
-        invokeParamsField.addActionListener(new TextFieldActionListener());
-        methodControlpanel.add(invokeParamsField);
-        invokeMethodButton = new JButton("実行");
-        invokeMethodButton.setEnabled(false);
-        invokeMethodButton.addActionListener(new InvokeMethodActionListener());
-        methodControlpanel.add(invokeMethodButton);
-        addGrid(methodControlpanel, 2, 11);
+		//メソッド操作パネル
+		JPanel methodControlpanel = new JPanel();
+		methodControlpanel.setLayout(new BoxLayout(methodControlpanel, BoxLayout.Y_AXIS));
+		methodControlpanel.setPreferredSize(new Dimension(400, 100));
+		invokeParamsField = new JTextField();
+		invokeParamsField.setMaximumSize(new Dimension(200, 20));
+		invokeParamsField.addActionListener(new TextFieldActionListener());
+		methodControlpanel.add(invokeParamsField);
+		invokeMethodButton = new JButton("実行");
+		invokeMethodButton.setEnabled(false);
+		invokeMethodButton.addActionListener(new InvokeMethodActionListener());
+		methodControlpanel.add(invokeMethodButton);
+		addGrid(methodControlpanel, 2, 11);
 
-        //インスタンス生成ボタン
-        JPanel createInstanceButtonPanel = new JPanel();
-        createInstanceButtonPanel.setLayout(new FlowLayout(FlowLayout.LEFT));
-        createInstanceButton = new JButton("インスタンス生成");
-        createInstanceButtonPanel.add(createInstanceButton);
-        createInstanceButton.addActionListener(actionHandler);
-        addGrid(createInstanceButtonPanel, 1, 1);
+		//インスタンス生成ボタン
+		JPanel createInstanceButtonPanel = new JPanel();
+		createInstanceButtonPanel.setLayout(new FlowLayout(FlowLayout.LEFT));
+		createInstanceButton = new JButton("インスタンス生成");
+		createInstanceButtonPanel.add(createInstanceButton);
+		createInstanceButton.addActionListener(actionHandler);
+		addGrid(createInstanceButtonPanel, 1, 1);
 
 
-        //配列生成ボタン
-        JPanel createInstanceArrayButtonPanel = new JPanel();
-        createInstanceArrayButtonPanel.setLayout(new FlowLayout(FlowLayout.LEFT));
-        createInstanceArrayButton = new JButton("配列生成");
-        createInstanceArrayButtonPanel.add(createInstanceArrayButton);
-        createInstanceArrayButton.addActionListener(actionHandler);
-        addGrid(createInstanceArrayButtonPanel, 2, 1);
+		//配列生成ボタン
+		JPanel createInstanceArrayButtonPanel = new JPanel();
+		createInstanceArrayButtonPanel.setLayout(new FlowLayout(FlowLayout.LEFT));
+		createInstanceArrayButton = new JButton("配列生成");
+		createInstanceArrayButtonPanel.add(createInstanceArrayButton);
+		createInstanceArrayButton.addActionListener(actionHandler);
+		addGrid(createInstanceArrayButtonPanel, 2, 1);
 
-        pack();
-        setLocationRelativeTo(null);
-        setResizable(false);
-        setTitle("インタープリタ");
-        setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-        setVisible(true);
-    }
+		pack();
+		setLocationRelativeTo(null);
+		setResizable(false);
+		setTitle("インタープリタ");
+		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+		setVisible(true);
+	}
 
-    void addObject(Class<?> cls, Object instance, String name) {
-    	instances.add(new MyInstance(instance, name));
-        DefaultMutableTreeNode classNode = getClassNode(cls);
-        if (classNode == null) {
-            classNode = new DefaultMutableTreeNode(cls.getName());
-            objectRootNode.add(classNode);
-        }
-        DefaultMutableTreeNode objectNode = new DefaultMutableTreeNode(name);
-        classNode.add(objectNode);
-        objectTreeModel.reload();
-        expandAll(objectTree, 0, objectTree.getRowCount());
-    }
+	void addObject(Class<?> cls, Object instance, String name) {
+		instances.add(new MyInstance(instance, name));
+		DefaultMutableTreeNode classNode = getClassNode(cls);
+		if (classNode == null) {
+			classNode = new DefaultMutableTreeNode(cls.getName());
+			objectRootNode.add(classNode);
+		}
+		DefaultMutableTreeNode objectNode = new DefaultMutableTreeNode(name);
+		classNode.add(objectNode);
+		objectTreeModel.reload();
+		expandAll(objectTree, 0, objectTree.getRowCount());
+	}
 
-    void addArray(Class<?> cls, Object instance, String name, int length) {
-        arrays.add(new MyArray(instance, name, length));
-        DefaultMutableTreeNode arrayNode = getArrayClassNode(cls);
-        if (arrayNode == null) {
-            arrayNode = new DefaultMutableTreeNode(cls.getName());
-            arrayRootNode.add(arrayNode);
-        }
-        DefaultMutableTreeNode objectNode = new DefaultMutableTreeNode(name);
-        arrayNode.add(objectNode);
-        arrayTreeModel.reload();
-        expandAll(arrayTree, 0, arrayTree.getRowCount());
-        pack();
-        setLocationRelativeTo(null);
-    }
+	void addArray(Class<?> cls, Object instance, String name, int length) {
+		arrays.add(new MyArray(instance, name, length));
+		DefaultMutableTreeNode arrayNode = getArrayClassNode(cls);
+		if (arrayNode == null) {
+			arrayNode = new DefaultMutableTreeNode(cls.getName());
+			arrayRootNode.add(arrayNode);
+		}
+		DefaultMutableTreeNode objectNode = new DefaultMutableTreeNode(name);
+		arrayNode.add(objectNode);
+		arrayTreeModel.reload();
+		expandAll(arrayTree, 0, arrayTree.getRowCount());
+		pack();
+		setLocationRelativeTo(null);
+	}
 
-    void addArrayCell(Object instance, String name, int index) {
-        MyArray element = getArrayElement(name);
-        element.setObjectElementAt(index, instance);
-        arrayCellListModel.setElementAt(new MyInstance(instance, name
-                + "[" + index + "]"), index);
-        new ArrayCellSelectionListener().valueChanged(null);
-    }
+	void addArrayCell(Object instance, String name, int index) {
+		MyArray element = getArrayElement(name);
+		element.setObjectElementAt(index, instance);
+		arrayCellListModel.setElementAt(new MyInstance(instance, name
+				+ "[" + index + "]"), index);
+		new ArrayCellSelectionListener().valueChanged(null);
+	}
 
-    private DefaultMutableTreeNode getClassNode(Class<?> cls) {
-        for (int i = 0; i < objectRootNode.getChildCount(); i++)
-            if (objectRootNode.getChildAt(i).toString().equals(cls.getName()))
-                return (DefaultMutableTreeNode) objectRootNode.getChildAt(i);
-        return null;
-    }
+	private DefaultMutableTreeNode getClassNode(Class<?> cls) {
+		for (int i = 0; i < objectRootNode.getChildCount(); i++)
+			if (objectRootNode.getChildAt(i).toString().equals(cls.getName()))
+				return (DefaultMutableTreeNode) objectRootNode.getChildAt(i);
+		return null;
+	}
 
-    private DefaultMutableTreeNode getArrayClassNode(Class<?> cls) {
-        for (int i = 0; i < arrayRootNode.getChildCount(); i++)
-            if (arrayRootNode.getChildAt(i).toString().equals(cls.getName()))
-                return (DefaultMutableTreeNode) arrayRootNode.getChildAt(i);
-        return null;
-    }
+	private DefaultMutableTreeNode getArrayClassNode(Class<?> cls) {
+		for (int i = 0; i < arrayRootNode.getChildCount(); i++)
+			if (arrayRootNode.getChildAt(i).toString().equals(cls.getName()))
+				return (DefaultMutableTreeNode) arrayRootNode.getChildAt(i);
+		return null;
+	}
 
-    MyInstance getObjectElement(String name) {
-        for (MyInstance e : instances)
-            if (e.getName().equals(name))
-                return e;
-        return null;
-    }
+	MyInstance getObjectElement(String name) {
+		for (MyInstance e : instances)
+			if (e.getName().equals(name))
+				return e;
+		return null;
+	}
 
-    private void expandAll(JTree tree, int startingIndex, int rowCount) {
-        for (int i = startingIndex; i < rowCount; ++i)
-            tree.expandRow(i);
-        if (tree.getRowCount() != rowCount)
-            expandAll(tree, rowCount, tree.getRowCount());
-    }
+	private void expandAll(JTree tree, int startingIndex, int rowCount) {
+		for (int i = startingIndex; i < rowCount; ++i)
+			tree.expandRow(i);
+		if (tree.getRowCount() != rowCount)
+			expandAll(tree, rowCount, tree.getRowCount());
+	}
 
-    private void invoke() {
-    	MyMethod method = methodList.getSelectedValue();
-        if (method == null) {
-            showErrorMessage("Method not selected.");
-            return;
-        }
+	private void invoke() {
+		MyMethod method = methodList.getSelectedValue();
+		if (method == null) {
+			showErrorMessage("Method not selected.");
+			return;
+		}
 
-        //引数の読み込み
-        List<String> inputParams = getParameters(invokeParamsField);
-        Class<?>[] params = method.getParameterTypes();
-        Object[] paramData = new Object[params.length];
-        for (int i = 0; i < params.length; i++) {
-            String inputParam;
-            try {
-                inputParam = inputParams.get(i);
-            } catch (IndexOutOfBoundsException ioobe) {
-                paramData[i] = null;
-                continue;
-            }
-            if (inputParam.equals("null")) {
-                paramData[i] = null;
-                continue;
-            }
-            //インスタンスを引数にする場合
-            if (inputParam.startsWith(OBJECT_PREFIX)) {
-                String name = inputParam.substring(OBJECT_PREFIX.length());
-                if (name.contains("[") && name.endsWith("]")) {
-                    String arrayName = name.substring(0, name.indexOf("["));
-                    String indexStr = name.substring(name.indexOf("[") + 1,
-                            name.lastIndexOf("]"));
-                    MyArray arrayElement = getArrayElement(arrayName);
-                    if (arrayElement == null) {
-                        showErrorMessage("Array not found: " + name);
-                        return;
-                    }
-                    try {
-                        int index = Integer.parseInt(indexStr);
-                        paramData[i] = arrayElement.getObjectAt(index);
-                    } catch (NumberFormatException ex) {
-                        showErrorMessage("Illegal index: " + indexStr);
-                        return;
-                    }
-                } else {
-                    MyInstance element = getObjectElement(name);
-                    MyArray arrayElement = getArrayElement(name);
-                    if (element == null && arrayElement == null) {
-                        showErrorMessage("Object not found: " + name);
-                        return;
-                    }
-                    if (element != null)
-                        paramData[i] = element.getObject();
-                    if (arrayElement != null)
-                        paramData[i] = arrayElement.getObject();
-                }
-            } else {
-                //プリミティブな引数の場合
-                if (params[i].isPrimitive()) {
-                    try {
-                        if (params[i].equals(int.class))
-                            paramData[i] = Integer.parseInt(inputParam);
-                        else if (params[i].equals(double.class))
-                            paramData[i] = Double.parseDouble(inputParam);
-                        else if (params[i].equals(float.class))
-                            paramData[i] = Float.parseFloat(inputParam);
-                        else if (params[i].equals(short.class))
-                            paramData[i] = Short.parseShort(inputParam);
-                        else if (params[i].equals(char.class))
-                            paramData[i] = (char) Integer.parseInt(inputParam);
-                        else if (params[i].equals(byte.class))
-                            paramData[i] = Byte.parseByte(inputParam);
-                        else if (params[i].equals(boolean.class))
-                            paramData[i] = Boolean.parseBoolean(inputParam);
-                        else {
-                            showErrorMessage("Unknown type");
-                            return;
-                        }
-                        continue;
-                    } catch (NumberFormatException e1) {
-                        showErrorMessage("NumberFormatException");
-                        return;
-                    }
-                } else {
-                    //文字列の引数の場合
-                    try {
-                        Object p = params[i].getConstructor(String.class)
-                                .newInstance(inputParam);
-                        paramData[i] = p;
-                        continue;
-                    } catch (ReflectiveOperationException e1) {
-                        System.err.println("Parameter No."
-                                        + (i + 1)
-                                        + " hasn't string constructor. Inserting null.");
-                    } catch (SecurityException e1) {
-                        showErrorMessage("SecurityException");
-                        return;
-                    }
-                    paramData[i] = null;
-                }
-            }
-        }
+		//引数の読み込み
+		List<String> inputParams = getParameters(invokeParamsField);
+		Class<?>[] params = method.getParameterTypes();
+		Object[] paramData = new Object[params.length];
+		for (int i = 0; i < params.length; i++) {
+			String inputParam;
+			try {
+				inputParam = inputParams.get(i);
+			} catch (IndexOutOfBoundsException ioobe) {
+				paramData[i] = null;
+				continue;
+			}
+			if (inputParam.equals("null")) {
+				paramData[i] = null;
+				continue;
+			}
+			//インスタンスを引数にする場合
+			if (inputParam.startsWith(OBJECT_PREFIX)) {
+				String name = inputParam.substring(OBJECT_PREFIX.length());
+				if (name.contains("[") && name.endsWith("]")) {
+					String arrayName = name.substring(0, name.indexOf("["));
+					String indexStr = name.substring(name.indexOf("[") + 1,
+							name.lastIndexOf("]"));
+					MyArray arrayElement = getArrayElement(arrayName);
+					if (arrayElement == null) {
+						showErrorMessage("Array not found: " + name);
+						return;
+					}
+					try {
+						int index = Integer.parseInt(indexStr);
+						paramData[i] = arrayElement.getObjectAt(index);
+					} catch (NumberFormatException ex) {
+						showErrorMessage("Illegal index: " + indexStr);
+						return;
+					}
+				} else {
+					MyInstance element = getObjectElement(name);
+					MyArray arrayElement = getArrayElement(name);
+					if (element == null && arrayElement == null) {
+						showErrorMessage("Object not found: " + name);
+						return;
+					}
+					if (element != null)
+						paramData[i] = element.getObject();
+					if (arrayElement != null)
+						paramData[i] = arrayElement.getObject();
+				}
+			} else {
+				//プリミティブな引数の場合
+				if (params[i].isPrimitive()) {
+					try {
+						if (params[i].equals(int.class))
+							paramData[i] = Integer.parseInt(inputParam);
+						else if (params[i].equals(double.class))
+							paramData[i] = Double.parseDouble(inputParam);
+						else if (params[i].equals(float.class))
+							paramData[i] = Float.parseFloat(inputParam);
+						else if (params[i].equals(short.class))
+							paramData[i] = Short.parseShort(inputParam);
+						else if (params[i].equals(char.class))
+							paramData[i] = (char) Integer.parseInt(inputParam);
+						else if (params[i].equals(byte.class))
+							paramData[i] = Byte.parseByte(inputParam);
+						else if (params[i].equals(boolean.class))
+							paramData[i] = Boolean.parseBoolean(inputParam);
+						else {
+							showErrorMessage("Unknown type");
+							return;
+						}
+						continue;
+					} catch (NumberFormatException e1) {
+						showErrorMessage("NumberFormatException");
+						return;
+					}
+				} else {
+					//文字列の引数の場合
+					try {
+						Object p = params[i].getConstructor(String.class)
+								.newInstance(inputParam);
+						paramData[i] = p;
+						continue;
+					} catch (ReflectiveOperationException e1) {
+						System.err.println("Parameter No."
+										+ (i + 1)
+										+ " hasn't string constructor. Inserting null.");
+					} catch (SecurityException e1) {
+						showErrorMessage("SecurityException");
+						return;
+					}
+					paramData[i] = null;
+				}
+			}
+		}
 
-        Object result;
-        try {
-            result = method.invoke(paramData);
-        } catch (IllegalAccessException e1) {
-            showErrorMessage("IllegalAccessException");
-            return;
-        } catch (IllegalArgumentException e1) {
-            showErrorMessage("IllegalArgumentException");
-            return;
-        } catch (InvocationTargetException e1) {
-            showErrorMessage("Exception cought: " + BR + e1.getCause());
-            return;
-        } catch (OutOfMemoryError e1) {
-            showErrorMessage("OutOfMemoryError: " + e1.getMessage());
-            return;
-        } catch (VirtualMachineError e1) {
-            showErrorMessage("VirtualMachineError: " + e1.getMessage());
-            return;
-        } catch (Error e1) {
-            showErrorMessage("Error: " + e1.getMessage());
-            return;
-        } catch (RuntimeException e1) {
-            showErrorMessage("RuntimeException: " + e1.getMessage());
-            return;
-        }
-        if (result == null)
-            result = "(none)";
-        if (method.isReturnVoid())
-            result = "(void)";
-        JOptionPane
-                .showMessageDialog(MainFrame.this, "Result: " + result);
-    }
+		Object result;
+		try {
+			result = method.invoke(paramData);
+		} catch (IllegalAccessException e1) {
+			showErrorMessage("IllegalAccessException");
+			return;
+		} catch (IllegalArgumentException e1) {
+			showErrorMessage("IllegalArgumentException");
+			return;
+		} catch (InvocationTargetException e1) {
+			showErrorMessage("Exception cought: " + BR + e1.getCause());
+			return;
+		} catch (OutOfMemoryError e1) {
+			showErrorMessage("OutOfMemoryError: " + e1.getMessage());
+			return;
+		} catch (VirtualMachineError e1) {
+			showErrorMessage("VirtualMachineError: " + e1.getMessage());
+			return;
+		} catch (Error e1) {
+			showErrorMessage("Error: " + e1.getMessage());
+			return;
+		} catch (RuntimeException e1) {
+			showErrorMessage("RuntimeException: " + e1.getMessage());
+			return;
+		}
+		if (result == null)
+			result = "(none)";
+		if (method.isReturnVoid())
+			result = "(void)";
+		JOptionPane
+				.showMessageDialog(MainFrame.this, "Result: " + result);
+	}
 
-    private List<String> getParameters(JTextField textField) {
-        List<String> list = new ArrayList<>();
-        if (textField.getText() == null)
-            return list;
-        StringTokenizer token = new StringTokenizer(textField.getText(), ",");
-        while (token.hasMoreTokens()) {
-            list.add(token.nextToken());
-        }
-        return list;
-    }
+	private List<String> getParameters(JTextField textField) {
+		List<String> list = new ArrayList<>();
+		if (textField.getText() == null)
+			return list;
+		StringTokenizer token = new StringTokenizer(textField.getText(), ",");
+		while (token.hasMoreTokens()) {
+			list.add(token.nextToken());
+		}
+		return list;
+	}
 
-    MyArray getArrayElement(String name) {
-    	if (arrays == null)
-    		return null;
-        for (MyArray e : arrays)
-            if (e.getName().equals(name))
-                return e;
-        return null;
-    }
+	MyArray getArrayElement(String name) {
+		if (arrays == null)
+			return null;
+		for (MyArray e : arrays)
+			if (e.getName().equals(name))
+				return e;
+		return null;
+	}
 
-    boolean exists(String name) {
-        return getObjectElement(name) != null || getArrayElement(name) != null;
-    }
+	boolean exists(String name) {
+		return getObjectElement(name) != null || getArrayElement(name) != null;
+	}
 
-    /**
-    * 追加ボタンアクションのハンドラ
-    */
-    public class ActionHandler implements ActionListener {
-        public void actionPerformed(ActionEvent event) {
-            if (event.getActionCommand() == "インスタンス生成") {
-            	String value = JOptionPane.showInputDialog(MainFrame.this,
-                        "クラス名を入力してください。", DEFAULT_TYPE);
-                if (value == null) {
-                    return;
-                }
-                try {
-                	new InstanceFrame(MainFrame.this).setClass(Class.forName(value));
-                } catch (ClassNotFoundException cnfe) {
-                    JOptionPane.showMessageDialog(MainFrame.this,
-                            "ClassNotFoundException", "ERROR",
-                            JOptionPane.ERROR_MESSAGE);
-                }
-            } else if (event.getActionCommand() == "配列生成") {
-            	String value = JOptionPane.showInputDialog(MainFrame.this,
-                        "クラス名を入力してください。", DEFAULT_TYPE);
-                if (value == null) {
-                    return;
-                }
-            	String size = JOptionPane.showInputDialog(MainFrame.this,
-                        "配列サイズを入力してください。", 3);
-                if (size == null) {
-                    return;
-                }
-                try {
-                	int iSize = Integer.parseInt(size);
-                	new ArrayFrame(MainFrame.this).setClass(Class.forName(value), iSize);
-                } catch (ClassNotFoundException cnfe) {
-                    JOptionPane.showMessageDialog(MainFrame.this,
-                            "ClassNotFoundException", "ERROR",
-                            JOptionPane.ERROR_MESSAGE);
-                } catch (NumberFormatException e) {
-                	showErrorMessage("NumberFormatException");
-                    return;
-                }
-            }
-        }
-    }
+	/**
+	* 追加ボタンアクションのハンドラ
+	*/
+	public class ActionHandler implements ActionListener {
+		public void actionPerformed(ActionEvent event) {
+			if (event.getActionCommand() == "インスタンス生成") {
+				String value = JOptionPane.showInputDialog(MainFrame.this,
+						"クラス名を入力してください。", DEFAULT_TYPE);
+				if (value == null) {
+					return;
+				}
+				try {
+					new InstanceFrame(MainFrame.this).setClass(Class.forName(value));
+				} catch (ClassNotFoundException cnfe) {
+					JOptionPane.showMessageDialog(MainFrame.this,
+							"ClassNotFoundException", "ERROR",
+							JOptionPane.ERROR_MESSAGE);
+				}
+			} else if (event.getActionCommand() == "配列生成") {
+				String value = JOptionPane.showInputDialog(MainFrame.this,
+						"クラス名を入力してください。", DEFAULT_TYPE);
+				if (value == null) {
+					return;
+				}
+				String size = JOptionPane.showInputDialog(MainFrame.this,
+						"配列サイズを入力してください。", 3);
+				if (size == null) {
+					return;
+				}
+				try {
+					int iSize = Integer.parseInt(size);
+					new ArrayFrame(MainFrame.this).setClass(Class.forName(value), iSize);
+				} catch (ClassNotFoundException cnfe) {
+					JOptionPane.showMessageDialog(MainFrame.this,
+							"ClassNotFoundException", "ERROR",
+							JOptionPane.ERROR_MESSAGE);
+				} catch (NumberFormatException e) {
+					showErrorMessage("NumberFormatException");
+					return;
+				}
+			}
+		}
+	}
 
-    class ListSelectionHandler implements ListSelectionListener {
+	class ListSelectionHandler implements ListSelectionListener {
 		public void valueChanged(ListSelectionEvent e) {
 		}
-    }
+	}
 
-    private class ObjectSelectionListener implements TreeSelectionListener {
-        @Override
-        public void valueChanged(TreeSelectionEvent e) {
-            DefaultMutableTreeNode selectedNode = (DefaultMutableTreeNode) objectTree.getLastSelectedPathComponent();
-            //選択なし
-            if (selectedNode == null) {
-                fieldListModel.clear();
-                fieldList.setEnabled(false);
-                methodListModel.clear();
-                methodList.setEnabled(false);
-            }
-            //クラスを選択
-            else if (selectedNode.getParent().equals(objectRootNode)) {
-                fieldListModel.clear();
-                fieldList.setEnabled(false);
-                methodListModel.clear();
-                methodList.setEnabled(false);
-            }
-            //インスタンスを選択
-            else if (selectedNode.getParent().getParent().equals(objectRootNode)) {
-            	MyInstance element = getObjectElement(selectedNode.toString());
-                if (element == null) {
-                    System.out.println("Error: element == null");
-                    return;
-                }
-                //フィールドの読み込み
-                fieldListModel.clear();
-                List<MyField> fl = element.getFields();
-                for (MyField f : fl)
-                    fieldListModel.addElement(f);
-                fieldList.setEnabled(true);
-                //メソッドの読み込み
-                methodListModel.clear();
-                for (MyMethod m : element.getMethods())
-                    methodListModel.addElement(m);
-                methodList.setEnabled(true);
-            }
-        }
-    }
+	private class ObjectSelectionListener implements TreeSelectionListener {
+		@Override
+		public void valueChanged(TreeSelectionEvent e) {
+			DefaultMutableTreeNode selectedNode = (DefaultMutableTreeNode) objectTree.getLastSelectedPathComponent();
+			//選択なし
+			if (selectedNode == null) {
+				fieldListModel.clear();
+				fieldList.setEnabled(false);
+				methodListModel.clear();
+				methodList.setEnabled(false);
+			}
+			//クラスを選択
+			else if (selectedNode.getParent().equals(objectRootNode)) {
+				fieldListModel.clear();
+				fieldList.setEnabled(false);
+				methodListModel.clear();
+				methodList.setEnabled(false);
+			}
+			//インスタンスを選択
+			else if (selectedNode.getParent().getParent().equals(objectRootNode)) {
+				MyInstance element = getObjectElement(selectedNode.toString());
+				if (element == null) {
+					System.out.println("Error: element == null");
+					return;
+				}
+				//フィールドの読み込み
+				fieldListModel.clear();
+				List<MyField> fl = element.getFields();
+				for (MyField f : fl)
+					fieldListModel.addElement(f);
+				fieldList.setEnabled(true);
+				//メソッドの読み込み
+				methodListModel.clear();
+				for (MyMethod m : element.getMethods())
+					methodListModel.addElement(m);
+				methodList.setEnabled(true);
+			}
+		}
+	}
 
-    private class ChangeFieldActionListener implements ActionListener {
-        @Override
-        public void actionPerformed(ActionEvent e) {
-            MyField field = fieldList.getSelectedValue();
-            if (field == null) {
-                showErrorMessage("Field not selected.");
-                return;
-            }
-            Object value;
-            try {
-                value = field.getData();
-            } catch (IllegalArgumentException e1) {
-                showErrorMessage("IllegalArgumentException");
-                return;
-            } catch (IllegalAccessException e1) {
-                showErrorMessage("IllegalAccessException");
-                return;
-            } catch (ExceptionInInitializerError e1) {
-                showErrorMessage("ExceptionInInitializerError");
-                return;
-            }
+	private class ChangeFieldActionListener implements ActionListener {
+		@Override
+		public void actionPerformed(ActionEvent e) {
+			MyField field = fieldList.getSelectedValue();
+			if (field == null) {
+				showErrorMessage("Field not selected.");
+				return;
+			}
+			Object value;
+			try {
+				value = field.getData();
+			} catch (IllegalArgumentException e1) {
+				showErrorMessage("IllegalArgumentException");
+				return;
+			} catch (IllegalAccessException e1) {
+				showErrorMessage("IllegalAccessException");
+				return;
+			} catch (ExceptionInInitializerError e1) {
+				showErrorMessage("ExceptionInInitializerError");
+				return;
+			}
 
-            //テキストフィールドから値を受け取る
-            while (true) {
-                //String newValue = JOptionPane.showInputDialog("変更したい値を入力してください。",
-                //        value == null ? "(null)" : value);
-            	String newValue = valueLabel.getText();
-                if (newValue == null)
-                    return;
-                if (newValue.isEmpty()) {
-                    showErrorMessage("Value is empty.");
-                    return;
-                }
-                try {
-                    field.setData(newValue);
-                    valueLabel.setText(field.getData().toString());
-                    //pack();
-                    JOptionPane.showMessageDialog(MainFrame.this, "Success.");
-                    return;
-                } catch (NumberFormatException e1) {
-                    showErrorMessage("NumberFormatException");
-                    valueLabel.setText(value.toString());
-                    return;
-                } catch (IllegalArgumentException e1) {
-                    showErrorMessage("IllegalArgumentException");
-                    valueLabel.setText(value.toString());
-                    e1.printStackTrace();
-                    return;
-                } catch (IllegalAccessException e1) {
-                    showErrorMessage("IllegalAccessException");
-                    valueLabel.setText(value.toString());
-                    return;
-                } catch (SecurityException e1) {
-                    showErrorMessage("SecurityException");
-                    valueLabel.setText(value.toString());
-                    return;
-                } catch (ExceptionInInitializerError e1) {
-                    showErrorMessage("ExceptionInInitializerError");
-                    valueLabel.setText(value.toString());
-                    return;
-                } catch (OutOfMemoryError e1) {
-                    showErrorMessage("OutOfMemoryError: " + e1.getMessage());
-                    valueLabel.setText(value.toString());
-                    return;
-                } catch (VirtualMachineError e1) {
-                    showErrorMessage("VirtualMachineError: " + e1.getMessage());
-                    valueLabel.setText(value.toString());
-                    return;
-                } catch (Error e1) {
-                    showErrorMessage("Error: " + e1.getMessage());
-                    valueLabel.setText(value.toString());
-                    return;
-                } catch (RuntimeException e1) {
-                    showErrorMessage("RuntimeException: " + e1.getMessage());
-                    valueLabel.setText(value.toString());
-                    return;
-                }
-            }
-        }
-    }
+			//テキストフィールドから値を受け取る
+			while (true) {
+				//String newValue = JOptionPane.showInputDialog("変更したい値を入力してください。",
+				//		value == null ? "(null)" : value);
+				String newValue = valueLabel.getText();
+				if (newValue == null)
+					return;
+				if (newValue.isEmpty()) {
+					showErrorMessage("Value is empty.");
+					return;
+				}
+				try {
+					field.setData(newValue);
+					valueLabel.setText(field.getData().toString());
+					//pack();
+					JOptionPane.showMessageDialog(MainFrame.this, "Success.");
+					return;
+				} catch (NumberFormatException e1) {
+					showErrorMessage("NumberFormatException");
+					valueLabel.setText(value.toString());
+					return;
+				} catch (IllegalArgumentException e1) {
+					showErrorMessage("IllegalArgumentException");
+					valueLabel.setText(value.toString());
+					e1.printStackTrace();
+					return;
+				} catch (IllegalAccessException e1) {
+					showErrorMessage("IllegalAccessException");
+					valueLabel.setText(value.toString());
+					return;
+				} catch (SecurityException e1) {
+					showErrorMessage("SecurityException");
+					valueLabel.setText(value.toString());
+					return;
+				} catch (ExceptionInInitializerError e1) {
+					showErrorMessage("ExceptionInInitializerError");
+					valueLabel.setText(value.toString());
+					return;
+				} catch (OutOfMemoryError e1) {
+					showErrorMessage("OutOfMemoryError: " + e1.getMessage());
+					valueLabel.setText(value.toString());
+					return;
+				} catch (VirtualMachineError e1) {
+					showErrorMessage("VirtualMachineError: " + e1.getMessage());
+					valueLabel.setText(value.toString());
+					return;
+				} catch (Error e1) {
+					showErrorMessage("Error: " + e1.getMessage());
+					valueLabel.setText(value.toString());
+					return;
+				} catch (RuntimeException e1) {
+					showErrorMessage("RuntimeException: " + e1.getMessage());
+					valueLabel.setText(value.toString());
+					return;
+				}
+			}
+		}
+	}
 
-    private class ArrayObjectSelectionListener implements TreeSelectionListener {
-        @Override
-        public void valueChanged(TreeSelectionEvent e) {
-        	DefaultMutableTreeNode selectedNode = (DefaultMutableTreeNode) arrayTree.getLastSelectedPathComponent();
-            // Not choice
-            if (selectedNode == null) {
-                arrayCellListModel.clear();
-                arrayCellList.setEnabled(false);
-                fieldListModel.clear();
-                fieldList.setEnabled(false);
-                methodListModel.clear();
-                methodList.setEnabled(false);
-            }
-            // Class choice
-            else if (selectedNode.getParent().equals(arrayRootNode)) {
-                arrayCellListModel.clear();
-                arrayCellList.setEnabled(false);
-                fieldListModel.clear();
-                fieldList.setEnabled(false);
-                methodListModel.clear();
-                methodList.setEnabled(false);
-            } else if (selectedNode.getParent().getParent()
-                    .equals(arrayRootNode)) {
-                MyArray element = getArrayElement(selectedNode.toString());
-                if (element == null) {
-                    showErrorMessage("FATAL: ArrayElement is null!");
-                    return;
-                }
-                // Load fields
-                fieldListModel.clear();
-                for (MyField f : element.getFields())
-                    fieldListModel.addElement(f);
-                fieldList.setEnabled(true);
-                // Load methods
-                methodListModel.clear();
-                for (MyMethod m : element.getMethods())
-                    methodListModel.addElement(m);
-                methodList.setEnabled(true);
+	private class ArrayObjectSelectionListener implements TreeSelectionListener {
+		@Override
+		public void valueChanged(TreeSelectionEvent e) {
+			DefaultMutableTreeNode selectedNode = (DefaultMutableTreeNode) arrayTree.getLastSelectedPathComponent();
+			// Not choice
+			if (selectedNode == null) {
+				arrayCellListModel.clear();
+				arrayCellList.setEnabled(false);
+				fieldListModel.clear();
+				fieldList.setEnabled(false);
+				methodListModel.clear();
+				methodList.setEnabled(false);
+			}
+			// Class choice
+			else if (selectedNode.getParent().equals(arrayRootNode)) {
+				arrayCellListModel.clear();
+				arrayCellList.setEnabled(false);
+				fieldListModel.clear();
+				fieldList.setEnabled(false);
+				methodListModel.clear();
+				methodList.setEnabled(false);
+			} else if (selectedNode.getParent().getParent()
+					.equals(arrayRootNode)) {
+				MyArray element = getArrayElement(selectedNode.toString());
+				if (element == null) {
+					showErrorMessage("FATAL: ArrayElement is null!");
+					return;
+				}
+				// Load fields
+				fieldListModel.clear();
+				for (MyField f : element.getFields())
+					fieldListModel.addElement(f);
+				fieldList.setEnabled(true);
+				// Load methods
+				methodListModel.clear();
+				for (MyMethod m : element.getMethods())
+					methodListModel.addElement(m);
+				methodList.setEnabled(true);
 
-                // Load members
-                arrayCellListModel.clear();
-                for (int i = 0; i < element.length(); i++) {
-                    arrayCellListModel.addElement(element.getObjectElementAt(i));
-                }
-                arrayCellList.setEnabled(true);
-                //pack();
-                // setLocationRelativeTo(null);
-            }
-        }
-    }
+				// Load members
+				arrayCellListModel.clear();
+				for (int i = 0; i < element.length(); i++) {
+					arrayCellListModel.addElement(element.getObjectElementAt(i));
+				}
+				arrayCellList.setEnabled(true);
+				//pack();
+				// setLocationRelativeTo(null);
+			}
+		}
+	}
 
-    private class ArrayMouseAdapter extends MouseAdapter {
-        @Override
-        public void mouseClicked(MouseEvent e) {
-            new ArrayObjectSelectionListener().valueChanged(null);
-        }
-    }
+	private class ArrayMouseAdapter extends MouseAdapter {
+		@Override
+		public void mouseClicked(MouseEvent e) {
+			new ArrayObjectSelectionListener().valueChanged(null);
+		}
+	}
 
 
-    private class InvokeMethodActionListener implements ActionListener {
-        @Override
-        public void actionPerformed(ActionEvent e) {
-            invoke();
-        }
-    }
+	private class InvokeMethodActionListener implements ActionListener {
+		@Override
+		public void actionPerformed(ActionEvent e) {
+			invoke();
+		}
+	}
 
-    private class TextFieldActionListener implements ActionListener {
-        @Override
-        public void actionPerformed(ActionEvent e) {
-            if (e.getSource().equals(invokeParamsField))
-                invoke();
-        }
-    }
+	private class TextFieldActionListener implements ActionListener {
+		@Override
+		public void actionPerformed(ActionEvent e) {
+			if (e.getSource().equals(invokeParamsField))
+				invoke();
+		}
+	}
 
-    private class FieldSelectionListener implements ListSelectionListener {
+	private class FieldSelectionListener implements ListSelectionListener {
 		@Override
 		public void valueChanged(ListSelectionEvent e) {
 			MyField field = fieldList.getSelectedValue();
-            if (field == null) {
-                valueLabel.setText(" ");
-                valueLabel.setForeground(Color.black);
-                changeFieldButton.setEnabled(false);
-            } else {
-                try {
-                    Object value = field.getData();
-                    valueLabel.setText(value.toString());
-                    valueLabel.setForeground(Color.black);
-                    changeFieldButton.setEnabled(true);
-                } catch (IllegalArgumentException e1) {
-                    valueLabel.setText("(IllegalArgument)");
-                    valueLabel.setForeground(Color.red);
-                    changeFieldButton.setEnabled(false);
-                } catch (NullPointerException e1) {
-                    valueLabel.setText("(null)");
-                    valueLabel.setForeground(Color.darkGray);
-                    changeFieldButton.setEnabled(true);
-                } catch (SecurityException e1) {
-                    valueLabel.setText("(SecurityException)");
-                    valueLabel.setForeground(Color.red);
-                    changeFieldButton.setEnabled(false);
-                } catch (IllegalAccessException e1) {
-                    valueLabel.setText("(IllegalAccess)");
-                    valueLabel.setForeground(Color.red);
-                    changeFieldButton.setEnabled(false);
-                }
-            }
+			if (field == null) {
+				valueLabel.setText(" ");
+				valueLabel.setForeground(Color.black);
+				changeFieldButton.setEnabled(false);
+			} else {
+				try {
+					Object value = field.getData();
+					valueLabel.setText(value.toString());
+					valueLabel.setForeground(Color.black);
+					changeFieldButton.setEnabled(true);
+				} catch (IllegalArgumentException e1) {
+					valueLabel.setText("(IllegalArgument)");
+					valueLabel.setForeground(Color.red);
+					changeFieldButton.setEnabled(false);
+				} catch (NullPointerException e1) {
+					valueLabel.setText("(null)");
+					valueLabel.setForeground(Color.darkGray);
+					changeFieldButton.setEnabled(true);
+				} catch (SecurityException e1) {
+					valueLabel.setText("(SecurityException)");
+					valueLabel.setForeground(Color.red);
+					changeFieldButton.setEnabled(false);
+				} catch (IllegalAccessException e1) {
+					valueLabel.setText("(IllegalAccess)");
+					valueLabel.setForeground(Color.red);
+					changeFieldButton.setEnabled(false);
+				}
+			}
 		}
-    }
+	}
 
-    private class MethodSelectionListener implements ListSelectionListener {
+	private class MethodSelectionListener implements ListSelectionListener {
 		@Override
 		public void valueChanged(ListSelectionEvent e) {
 			MyMethod method = methodList.getSelectedValue();
-            if (method == null) {
-                invokeMethodButton.setEnabled(false);
-            } else if (method.getParameterTypes().length == 0) {
-                invokeMethodButton.setEnabled(true);
-                invokeParamsField.setEnabled(false);
-            } else {
-                invokeMethodButton.setEnabled(true);
-                invokeParamsField.setEnabled(true);
-            }
+			if (method == null) {
+				invokeMethodButton.setEnabled(false);
+			} else if (method.getParameterTypes().length == 0) {
+				invokeMethodButton.setEnabled(true);
+				invokeParamsField.setEnabled(false);
+			} else {
+				invokeMethodButton.setEnabled(true);
+				invokeParamsField.setEnabled(true);
+			}
 		}
-    }
+	}
 
-    private class ObjectMouseAdapter extends MouseAdapter {
-        @Override
-        public void mouseClicked(MouseEvent arg0) {
-            new ObjectSelectionListener().valueChanged(null);
-        }
-    }
+	private class ObjectMouseAdapter extends MouseAdapter {
+		@Override
+		public void mouseClicked(MouseEvent arg0) {
+			new ObjectSelectionListener().valueChanged(null);
+		}
+	}
 
-    private class ArrayCellSelectionListener implements ListSelectionListener {
+	private class ArrayCellSelectionListener implements ListSelectionListener {
 
-        @Override
-        public void valueChanged(ListSelectionEvent e) {
-            MyInstance instance = arrayCellList.getSelectedValue();
-            fieldListModel.clear();
-            fieldList.setEnabled(false);
-            changeFieldButton.setEnabled(false);
-            valueLabel.setText(" ");
-            methodListModel.clear();
-            methodList.setEnabled(false);
-            invokeParamsField.setEnabled(false);
-            invokeMethodButton.setEnabled(false);
-            insertNewButton.setEnabled(false);
-            cellIsNullLabel.setText("");
-            if (instance != null) {
-                insertNewButton.setEnabled(true);
-                if (instance.getObject() != null) {
-                    // Load fields
-                    fieldListModel.clear();
-                    for (MyField f : instance.getFields())
-                        fieldListModel.addElement(f);
-                    fieldList.setEnabled(true);
-                    // Load methods
-                    methodListModel.clear();
-                    for (MyMethod m : instance.getMethods())
-                        methodListModel.addElement(m);
-                    methodList.setEnabled(true);
-                    cellIsNullLabel.setText("inserted");
-                    pack();
-                } else {
-                    cellIsNullLabel.setText("null");
-                    pack();
-                }
-            } else {
-            }
-        }
-    }
+		@Override
+		public void valueChanged(ListSelectionEvent e) {
+			MyInstance instance = arrayCellList.getSelectedValue();
+			fieldListModel.clear();
+			fieldList.setEnabled(false);
+			changeFieldButton.setEnabled(false);
+			valueLabel.setText(" ");
+			methodListModel.clear();
+			methodList.setEnabled(false);
+			invokeParamsField.setEnabled(false);
+			invokeMethodButton.setEnabled(false);
+			insertNewButton.setEnabled(false);
+			cellIsNullLabel.setText("");
+			if (instance != null) {
+				insertNewButton.setEnabled(true);
+				if (instance.getObject() != null) {
+					// Load fields
+					fieldListModel.clear();
+					for (MyField f : instance.getFields())
+						fieldListModel.addElement(f);
+					fieldList.setEnabled(true);
+					// Load methods
+					methodListModel.clear();
+					for (MyMethod m : instance.getMethods())
+						methodListModel.addElement(m);
+					methodList.setEnabled(true);
+					cellIsNullLabel.setText("inserted");
+					pack();
+				} else {
+					cellIsNullLabel.setText("null");
+					pack();
+				}
+			} else {
+			}
+		}
+	}
 
-    private class InsertNewActionListener implements ActionListener {
-        @Override
-        public void actionPerformed(ActionEvent e) {
-        	DefaultMutableTreeNode selectedNode = (DefaultMutableTreeNode) arrayTree.getLastSelectedPathComponent();
-            if (selectedNode != null
-                    && selectedNode.getParent().getParent().equals(arrayRootNode)) {
-                String name = selectedNode.toString();
-                int index = arrayCellList.getSelectedIndex();
-                System.out.println("" + name + " " + index);
-                String className = selectedNode.getParent().toString();
-                if (className.equals("byte")) {
-                    new InstanceFrame(MainFrame.this).setClass(Byte.class, name, index);
-                } else if (className.equals("short")) {
-                    new InstanceFrame(MainFrame.this).setClass(Short.class, name, index);
-                } else if (className.equals("int")) {
-                    new InstanceFrame(MainFrame.this).setClass(Integer.class, name, index);
-                } else if (className.equals("long")) {
-                    new InstanceFrame(MainFrame.this).setClass(Long.class, name, index);
-                } else if (className.equals("float")) {
-                    new InstanceFrame(MainFrame.this).setClass(Float.class, name, index);
-                } else if (className.equals("double")) {
-                    new InstanceFrame(MainFrame.this).setClass(Double.class, name, index);
-                } else if (className.equals("char")) {
-                    new InstanceFrame(MainFrame.this).setClass(Character.class, name, index);
-                } else if (className.equals("boolean")) {
-                    new InstanceFrame(MainFrame.this).setClass(Boolean.class,name, index);
-                } else {
-                    try {
-                        new InstanceFrame(MainFrame.this).setClass(Class.forName(className), name, index);
-                    } catch (ClassNotFoundException e1) {
-                        showErrorMessage("FATAL: ClassNotFoundException");
-                        return;
-                    }
-                }
-            }
-        }
-    }
+	private class InsertNewActionListener implements ActionListener {
+		@Override
+		public void actionPerformed(ActionEvent e) {
+			DefaultMutableTreeNode selectedNode = (DefaultMutableTreeNode) arrayTree.getLastSelectedPathComponent();
+			if (selectedNode != null
+					&& selectedNode.getParent().getParent().equals(arrayRootNode)) {
+				String name = selectedNode.toString();
+				int index = arrayCellList.getSelectedIndex();
+				System.out.println("" + name + " " + index);
+				String className = selectedNode.getParent().toString();
+				if (className.equals("byte")) {
+					new InstanceFrame(MainFrame.this).setClass(Byte.class, name, index);
+				} else if (className.equals("short")) {
+					new InstanceFrame(MainFrame.this).setClass(Short.class, name, index);
+				} else if (className.equals("int")) {
+					new InstanceFrame(MainFrame.this).setClass(Integer.class, name, index);
+				} else if (className.equals("long")) {
+					new InstanceFrame(MainFrame.this).setClass(Long.class, name, index);
+				} else if (className.equals("float")) {
+					new InstanceFrame(MainFrame.this).setClass(Float.class, name, index);
+				} else if (className.equals("double")) {
+					new InstanceFrame(MainFrame.this).setClass(Double.class, name, index);
+				} else if (className.equals("char")) {
+					new InstanceFrame(MainFrame.this).setClass(Character.class, name, index);
+				} else if (className.equals("boolean")) {
+					new InstanceFrame(MainFrame.this).setClass(Boolean.class,name, index);
+				} else {
+					try {
+						new InstanceFrame(MainFrame.this).setClass(Class.forName(className), name, index);
+					} catch (ClassNotFoundException e1) {
+						showErrorMessage("FATAL: ClassNotFoundException");
+						return;
+					}
+				}
+			}
+		}
+	}
 }

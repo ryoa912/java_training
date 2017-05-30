@@ -50,7 +50,7 @@ public class InstanceFrame extends MyWindow {
 		this.mainFrame = mainFrame;
 		setTitle("インスタンス生成");
 		setResizable(false);
-        pack();
+		pack();
 	}
 
 	public void setClass(Class<?> cls) {

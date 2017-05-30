@@ -9,15 +9,15 @@ import interpret.containers.MainFrame;
 
 public class Index {
 	/**
-     * アプリケーションの起動
-     */
-     public static void main(String[] args) {
-    	 createAndShowWindow();
-     }
-     /**
-     * ウィンドウの生成と表示を行う。
-     */
-     private static void createAndShowWindow() {
-         JFrame mainFrame = new MainFrame();
-     }
+	 * アプリケーションの起動
+	 */
+	public static void main(String[] args) {
+		createAndShowWindow();
+	}
+	/**
+	 * ウィンドウの生成と表示を行う。
+	 */
+	private static void createAndShowWindow() {
+		JFrame mainFrame = new MainFrame();
+	}
 }
