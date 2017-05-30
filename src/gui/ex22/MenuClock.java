@@ -3,6 +3,7 @@
  */
 package gui.ex22;
 
+//TODO:文字サイズを変更したら、画面サイズを合わせるようにする
 import java.awt.Color;
 import java.awt.Dimension;
 import java.awt.FlowLayout;
@@ -119,12 +120,15 @@ public class MenuClock extends JFrame {
 				break;
 			case "18pt":
 				font1 = new Font(font1.getFamily(), font1.getStyle(), 18);
+				setSize(frameWidth, frameHeight);
 				break;
 			case "36pt":
 				font1 = new Font(font1.getFamily(), font1.getStyle(), 36);
+				setSize(frameWidth, frameHeight);
 				break;
 			case"72pt":
 				font1 = new Font(font1.getFamily(), font1.getStyle(), 72);
+				setSize(frameWidth*2, frameHeight*2);
 				break;
 			default:
 				System.out.println("内部エラー");
