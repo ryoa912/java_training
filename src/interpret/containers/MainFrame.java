@@ -39,7 +39,6 @@ import interpret.components.MyField;
 import interpret.components.MyInstance;
 import interpret.components.MyMethod;
 import interpret.components.MyWindow;
-import interpret_sample.InterpretObject;
 
 /*
  * ・コンストラクタがスローする例外を正しく表示すること（例：java.lang.Integer(String str)に"aaa"でNumberFormatException）
@@ -52,7 +51,6 @@ import interpret_sample.InterpretObject;
 
 public class MainFrame extends MyWindow {
     private static final String DEFAULT_TYPE = "java.lang.Integer";
-    private static final String DEFAULT_ARRAY_NAME = "array";
     private static final int COMPONENT_WIDTH = 400;
     private static final int COMPONENT_HEIGHT = 100;
     static final String OBJECT_PREFIX = "=";
@@ -78,8 +76,8 @@ public class MainFrame extends MyWindow {
     private JTree arrayTree;
     private DefaultTreeModel arrayTreeModel;
     private DefaultMutableTreeNode arrayRootNode;
-    private JList<InterpretObject> arrayCellList;
-    private DefaultListModel<InterpretObject> arrayCellListModel;
+    private JList<MyInstance> arrayCellList;
+    private DefaultListModel<MyInstance> arrayCellListModel;
 
     //配列操作パネル
     private JButton insertNewButton;
@@ -119,11 +117,11 @@ public class MainFrame extends MyWindow {
         objectTree.setRootVisible(false);
         objectTree.setDragEnabled(true);
         objectTreeModel = (DefaultTreeModel) objectTree.getModel();
-        addGrid(new JLabel("Instances"), 1, 3);
+        addGrid(new JLabel("インスタンス"), 1, 3);
         addGrid(objectList, 1, 4, 1, 4);
 
         //配列一覧
-        addGrid(new JLabel("Arrays"), 2, 3);
+        addGrid(new JLabel("配列"), 2, 3);
         arrayRootNode = new DefaultMutableTreeNode("Arrays");
         arrayTree = new JTree(arrayRootNode);
         arrayTree.setRootVisible(false);
@@ -137,7 +135,7 @@ public class MainFrame extends MyWindow {
         addGrid(arrayTreeScroll, 2, 4);
 
         //配列内インスタンス一覧
-        addGrid(new JLabel("Cells"), 2, 5);
+        addGrid(new JLabel("配列内要素"), 2, 5);
         arrayCellListModel = new DefaultListModel<>();
         arrayCellList = new JList<>();
         arrayCellList.setModel(arrayCellListModel);
@@ -155,10 +153,10 @@ public class MainFrame extends MyWindow {
         arrayCellControlPanel.setPreferredSize(new Dimension(COMPONENT_WIDTH, 50));
         arrayCellControlPanel.setLayout(arrayCellControlPanelLayout);
         cellIsNullLabel = new JLabel("");
-        cellIsNullLabel.setForeground(Color.red);
+        cellIsNullLabel.setForeground(Color.black);
         arrayCellControlPanel.add(cellIsNullLabel);
         addGrid(arrayCellControlPanel, 2, 7);
-        insertNewButton = new JButton("Insert new...");
+        insertNewButton = new JButton("要素追加");
         insertNewButton.setEnabled(false);
         insertNewButton.addActionListener(new InsertNewActionListener());
         arrayCellControlPanel.add(insertNewButton);
@@ -168,20 +166,18 @@ public class MainFrame extends MyWindow {
         fieldListModel = new DefaultListModel<>();
         fieldList.setModel(fieldListModel);
         fieldList.addListSelectionListener(new FieldSelectionListener());
-        addGrid(new JLabel("Fields"), 1, 8);
+        addGrid(new JLabel("フィールド"), 1, 8);
         addGrid(new JScrollPane(fieldList), 1, 9);
 
         //フィールド操作パネル
         JPanel fieldControlPanel = new JPanel();
         fieldControlPanel.setLayout(new BoxLayout(fieldControlPanel, BoxLayout.Y_AXIS));
         fieldControlPanel.setPreferredSize(new Dimension(400, 100));
-        JLabel valueDescLabel = new JLabel("Value: ");
-        fieldControlPanel.add(valueDescLabel);
         valueLabel = new JTextField();
         valueLabel.setMaximumSize(new Dimension(200, 20));
-        valueLabel.setBorder(new LineBorder(Color.BLACK));
+        valueLabel.setBorder(new LineBorder(Color.black));
         fieldControlPanel.add(valueLabel);
-        changeFieldButton = new JButton("Change");
+        changeFieldButton = new JButton("変更");
         changeFieldButton.addActionListener(new ChangeFieldActionListener());
         changeFieldButton.setEnabled(false);
         fieldControlPanel.add(changeFieldButton);
@@ -192,19 +188,18 @@ public class MainFrame extends MyWindow {
         methodListModel = new DefaultListModel<>();
         methodList.setModel(methodListModel);
         methodList.addListSelectionListener(new MethodSelectionListener());
-        addGrid(new JLabel("Methods"), 1, 10);
+        addGrid(new JLabel("メソッド"), 1, 10);
         addGrid(new JScrollPane(methodList), 1, 11);
 
         //メソッド操作パネル
         JPanel methodControlpanel = new JPanel();
         methodControlpanel.setLayout(new BoxLayout(methodControlpanel, BoxLayout.Y_AXIS));
         methodControlpanel.setPreferredSize(new Dimension(400, 100));
-        methodControlpanel.add(new JLabel("Parameters: "));
         invokeParamsField = new JTextField();
         invokeParamsField.setMaximumSize(new Dimension(200, 20));
         invokeParamsField.addActionListener(new TextFieldActionListener());
         methodControlpanel.add(invokeParamsField);
-        invokeMethodButton = new JButton("Call");
+        invokeMethodButton = new JButton("実行");
         invokeMethodButton.setEnabled(false);
         invokeMethodButton.addActionListener(new InvokeMethodActionListener());
         methodControlpanel.add(invokeMethodButton);
@@ -219,10 +214,10 @@ public class MainFrame extends MyWindow {
         addGrid(createInstanceButtonPanel, 1, 1);
 
 
-        //インスタンス生成ボタン
+        //配列生成ボタン
         JPanel createInstanceArrayButtonPanel = new JPanel();
         createInstanceArrayButtonPanel.setLayout(new FlowLayout(FlowLayout.LEFT));
-        createInstanceArrayButton = new JButton("インスタンス配列生成");
+        createInstanceArrayButton = new JButton("配列生成");
         createInstanceArrayButtonPanel.add(createInstanceArrayButton);
         createInstanceArrayButton.addActionListener(actionHandler);
         addGrid(createInstanceArrayButtonPanel, 2, 1);
@@ -261,6 +256,14 @@ public class MainFrame extends MyWindow {
         expandAll(arrayTree, 0, arrayTree.getRowCount());
         pack();
         setLocationRelativeTo(null);
+    }
+
+    void addArrayCell(Object instance, String name, int index) {
+        MyArray element = getArrayElement(name);
+        element.setObjectElementAt(index, instance);
+        arrayCellListModel.setElementAt(new MyInstance(instance, name
+                + "[" + index + "]"), index);
+        new ArrayCellSelectionListener().valueChanged(null);
     }
 
     private DefaultMutableTreeNode getClassNode(Class<?> cls) {
@@ -308,12 +311,10 @@ public class MainFrame extends MyWindow {
                 inputParam = inputParams.get(i);
             } catch (IndexOutOfBoundsException ioobe) {
                 paramData[i] = null;
-                System.out.println("paramData[" + i + "]=(null)");
                 continue;
             }
             if (inputParam.equals("null")) {
                 paramData[i] = null;
-                System.out.println("paramData[" + i + "]=(null)");
                 continue;
             }
             //インスタンスを引数にする場合
@@ -369,8 +370,6 @@ public class MainFrame extends MyWindow {
                             showErrorMessage("Unknown type");
                             return;
                         }
-                        System.out.println("paramData[" + i + "]="
-                                + paramData[i]);
                         continue;
                     } catch (NumberFormatException e1) {
                         showErrorMessage("NumberFormatException");
@@ -382,18 +381,15 @@ public class MainFrame extends MyWindow {
                         Object p = params[i].getConstructor(String.class)
                                 .newInstance(inputParam);
                         paramData[i] = p;
-                        System.out.println("paramData[" + i + "]=" + p);
                         continue;
                     } catch (ReflectiveOperationException e1) {
-                        System.err
-                                .println("Parameter No."
+                        System.err.println("Parameter No."
                                         + (i + 1)
                                         + " hasn't string constructor. Inserting null.");
                     } catch (SecurityException e1) {
                         showErrorMessage("SecurityException");
                         return;
                     }
-                    System.out.println("paramData[" + i + "]=(null)");
                     paramData[i] = null;
                 }
             }
@@ -474,7 +470,7 @@ public class MainFrame extends MyWindow {
                             "ClassNotFoundException", "ERROR",
                             JOptionPane.ERROR_MESSAGE);
                 }
-            } else if (event.getActionCommand() == "インスタンス配列生成") {
+            } else if (event.getActionCommand() == "配列生成") {
             	String value = JOptionPane.showInputDialog(MainFrame.this,
                         "クラス名を入力してください。", DEFAULT_TYPE);
                 if (value == null) {
@@ -629,6 +625,51 @@ public class MainFrame extends MyWindow {
     private class ArrayObjectSelectionListener implements TreeSelectionListener {
         @Override
         public void valueChanged(TreeSelectionEvent e) {
+        	DefaultMutableTreeNode selectedNode = (DefaultMutableTreeNode) arrayTree.getLastSelectedPathComponent();
+            // Not choice
+            if (selectedNode == null) {
+                arrayCellListModel.clear();
+                arrayCellList.setEnabled(false);
+                fieldListModel.clear();
+                fieldList.setEnabled(false);
+                methodListModel.clear();
+                methodList.setEnabled(false);
+            }
+            // Class choice
+            else if (selectedNode.getParent().equals(arrayRootNode)) {
+                arrayCellListModel.clear();
+                arrayCellList.setEnabled(false);
+                fieldListModel.clear();
+                fieldList.setEnabled(false);
+                methodListModel.clear();
+                methodList.setEnabled(false);
+            } else if (selectedNode.getParent().getParent()
+                    .equals(arrayRootNode)) {
+                MyArray element = getArrayElement(selectedNode.toString());
+                if (element == null) {
+                    showErrorMessage("FATAL: ArrayElement is null!");
+                    return;
+                }
+                // Load fields
+                fieldListModel.clear();
+                for (MyField f : element.getFields())
+                    fieldListModel.addElement(f);
+                fieldList.setEnabled(true);
+                // Load methods
+                methodListModel.clear();
+                for (MyMethod m : element.getMethods())
+                    methodListModel.addElement(m);
+                methodList.setEnabled(true);
+
+                // Load members
+                arrayCellListModel.clear();
+                for (int i = 0; i < element.length(); i++) {
+                    arrayCellListModel.addElement(element.getObjectElementAt(i));
+                }
+                arrayCellList.setEnabled(true);
+                //pack();
+                // setLocationRelativeTo(null);
+            }
         }
     }
 
@@ -717,13 +758,76 @@ public class MainFrame extends MyWindow {
 
         @Override
         public void valueChanged(ListSelectionEvent e) {
-
+            MyInstance instance = arrayCellList.getSelectedValue();
+            fieldListModel.clear();
+            fieldList.setEnabled(false);
+            changeFieldButton.setEnabled(false);
+            valueLabel.setText(" ");
+            methodListModel.clear();
+            methodList.setEnabled(false);
+            invokeParamsField.setEnabled(false);
+            invokeMethodButton.setEnabled(false);
+            insertNewButton.setEnabled(false);
+            cellIsNullLabel.setText("");
+            if (instance != null) {
+                insertNewButton.setEnabled(true);
+                if (instance.getObject() != null) {
+                    // Load fields
+                    fieldListModel.clear();
+                    for (MyField f : instance.getFields())
+                        fieldListModel.addElement(f);
+                    fieldList.setEnabled(true);
+                    // Load methods
+                    methodListModel.clear();
+                    for (MyMethod m : instance.getMethods())
+                        methodListModel.addElement(m);
+                    methodList.setEnabled(true);
+                    cellIsNullLabel.setText("inserted");
+                    pack();
+                } else {
+                    cellIsNullLabel.setText("null");
+                    pack();
+                }
+            } else {
+            }
         }
     }
 
     private class InsertNewActionListener implements ActionListener {
         @Override
         public void actionPerformed(ActionEvent e) {
+        	DefaultMutableTreeNode selectedNode = (DefaultMutableTreeNode) arrayTree.getLastSelectedPathComponent();
+            if (selectedNode != null
+                    && selectedNode.getParent().getParent().equals(arrayRootNode)) {
+                String name = selectedNode.toString();
+                int index = arrayCellList.getSelectedIndex();
+                System.out.println("" + name + " " + index);
+                String className = selectedNode.getParent().toString();
+                if (className.equals("byte")) {
+                    new InstanceFrame(MainFrame.this).setClass(Byte.class, name, index);
+                } else if (className.equals("short")) {
+                    new InstanceFrame(MainFrame.this).setClass(Short.class, name, index);
+                } else if (className.equals("int")) {
+                    new InstanceFrame(MainFrame.this).setClass(Integer.class, name, index);
+                } else if (className.equals("long")) {
+                    new InstanceFrame(MainFrame.this).setClass(Long.class, name, index);
+                } else if (className.equals("float")) {
+                    new InstanceFrame(MainFrame.this).setClass(Float.class, name, index);
+                } else if (className.equals("double")) {
+                    new InstanceFrame(MainFrame.this).setClass(Double.class, name, index);
+                } else if (className.equals("char")) {
+                    new InstanceFrame(MainFrame.this).setClass(Character.class, name, index);
+                } else if (className.equals("boolean")) {
+                    new InstanceFrame(MainFrame.this).setClass(Boolean.class,name, index);
+                } else {
+                    try {
+                        new InstanceFrame(MainFrame.this).setClass(Class.forName(className), name, index);
+                    } catch (ClassNotFoundException e1) {
+                        showErrorMessage("FATAL: ClassNotFoundException");
+                        return;
+                    }
+                }
+            }
         }
     }
 }

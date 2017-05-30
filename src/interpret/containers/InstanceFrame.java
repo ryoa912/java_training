@@ -33,12 +33,17 @@ import javax.swing.event.ListSelectionListener;
 import interpret.components.MyWindow;
 
 public class InstanceFrame extends MyWindow {
+	private static final String DEFAULT_INSTANCE_NAME = "obj";
+
 	private MainFrame mainFrame;
 	private Class<?> cls;
 	private Set<Constructor<?>> constructors;
 	private JList<String> constructorList;
 	private JTextField nameField, paramField;
 	private JButton okButton, cancelButton;
+	private boolean array = false;
+	private String arrayName;
+	private int index;
 
 	public InstanceFrame(MainFrame mainFrame) {
 		super();
@@ -52,7 +57,7 @@ public class InstanceFrame extends MyWindow {
 		this.cls = cls;
 
 		// Constructors label
-		addGrid(new JLabel("Constructors:"), 1, 1);
+		addGrid(new JLabel("コンストラクタ:"), 1, 1);
 
 		// Constructor list
 		constructors = new HashSet<>();
@@ -71,7 +76,7 @@ public class InstanceFrame extends MyWindow {
 		addGrid(scrollPane, 1, 2);
 
 		// Parameters pane
-		addGrid(new JLabel("Parameters:"), 1, 3);
+		addGrid(new JLabel("パラメータ:"), 1, 3);
 		paramField = new JTextField("");
 		if (!cls.isPrimitive())
 			paramField.setEnabled(false);
@@ -81,8 +86,8 @@ public class InstanceFrame extends MyWindow {
 		addGrid(paramField, 1, 4);
 
 		// Name
-		addGrid(new JLabel("Name:"), 1, 5);
-		nameField = new JTextField("");
+		addGrid(new JLabel("インスタンス名:"), 1, 5);
+		nameField = new JTextField(DEFAULT_INSTANCE_NAME);
 		nameField.addActionListener(new TextFieldActionListener());
 		addGrid(nameField, 1, 6);
 
@@ -102,6 +107,18 @@ public class InstanceFrame extends MyWindow {
 		pack();
 		setLocationRelativeTo(null);
 		setVisible(true);
+	}
+
+	public void setClass(Class<?> class1, String name, int index) {
+		this.setClass(class1);
+
+		array = true;
+		arrayName = name;
+		this.index = index;
+
+		nameField.setText(name + "[" + index + "]");
+		nameField.setEnabled(false);
+
 	}
 
 	private void addObject() {
@@ -186,7 +203,11 @@ public class InstanceFrame extends MyWindow {
 			}
 		}
 		try {
-			mainFrame.addObject(cls, selected.newInstance(paramData), name);
+			if (array) {
+				mainFrame.addArrayCell(selected.newInstance(paramData), arrayName, index);
+			} else {
+				mainFrame.addObject(cls, selected.newInstance(paramData), name);
+			}
 			setVisible(false);
 		} catch (InstantiationException e) {
 			showErrorMessage("InstantiationException: " + e.getMessage());
