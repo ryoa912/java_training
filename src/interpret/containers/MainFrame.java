@@ -26,6 +26,7 @@ import javax.swing.JPanel;
 import javax.swing.JScrollPane;
 import javax.swing.JTextField;
 import javax.swing.JTree;
+import javax.swing.border.LineBorder;
 import javax.swing.event.ListSelectionEvent;
 import javax.swing.event.ListSelectionListener;
 import javax.swing.event.TreeSelectionEvent;
@@ -93,7 +94,7 @@ public class MainFrame extends MyWindow {
     private DefaultListModel<MyMethod> methodListModel;
 
     //フィールド操作パネル
-    private final JLabel valueLabel;
+    private final JTextField valueLabel;
     private final JButton changeFieldButton;
 
     //メソッド操作パネル
@@ -173,11 +174,12 @@ public class MainFrame extends MyWindow {
         //フィールド操作パネル
         JPanel fieldControlPanel = new JPanel();
         fieldControlPanel.setLayout(new BoxLayout(fieldControlPanel, BoxLayout.Y_AXIS));
-        fieldControlPanel.setPreferredSize(new Dimension(COMPONENT_WIDTH, 100));
+        fieldControlPanel.setPreferredSize(new Dimension(400, 100));
         JLabel valueDescLabel = new JLabel("Value: ");
         fieldControlPanel.add(valueDescLabel);
-        valueLabel = new JLabel("");
-        valueLabel.setPreferredSize(new Dimension(200, 50));
+        valueLabel = new JTextField();
+        valueLabel.setMaximumSize(new Dimension(200, 20));
+        valueLabel.setBorder(new LineBorder(Color.BLACK));
         fieldControlPanel.add(valueLabel);
         changeFieldButton = new JButton("Change");
         changeFieldButton.addActionListener(new ChangeFieldActionListener());
@@ -197,9 +199,9 @@ public class MainFrame extends MyWindow {
         JPanel methodControlpanel = new JPanel();
         methodControlpanel.setLayout(new BoxLayout(methodControlpanel, BoxLayout.Y_AXIS));
         methodControlpanel.setPreferredSize(new Dimension(400, 100));
-        methodControlpanel.add(new JLabel("Parameters:"));
+        methodControlpanel.add(new JLabel("Parameters: "));
         invokeParamsField = new JTextField();
-        invokeParamsField.setMaximumSize(new Dimension(800, 20));
+        invokeParamsField.setMaximumSize(new Dimension(200, 20));
         invokeParamsField.addActionListener(new TextFieldActionListener());
         methodControlpanel.add(invokeParamsField);
         invokeMethodButton = new JButton("Call");
@@ -565,48 +567,59 @@ public class MainFrame extends MyWindow {
                 return;
             }
 
-            //入力ダイアログから値を受け取る
+            //テキストフィールドから値を受け取る
             while (true) {
-                String newValue = JOptionPane.showInputDialog("変更したい値を入力してください。",
-                        value == null ? "(null)" : value);
+                //String newValue = JOptionPane.showInputDialog("変更したい値を入力してください。",
+                //        value == null ? "(null)" : value);
+            	String newValue = valueLabel.getText();
                 if (newValue == null)
                     return;
                 if (newValue.isEmpty()) {
                     showErrorMessage("Value is empty.");
-                    continue;
+                    return;
                 }
                 try {
                     field.setData(newValue);
                     valueLabel.setText(field.getData().toString());
-                    pack();
-                    break;
+                    //pack();
+                    JOptionPane.showMessageDialog(MainFrame.this, "Success.");
+                    return;
                 } catch (NumberFormatException e1) {
                     showErrorMessage("NumberFormatException");
-                    continue;
+                    valueLabel.setText(value.toString());
+                    return;
                 } catch (IllegalArgumentException e1) {
                     showErrorMessage("IllegalArgumentException");
+                    valueLabel.setText(value.toString());
                     e1.printStackTrace();
-                    continue;
+                    return;
                 } catch (IllegalAccessException e1) {
                     showErrorMessage("IllegalAccessException");
-                    break;
+                    valueLabel.setText(value.toString());
+                    return;
                 } catch (SecurityException e1) {
                     showErrorMessage("SecurityException");
-                    break;
+                    valueLabel.setText(value.toString());
+                    return;
                 } catch (ExceptionInInitializerError e1) {
                     showErrorMessage("ExceptionInInitializerError");
+                    valueLabel.setText(value.toString());
                     return;
                 } catch (OutOfMemoryError e1) {
                     showErrorMessage("OutOfMemoryError: " + e1.getMessage());
+                    valueLabel.setText(value.toString());
                     return;
                 } catch (VirtualMachineError e1) {
                     showErrorMessage("VirtualMachineError: " + e1.getMessage());
+                    valueLabel.setText(value.toString());
                     return;
                 } catch (Error e1) {
                     showErrorMessage("Error: " + e1.getMessage());
+                    valueLabel.setText(value.toString());
                     return;
                 } catch (RuntimeException e1) {
                     showErrorMessage("RuntimeException: " + e1.getMessage());
+                    valueLabel.setText(value.toString());
                     return;
                 }
             }
@@ -647,7 +660,7 @@ public class MainFrame extends MyWindow {
 		public void valueChanged(ListSelectionEvent e) {
 			MyField field = fieldList.getSelectedValue();
             if (field == null) {
-                valueLabel.setText("");
+                valueLabel.setText(" ");
                 valueLabel.setForeground(Color.black);
                 changeFieldButton.setEnabled(false);
             } else {
