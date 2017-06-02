@@ -19,6 +19,9 @@ public class WeakValueMap<K, V> implements Map<K,V> {
     }
 	@Override
 	public V put(K key, V value) {
+		//nullは許容しない
+		if (value == null)
+			throw new IllegalArgumentException();
         WeakReference<V> valueRef = new WeakReference<>(value);
         return map.put(key, valueRef).get();
 	}
@@ -40,7 +43,7 @@ public class WeakValueMap<K, V> implements Map<K,V> {
 	}
 	@Override
 	public boolean containsKey(Object key) {
-        return map.containsKey(key);
+    	return (map.get(key).get() != null);
 	}
 	@Override
 	public boolean containsValue(Object value) {
