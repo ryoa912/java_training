@@ -4,7 +4,7 @@
 package java8.ch01.ex12;
 
 public class Sample {
-	public static void main(String args) {
-		System.out.println("main");
+	public static void main(String[] args) {
+		System.out.println("[Sample]main");
 	}
 }
