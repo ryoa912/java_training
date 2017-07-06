@@ -6,6 +6,7 @@ package gui.ex23;
 import java.awt.Color;
 import java.awt.Dimension;
 import java.awt.Font;
+import java.awt.FontMetrics;
 import java.awt.Frame;
 import java.awt.Graphics;
 import java.awt.Graphics2D;
@@ -13,12 +14,15 @@ import java.awt.Image;
 import java.awt.Menu;
 import java.awt.MenuItem;
 import java.awt.PopupMenu;
+import java.awt.Rectangle;
 import java.awt.RenderingHints;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.awt.event.MouseEvent;
 import java.awt.event.MouseListener;
 import java.awt.event.MouseMotionListener;
+import java.text.SimpleDateFormat;
+import java.util.Calendar;
 import java.util.Date;
 import java.util.Timer;
 import java.util.TimerTask;
@@ -30,15 +34,16 @@ public class WindowClock extends JWindow implements MouseListener, MouseMotionLi
 	public Image buf;			//ダブルバッファ用
 	public Graphics ct;			//オフスクリーン描画用
 
-	public Font f_font;			//フォント
-	public Color f_color = Color.black;		//文字色
-	public Color f_back_color = Color.white;	//背景色
+	private Font font1 = new Font("Arial", Font.PLAIN, 36);
+	private Color backgroundColor = Color.WHITE;
+	private Color fontColor = Color.BLACK;
+
 	public int f_window_x = 100;			//ウィンドウX座標
 	public int f_window_y = 100;			//ウィンドウY座標
 	public int f_click_position_x = 0;		//クリックX座標
 	public int f_click_position_y = 0;		//クリックY座標
-	public int f_width = 600;				//幅
-	public int f_height = 120;				//高さ
+	private int frameWidth = 400;
+	private int frameHeight = 100;
 
 	PopupMenu pop;	//ポップアップメニュー
 
@@ -50,9 +55,9 @@ public class WindowClock extends JWindow implements MouseListener, MouseMotionLi
 		super(owner);
 
 		//初期設定
-		setSize(600, 120);
+		setSize(400, 100);
 		setLocation(f_window_x, f_window_y);
-		f_font = new Font("Arial", Font.PLAIN, 36);
+		font1 = new Font("Arial", Font.PLAIN, 36);
 
 		//リスナの登録
 		addMouseListener(this);
@@ -84,9 +89,11 @@ public class WindowClock extends JWindow implements MouseListener, MouseMotionLi
 		m = new Menu("文字サイズ");
 		m.addActionListener(this);
 		pop.add(m);
+		mi = new MenuItem("18pt");
+		m.add(mi);
 		mi = new MenuItem("36pt");
 		m.add(mi);
-		mi = new MenuItem("18pt");
+		mi = new MenuItem("72pt");
 		m.add(mi);
 
 		//---文字色---
@@ -118,32 +125,37 @@ public class WindowClock extends JWindow implements MouseListener, MouseMotionLi
 	}
 
 	public void paint(Graphics g) {
-		//ダブルバッファ不能の場合は抜ける
-		if (buf == null) return;
+		setBounds(f_window_x, f_window_y, frameWidth, frameHeight);
+		Graphics2D g2 = (Graphics2D)g;
+		g2.setRenderingHint(RenderingHints.KEY_TEXT_ANTIALIASING,
+		                    RenderingHints.VALUE_TEXT_ANTIALIAS_ON);
+		g2.setFont(font1);
+		g2.setColor(fontColor);
+		g2.setBackground(backgroundColor);
+		g2.clearRect(0, 0, this.getWidth(), this.getHeight());
 
-		//描画位置の指定
-		setBounds(f_window_x, f_window_y, f_width, f_height);
+		drawStringCenter(g, getDate() + "   " + getTime());
+	}
 
-		//オフスクリーンの描画領域を取得
-		if (ct == null) ct = buf.getGraphics();
+	public void drawStringCenter(Graphics g,String text){
+		FontMetrics fm = g.getFontMetrics();
+		Rectangle rectText = fm.getStringBounds(text, g).getBounds();
+		Dimension d = getSize();
+		int x=d.width/2-rectText.width/2;
+		int y=d.height/2+fm.getAscent()/2+fm.getDescent()+fm.getLeading();
 
-		//アンチエイリアス機能ON
-		Graphics2D ct2 = (Graphics2D)ct;
-		ct2.setRenderingHint(RenderingHints.KEY_TEXT_ANTIALIASING,
-	                        RenderingHints.VALUE_TEXT_ANTIALIAS_ON);
+        g.drawString(text, x, y);
+	}
 
-		//オフスクリーンに描画
-		ct.setColor(f_back_color);
-		ct.fillRect(0 , 0 , dim.width , dim.height);
-
-		ct.setColor(f_color);
-		ct.setFont(f_font);
-
+	private String getTime() {
 		Date date = new Date();
-		ct.drawString(date.toString(),50,75);
+		return date.toString().substring(11, 19);
+	}
 
-		//オフスクリーンの中身をオンスクリーンに描画する
-		g.drawImage(buf , 0 , 0 ,this);
+	private String getDate() {
+		Calendar cal = Calendar.getInstance();
+        SimpleDateFormat sdf = new SimpleDateFormat("y/M/d");
+        return sdf.format(cal.getTime());
 	}
 
 	//MouseListenerのabstract methods
@@ -195,41 +207,46 @@ public class WindowClock extends JWindow implements MouseListener, MouseMotionLi
 		Menu obj = (Menu) e.getSource();
 		switch (e.getActionCommand()) {
 		case "Arial":
-			this.f_font = new Font("Arial", f_font.getStyle(), f_font.getSize());
+			font1 = new Font("Arial", font1.getStyle(), font1.getSize());
 			break;
 		case "Century":
-			this.f_font = new Font("Century", f_font.getStyle(), f_font.getSize());
+			font1 = new Font("Century", font1.getStyle(), font1.getSize());
 			break;
 		case "白":
 			if (obj.getLabel() == "文字色") {
-				f_color = Color.white;
+				fontColor = Color.white;
 			} else {
-				f_back_color = Color.white;
+				backgroundColor = Color.white;
 			}
 			break;
 		case "黒":
 			if (obj.getLabel() == "文字色") {
-				f_color = Color.black;
+				fontColor = Color.black;
 			} else {
-				f_back_color = Color.black;
+				backgroundColor = Color.black;
 			}
 			break;
 		case "グレー":
 			if (obj.getLabel() == "文字色") {
-				f_color = Color.gray;
+				fontColor = Color.gray;
 			} else {
-				f_back_color = Color.gray;
+				backgroundColor = Color.gray;
 			}
 			break;
-		case "36pt":
-			this.f_width = 600;
-			this.f_height = 120;
-	    	this.f_font = new Font(f_font.getFamily(), f_font.getStyle(), 36);
-			break;
 		case "18pt":
-			this.f_width = 350;
-			this.f_height = 120;
-	    	this.f_font = new Font(f_font.getFamily(), f_font.getStyle(), 18);
+			font1 = new Font(font1.getFamily(), font1.getStyle(), 18);
+			frameWidth = 400;
+			frameHeight = 80;
+			break;
+		case "36pt":
+			font1 = new Font(font1.getFamily(), font1.getStyle(), 36);
+			frameWidth = 400;
+			frameHeight = 100;
+			break;
+		case"72pt":
+			font1 = new Font(font1.getFamily(), font1.getStyle(), 72);
+			frameWidth = 800;
+			frameHeight = 300;
 			break;
 		case "終了":
 			System.exit(0);
@@ -238,7 +255,7 @@ public class WindowClock extends JWindow implements MouseListener, MouseMotionLi
 			System.out.println("内部エラー");
 			break;
 		}
-		this.repaint();
+		repaint();
 	}
 
 	public void update(Graphics g)
