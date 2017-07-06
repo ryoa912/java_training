@@ -24,7 +24,6 @@ public class FileExplore {
 }
 
 	public static void main(String[] args) {
-		FileExplore obj = new FileExplore();
 		List<File> l = new FileExplore().listFiles(new File(".").getAbsoluteFile().getParent());
 
 		for (int i=0; i<l.size(); i++) {
