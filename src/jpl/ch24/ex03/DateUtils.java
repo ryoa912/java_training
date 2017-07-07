@@ -5,6 +5,8 @@ package jpl.ch24.ex03;
 
 import java.text.DateFormat;
 import java.text.ParseException;
+import java.text.SimpleDateFormat;
+import java.util.Calendar;
 import java.util.Date;
 import java.util.Locale;
 
@@ -19,6 +21,8 @@ public class DateUtils {
 	}
 
 	public static void main(String[] args) throws ParseException {
-		printStyles("2017/05/23");
+		Calendar cal = Calendar.getInstance();
+        SimpleDateFormat sdf = new SimpleDateFormat("y/M/d");
+		printStyles(sdf.format(cal.getTime()));
 	}
 }
