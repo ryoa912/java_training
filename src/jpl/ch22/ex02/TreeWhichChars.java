@@ -3,14 +3,14 @@
  */
 package jpl.ch22.ex02;
 
-import java.util.HashSet;
 import java.util.Iterator;
 import java.util.Set;
+import java.util.TreeSet;
 
-public class MyWhichChars {
-	private Set<Character> used = new HashSet<Character>();
+public class TreeWhichChars {
+	private Set<Character> used = new TreeSet<Character>();
 
-	public MyWhichChars(String str) {
+	public TreeWhichChars(String str) {
 		for (int i=0; i<str.length(); i++)
 			used.add(str.charAt(i));
 	}
