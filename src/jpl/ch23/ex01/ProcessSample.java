@@ -54,5 +54,6 @@ public class ProcessSample {
         } catch (IOException e) {
             e.printStackTrace();
         }
+        System.exit(0);
 	}
 }
