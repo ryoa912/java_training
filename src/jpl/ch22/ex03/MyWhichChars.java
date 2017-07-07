@@ -36,7 +36,7 @@ public class MyWhichChars {
 		}
 	}
 	public static void main(String[] args) {
-		String str = "Testing 1 2 3";
+		String str = "Testing 1 2 3 あ い う";
 		MyWhichChars obj = new MyWhichChars(str);
 		obj.print();
 	}
