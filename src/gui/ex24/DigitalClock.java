@@ -15,7 +15,6 @@ import java.awt.MenuItem;
 import java.awt.PopupMenu;
 import java.awt.Rectangle;
 import java.awt.RenderingHints;
-import java.awt.Window;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.awt.event.MouseEvent;
@@ -30,8 +29,9 @@ import java.util.prefs.BackingStoreException;
 import java.util.prefs.Preferences;
 
 import javax.swing.JColorChooser;
+import javax.swing.JWindow;
 
-public class DigitalClock extends Window implements MouseListener, MouseMotionListener, ActionListener {
+public class DigitalClock extends JWindow implements MouseListener, MouseMotionListener, ActionListener {
 	public Dimension dim;		//サイズ
 	public Image buf;			//ダブルバッファ用
 	public Graphics ct;			//オフスクリーン描画用

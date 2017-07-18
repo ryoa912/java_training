@@ -22,8 +22,9 @@ import java.awt.event.WindowAdapter;
 import java.awt.event.WindowEvent;
 
 import javax.swing.JColorChooser;
+import javax.swing.JDialog;
 
-public class PropertyDialog extends Dialog implements ActionListener {
+public class PropertyDialog extends JDialog implements ActionListener {
 	Window f_window;
 	GridBagLayout gbl = new GridBagLayout();
 	public Choice c1;
