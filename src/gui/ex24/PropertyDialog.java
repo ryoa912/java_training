@@ -21,22 +21,28 @@ import java.awt.event.ActionListener;
 import java.awt.event.WindowAdapter;
 import java.awt.event.WindowEvent;
 
+import javax.swing.JColorChooser;
+
 public class PropertyDialog extends Dialog implements ActionListener {
 	Window f_window;
 	GridBagLayout gbl = new GridBagLayout();
 	public Choice c1;
 	public Choice c2;
-	public Choice c3;
-	public Choice c4;
 	Button ok_button;
 	Button cancel_button;
+	Button font_color_button;
+	Button background_color_button;
 	Font f_font;
 	Color f_font_color;
 	Color f_background_color;
+	public JColorChooser bg_colorchooser = new JColorChooser(Color.WHITE);
+	public JColorChooser font_colorchooser = new JColorChooser(Color.BLACK);
 
 	public void setActionListener(ActionListener al) {
 	    ok_button.addActionListener(al);
 	    cancel_button.addActionListener(al);
+	    font_color_button.addActionListener(al);
+	    background_color_button.addActionListener(al);
 	}
 	public PropertyDialog(Frame owner) {
 		super(owner, true);
@@ -83,24 +89,18 @@ public class PropertyDialog extends Dialog implements ActionListener {
 	    gbc.anchor = GridBagConstraints.EAST;
 	    layout.setConstraints(label3, gbc);
 
-	    c3 = new Choice();
-	    c3.add("黒");
-	    c3.add("白");
-	    c3.add("グレー");
-	    gbc = addConstraints(1, 2, 1, 1, 1.0d, 1.0d, GridBagConstraints.HORIZONTAL, 0, 25, 0, 50);
-	    layout.setConstraints(c3, gbc);
+	    font_color_button = new Button("文字色の選択");
+	    gbc = addConstraints(1, 2, 1, 1, 1.0d, 1.0d, GridBagConstraints.HORIZONTAL, 0, 25, 0, 25);
+	    layout.setConstraints(font_color_button, gbc);
 
 	    Label label4 = new Label("背景色");
 	    gbc = addConstraints(0, 3, 1, 1, 1.0d, 1.0d, GridBagConstraints.NONE, 0, 50, 0, 25);
 	    gbc.anchor = GridBagConstraints.EAST;
 	    layout.setConstraints(label4, gbc);
 
-	    c4 = new Choice();
-	    c4.add("黒");
-	    c4.add("白");
-	    c4.add("グレー");
+	    background_color_button = new Button("背景色の選択");
 	    gbc = addConstraints(1, 3, 1, 1, 1.0d, 1.0d, GridBagConstraints.HORIZONTAL, 0, 25, 0, 50);
-	    layout.setConstraints(c4, gbc);
+	    layout.setConstraints(background_color_button, gbc);
 
 	    ok_button = new Button("OK");
 	    gbc = addConstraints(0, 4, 1, 1, 1.0d, 1.0d, GridBagConstraints.HORIZONTAL, 0, 50, 0, 25);
@@ -110,16 +110,18 @@ public class PropertyDialog extends Dialog implements ActionListener {
 	    gbc = addConstraints(1, 4, 1, 1, 1.0d, 1.0d, GridBagConstraints.HORIZONTAL, 0, 25, 0, 50);
 	    layout.setConstraints(cancel_button, gbc);
 
+
+
 	    p.add(label1);
 	    p.add(c1);
 	    p.add(label2);
 	    p.add(c2);
 	    p.add(label3);
-	    p.add(c3);
 	    p.add(label4);
-	    p.add(c4);
 	    p.add(ok_button);
 	    p.add(cancel_button);
+	    p.add(font_color_button);
+	    p.add(background_color_button);
 
 	    this.add(p, BorderLayout.CENTER);
 	}
@@ -167,8 +169,6 @@ public class PropertyDialog extends Dialog implements ActionListener {
 
 		c1.select(f_font.getFamily());
 		c2.select(getFontSizeString(f_font.getSize()));
-		c3.select(getColorString(font_color));
-		c4.select(getColorString(background_color));
 	}
 
 	@Override

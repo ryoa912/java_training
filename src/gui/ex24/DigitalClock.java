@@ -29,6 +29,8 @@ import java.util.TimerTask;
 import java.util.prefs.BackingStoreException;
 import java.util.prefs.Preferences;
 
+import javax.swing.JColorChooser;
+
 public class DigitalClock extends Window implements MouseListener, MouseMotionListener, ActionListener {
 	public Dimension dim;		//サイズ
 	public Image buf;			//ダブルバッファ用
@@ -62,12 +64,12 @@ public class DigitalClock extends Window implements MouseListener, MouseMotionLi
 	public DigitalClock(Frame owner) {
 		super(owner);
 		//Prefs
-		prefs = Preferences.userRoot().node("ra_app");
+		prefs = Preferences.userRoot().node("ra_app3");
 
 		//初期設定
 		f_font = this.getFontFamily(prefs.get(FONT_FAMILY, "Arial"), prefs.get(FONT_SIZE, "36pt"));
-		f_color = this.getFontColor(prefs.get(FONT_COLOR, "黒"));
-		f_back_color = this.getColor(prefs.get(BACKGROUND_COLOR, "白"));
+		f_color = Color.decode(prefs.get(FONT_COLOR, "#000000"));
+		f_back_color = Color.decode(prefs.get(BACKGROUND_COLOR, "#FFFFFF"));
 		f_window_x = prefs.getInt(X_POSITION, 100);
 		f_window_y = prefs.getInt(Y_POSITION, 100);
 		f_width = prefs.getInt(FRAME_WIDTH, 420);
@@ -216,15 +218,15 @@ public class DigitalClock extends Window implements MouseListener, MouseMotionLi
 			break;
 		case "OK":
 			f_font = getFontFamily(pd.c1.getSelectedItem(), pd.c2.getSelectedItem());
-			f_color = getColor(pd.c3.getSelectedItem());
-			f_back_color = getColor(pd.c4.getSelectedItem());
+			f_color = pd.f_font_color;
+			f_back_color = pd.f_background_color;
 			f_width = getFrameWidth(pd.c2.getSelectedItem());
 
 			//設定の保存
 			prefs.put(FONT_FAMILY, pd.c1.getSelectedItem());
 			prefs.put(FONT_SIZE, pd.c2.getSelectedItem());
-			prefs.put(FONT_COLOR, pd.c3.getSelectedItem());
-			prefs.put(BACKGROUND_COLOR, pd.c4.getSelectedItem());
+			prefs.put(FONT_COLOR, encodeColor(pd.f_font_color));
+			prefs.put(BACKGROUND_COLOR, encodeColor(pd.f_background_color));
 			prefs.putInt(FRAME_WIDTH, f_width);
 			try {
 				prefs.flush();
@@ -235,6 +237,14 @@ public class DigitalClock extends Window implements MouseListener, MouseMotionLi
 			break;
 		case "キャンセル":
 			pd.setVisible(false);
+			break;
+		case "文字色の選択":
+			pd.f_font_color = JColorChooser.showDialog(this, "文字色を選択してください。", pd.f_font_color);
+			pd.font_color_button.setBackground(pd.f_font_color);
+			break;
+		case "背景色の選択":
+			pd.f_background_color = JColorChooser.showDialog(this, "背景色を選択してください。", pd.f_background_color);
+			pd.background_color_button.setBackground(pd.f_background_color);
 			break;
 		default:
 			System.out.println("内部エラー");
@@ -251,6 +261,9 @@ public class DigitalClock extends Window implements MouseListener, MouseMotionLi
 			return new Font(family, Font.PLAIN, 72);
 		else
 			return new Font(family, Font.PLAIN, 36);
+	}
+	private String encodeColor(Color c) {
+		return "#"+Integer.toHexString(c.getRGB()).substring(2);
 	}
 	private Color getColor(String s) {
 		if (s.equals("黒")) {
