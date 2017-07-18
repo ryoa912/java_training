@@ -240,11 +240,11 @@ public class DigitalClock extends Window implements MouseListener, MouseMotionLi
 			break;
 		case "文字色の選択":
 			pd.f_font_color = JColorChooser.showDialog(this, "文字色を選択してください。", pd.f_font_color);
-			pd.font_color_button.setBackground(pd.f_font_color);
+			pd.ch3.setForeground(pd.f_font_color);
 			break;
 		case "背景色の選択":
 			pd.f_background_color = JColorChooser.showDialog(this, "背景色を選択してください。", pd.f_background_color);
-			pd.background_color_button.setBackground(pd.f_background_color);
+			pd.ch4.setForeground(pd.f_background_color);
 			break;
 		default:
 			System.out.println("内部エラー");

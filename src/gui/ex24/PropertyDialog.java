@@ -35,6 +35,8 @@ public class PropertyDialog extends Dialog implements ActionListener {
 	Font f_font;
 	Color f_font_color;
 	Color f_background_color;
+	Label ch3;
+	Label ch4;
 	public JColorChooser bg_colorchooser = new JColorChooser(Color.WHITE);
 	public JColorChooser font_colorchooser = new JColorChooser(Color.BLACK);
 
@@ -93,6 +95,11 @@ public class PropertyDialog extends Dialog implements ActionListener {
 	    gbc = addConstraints(1, 2, 1, 1, 1.0d, 1.0d, GridBagConstraints.HORIZONTAL, 0, 25, 0, 25);
 	    layout.setConstraints(font_color_button, gbc);
 
+	    ch3 = new Label("■");
+	    gbc = addConstraints(2, 2, 1, 1, 1.0d, 1.0d, GridBagConstraints.NONE, 0, 25, 0, 25);
+	    layout.setConstraints(ch3, gbc);
+	    ch3.setForeground(f_font_color);
+
 	    Label label4 = new Label("背景色");
 	    gbc = addConstraints(0, 3, 1, 1, 1.0d, 1.0d, GridBagConstraints.NONE, 0, 50, 0, 25);
 	    gbc.anchor = GridBagConstraints.EAST;
@@ -101,6 +108,11 @@ public class PropertyDialog extends Dialog implements ActionListener {
 	    background_color_button = new Button("背景色の選択");
 	    gbc = addConstraints(1, 3, 1, 1, 1.0d, 1.0d, GridBagConstraints.HORIZONTAL, 0, 25, 0, 50);
 	    layout.setConstraints(background_color_button, gbc);
+
+	    ch4 = new Label("■");
+	    gbc = addConstraints(2, 3, 1, 1, 1.0d, 1.0d, GridBagConstraints.NONE, 0, 25, 0, 25);
+	    layout.setConstraints(ch4, gbc);
+	    ch4.setForeground(f_background_color);
 
 	    ok_button = new Button("OK");
 	    gbc = addConstraints(0, 4, 1, 1, 1.0d, 1.0d, GridBagConstraints.HORIZONTAL, 0, 50, 0, 25);
@@ -122,6 +134,8 @@ public class PropertyDialog extends Dialog implements ActionListener {
 	    p.add(cancel_button);
 	    p.add(font_color_button);
 	    p.add(background_color_button);
+	    p.add(ch3);
+	    p.add(ch4);
 
 	    this.add(p, BorderLayout.CENTER);
 	}
@@ -169,6 +183,9 @@ public class PropertyDialog extends Dialog implements ActionListener {
 
 		c1.select(f_font.getFamily());
 		c2.select(getFontSizeString(f_font.getSize()));
+
+		ch3.setForeground(f_font_color);
+	    ch4.setForeground(f_background_color);
 	}
 
 	@Override
