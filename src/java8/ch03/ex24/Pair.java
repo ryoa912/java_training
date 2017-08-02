@@ -1,7 +1,7 @@
 /**
  * Copyright © 2017 Ryoh Aruga, All Rights Reserved.
  */
-package java8.ch03.ex23;
+package java8.ch03.ex24;
 
 import java.util.AbstractMap;
 import java.util.function.Function;
@@ -13,6 +13,11 @@ public class Pair<T> extends AbstractMap.SimpleEntry<T, T> {
 
 	public <U> Pair<U> map(Function<? super T, ? extends U> mapper) {
 		return new Pair<>(mapper.apply(getKey()), mapper.apply(getValue()));
+	}
+
+	public <U> Pair<U> flatMap(Function<? super T, Pair<U>> mapper) {
+		T target = getKey();
+		return mapper.apply(target);
 	}
 
 	public static void main(String[] args) {
