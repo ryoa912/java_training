@@ -1,0 +1,1 @@
+BiFunction への最初の型引数でU を ? super U  と宣言すべきですか。
