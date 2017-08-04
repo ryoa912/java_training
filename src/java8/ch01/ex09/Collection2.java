@@ -14,4 +14,6 @@ public interface Collection2<T> extends Collection<T> {
 		Stream<T> stream = this.stream();
 		stream.filter(filter).forEach(action);
 	}
+
+	//iterableなので拡張for文で回して、if文分岐して、actionを実行すればよい。
 }
