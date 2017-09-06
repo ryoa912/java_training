@@ -7,11 +7,12 @@ import java.awt.Color;
 import java.awt.Dimension;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.io.IOException;
 
 import javax.swing.JButton;
 
 import specialclock.components.MyPanel;
-import specialclock.components.SoundFilePlayer;
+import specialclock.components.VoiceroidPlayer;
 
 public class SpeechPanel extends MyPanel {
 	private int width = 400;
@@ -33,7 +34,15 @@ public class SpeechPanel extends MyPanel {
 		@Override
 		public void actionPerformed(ActionEvent e) {
 			System.out.println(e.toString());
-			SoundFilePlayer.play("src/specialclock/voice/sample_voice.wav");
+			//SoundFilePlayer.play("src/specialclock/voice/sample_voice.wav");
+			VoiceroidPlayer vp = new VoiceroidPlayer();
+			try {
+				vp.setAndPlay(ClockPanel.getDateTalk() + " " + ClockPanel.getTimeTalk() + "です。");
+			} catch (IOException e1) {
+				System.out.println(e1.toString());
+			} catch (InterruptedException e1) {
+				System.out.println(e1.toString());
+			}
 		}
 	}
 }

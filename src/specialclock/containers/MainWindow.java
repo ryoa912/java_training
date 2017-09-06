@@ -38,7 +38,7 @@ public class MainWindow extends MyWindow {
 
 		pack();
 		setLocationRelativeTo(null);
-		setResizable(true);
+		setResizable(false);
 		setTitle("Special Clock");
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		setVisible(true);
