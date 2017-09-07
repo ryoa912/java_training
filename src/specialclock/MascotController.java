@@ -37,7 +37,7 @@ public class MascotController implements Initializable {
 
     @FXML
     private void pressed(MouseEvent e) {
-        mousePos(e);
+		mousePos(e);
     }
 
     @FXML
@@ -49,7 +49,7 @@ public class MascotController implements Initializable {
         } else if (o == MouseEvent.MOUSE_RELEASED) {
             if (drag) State.setState(StateType.NORMAL);
             else if (e.getClickCount() > 1) {
-            	State.setState(StateType.NORMAL, StateType.SPEECH);
+            	//State.setState(StateType.NORMAL, StateType.SPEECH);
             	VoiceroidPlayer.playTime();
             }
             drag = false;
