@@ -20,8 +20,6 @@ public class SpeechPanel extends MyPanel {
 
 	private final JButton playButton;
 
-	private final VoiceroidPlayer vp = new VoiceroidPlayer();
-
 	public SpeechPanel() {
 		setPreferredSize(new Dimension(width, height));
 		setBackground(Color.green);
@@ -37,16 +35,14 @@ public class SpeechPanel extends MyPanel {
 		public void actionPerformed(ActionEvent e) {
 			System.out.println(e.toString());
 			try {
-				vp.startVoiceroid();
+				VoiceroidPlayer.startVoiceroid();
 			} catch (IOException | InterruptedException e2) {
 				e2.printStackTrace();
 			}
 			try {
-				vp.setAndPlay(ClockPanel.getDateTalk() + " " + ClockPanel.getTimeTalk() + "です。");
-			} catch (IOException e1) {
-				System.out.println(e1.toString());
-			} catch (InterruptedException e1) {
-				System.out.println(e1.toString());
+				VoiceroidPlayer.playTime();
+			} catch (IOException | InterruptedException e1) {
+				e1.printStackTrace();
 			}
 		}
 	}

@@ -9,10 +9,8 @@ import java.awt.Font;
 import java.awt.FontMetrics;
 import java.awt.Graphics;
 import java.awt.Rectangle;
-import java.text.SimpleDateFormat;
-import java.util.Calendar;
-import java.util.Date;
 
+import specialclock.components.Clock;
 import specialclock.components.MyPanel;
 
 public class ClockPanel extends MyPanel {
@@ -32,7 +30,7 @@ public class ClockPanel extends MyPanel {
 	    g.fillRect(0, 0, width, height);
 	    g.setColor(color);
 	    g.setFont(font);
-	    drawStringCenter(g, getDate() + "   " + getTime(), width/2, height/2);
+	    drawStringCenter(g, Clock.getDate() + "   " + Clock.getTime(), width/2, height/2);
 	}
 	public static void drawStringCenter(Graphics g,String text,int x,int y){
 		FontMetrics fm = g.getFontMetrics();
@@ -41,24 +39,5 @@ public class ClockPanel extends MyPanel {
 		y=y-rectText.height/2+fm.getMaxAscent();
 
         g.drawString(text, x, y);
-	}
-	public static String getTime() {
-		Date date = new Date();
-		return date.toString().substring(11, 19);
-	}
-	public static String getTimeTalk() {
-		Calendar cal = Calendar.getInstance();
-		SimpleDateFormat sdf = new SimpleDateFormat("a hh時mm分");
-        return sdf.format(cal.getTime());
-	}
-	public static String getDate() {
-		Calendar cal = Calendar.getInstance();
-        SimpleDateFormat sdf = new SimpleDateFormat("y/MM/dd");
-        return sdf.format(cal.getTime());
-	}
-	public static String getDateTalk() {
-		Calendar cal = Calendar.getInstance();
-		SimpleDateFormat sdf = new SimpleDateFormat("y年MM月dd日");
-        return sdf.format(cal.getTime());
 	}
 }

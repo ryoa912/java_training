@@ -5,6 +5,7 @@ package specialclock.containers;
 
 import java.awt.Color;
 import java.awt.Font;
+import java.io.IOException;
 import java.util.Date;
 import java.util.Timer;
 import java.util.TimerTask;
@@ -12,7 +13,9 @@ import java.util.TimerTask;
 import javax.swing.JFrame;
 import javax.swing.JPanel;
 
+import specialclock.components.Clock;
 import specialclock.components.MyWindow;
+import specialclock.components.VoiceroidPlayer;
 import specialclock.panels.ClockPanel;
 import specialclock.panels.SpeechPanel;
 
@@ -24,8 +27,6 @@ public class MainWindow extends MyWindow {
 	private Color fontColor = Color.BLACK;
 
 	public MainWindow() {
-		//TODO 設定ファイルを読み込めるようにする
-
 		setLocation(f_window_x, f_window_y);
 
 		//時計パネル
@@ -47,8 +48,15 @@ public class MainWindow extends MyWindow {
 		TimerTask task = new TimerTask() {
 			public void run() {
 				Date date = new Date();
-			    System.out.println(date.toString());
-			    clockPanel.repaint();
+				System.out.println(date.toString());
+				clockPanel.repaint();
+				if (Clock.justMinuteTime()) {
+					try {
+						VoiceroidPlayer.playTime();
+					} catch (IOException | InterruptedException e) {
+						e.printStackTrace();
+					}
+				}
 			}
 		};
         Timer timer = new Timer();
