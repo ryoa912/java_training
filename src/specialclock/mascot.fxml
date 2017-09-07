@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.image.Image?>
+<?import javafx.scene.image.ImageView?>
+<?import javafx.scene.layout.Pane?>
+
+<Pane xmlns="http://javafx.com/javafx/8.0.65" xmlns:fx="http://javafx.com/fxml/1" fx:controller="specialclock.MascotController">
+    <children>
+        <ImageView fx:id="view" onMousePressed="#pressed" onMouseDragged="#dragged"
+        	onDragDetected="#changeState" onMouseReleased="#changeState">
+         <image>
+            <Image url="/specialclock/img/sd_eye1.png" />
+         </image>
+        </ImageView>
+    </children>
+</Pane>
