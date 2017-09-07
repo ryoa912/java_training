@@ -14,7 +14,7 @@ public class Clock {
 	}
 	public static String getTimeTalk() {
 		Calendar cal = Calendar.getInstance();
-		SimpleDateFormat sdf = new SimpleDateFormat("a hh時mm分");
+		SimpleDateFormat sdf = new SimpleDateFormat("a h時m分");
         return sdf.format(cal.getTime());
 	}
 	public static String getDate() {
@@ -24,7 +24,7 @@ public class Clock {
 	}
 	public static String getDateTalk() {
 		Calendar cal = Calendar.getInstance();
-		SimpleDateFormat sdf = new SimpleDateFormat("y年MM月dd日");
+		SimpleDateFormat sdf = new SimpleDateFormat("y年M月d日");
         return sdf.format(cal.getTime());
 	}
 	public static boolean justMinuteTime() {

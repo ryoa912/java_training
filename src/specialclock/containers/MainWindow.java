@@ -6,7 +6,6 @@ package specialclock.containers;
 import java.awt.Color;
 import java.awt.Font;
 import java.io.IOException;
-import java.util.Date;
 import java.util.Timer;
 import java.util.TimerTask;
 
@@ -47,8 +46,6 @@ public class MainWindow extends MyWindow {
 		//タイマタスクの生成
 		TimerTask task = new TimerTask() {
 			public void run() {
-				Date date = new Date();
-				System.out.println(date.toString());
 				clockPanel.repaint();
 				if (Clock.justMinuteTime()) {
 					try {
